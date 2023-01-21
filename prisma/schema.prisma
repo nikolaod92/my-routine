@@ -9,23 +9,70 @@ datasource db {
 
 model User {
   id              Int       @id @default(autoincrement())
-  email           String    @unique
   name            String
+  email           String    @unique
   routine         Routine?  @relation(name: "UserRoutines", fields: [routineId], references: [id])
   routineId       Int?      @unique
   createdRoutines Routine[] @relation(name: "UserCreatedRoutines")
 }
 
 model Routine {
-  id       Int    @id @default(autoincrement())
-  name     String
-  author   User   @relation(name: "UserCreatedRoutines", fields: [authorId], references: [id])
-  authorId Int
-  users    User[] @relation(name: "UserRoutines")
-  userId   Int?
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  days        Day[]
+  author      User     @relation(name: "UserCreatedRoutines", fields: [authorId], references: [id])
+  authorId    Int
+  users       User[]   @relation(name: "UserRoutines")
+  createdAt   DateTime @default(now())
+}
+
+model Day {
+  id        Int              @id @default(autoincrement())
+  dayOfWeek String
+  routine   Routine          @relation(fields: [routineId], references: [id])
+  routineId Int
+  exercises ExercisesOnDay[]
 }
 
 model Exercise {
-  id   Int    @id @default(autoincrement())
-  name String
+  id        Int              @id @default(autoincrement())
+  name      String           @unique
+  equipment String?
+  bodyPart  String
+  target    String?
+  gif       String?
+  days      ExercisesOnDay[]
 }
+
+model ExercisesOnDay {
+  id         Int      @id @default(autoincrement())
+  dayId      Int
+  day        Day      @relation(fields: [dayId], references: [id])
+  exerciseId Int
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  name       String
+  sets       Int
+  reps       Int
+  weight     Int
+
+  @@unique([dayId, exerciseId, name])
+}
+
+// model Exercise {
+//   id       Int              @id @default(autoincrement())
+//   name     String
+//   bodyPart String
+//   days     ExercisesOnDay[]
+// }
+
+// model ExercisesOnDay {
+//   id         Int      @id @default(autoincrement())
+//   dayId      Int
+//   day        Day      @relation(fields: [dayId], references: [id])
+//   exerciseId Int
+//   exercise   Exercise @relation(fields: [exerciseId], references: [id])
+//   sets       Int
+//   reps       Int
+//   weight     Int
+// }

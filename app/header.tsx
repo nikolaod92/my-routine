@@ -1,33 +1,4 @@
-import { prisma } from "@/prisma";
-import { User } from "@prisma/client";
-
 export default async function Header() {
-  let user;
-
-  user = await prisma.user.findFirst({
-    where: {
-      createdRoutines: { some: { name: "GZPL" } }
-    }
-  });
-
-  // user = await prisma.user.create({
-  //   data: {
-  //     name: "Nikola",
-  //     email: "n@b.com"
-  //   }
-  // });
-
-  // await prisma.routine.create({
-  //   data: { name: "PPL", author: { connect: { id: 1 } } }
-  // });
-
-  // await prisma.routine.update({
-  //   where: { id: 2 },
-  //   data: {
-  //     users: { connect: { id: 1 } }
-  //   }
-  // });
-
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -75,7 +46,7 @@ export default async function Header() {
         </ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-primary">{user ? user?.name : "Hello"}</button>
+        <button className="btn btn-primary">Create Routine</button>
       </div>
     </div>
   );
