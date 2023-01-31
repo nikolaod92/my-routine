@@ -1,4 +1,20 @@
-export default async function Header() {
+"use client";
+
+import { useSupabase } from "@/components/supabase-provider";
+
+export default function Header() {
+  const { supabase, session } = useSupabase();
+
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google"
+    });
+  };
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -46,7 +62,15 @@ export default async function Header() {
         </ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-primary">Create Routine</button>
+        {!session ? (
+          <button onClick={signInWithGoogle} className="btn btn-primary">
+            Sign In
+          </button>
+        ) : (
+          <button onClick={logout} className="btn btn-accent">
+            Logout
+          </button>
+        )}
       </div>
     </div>
   );
