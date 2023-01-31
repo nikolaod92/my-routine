@@ -1,6 +1,7 @@
 "use client";
 
 import { useSupabase } from "@/components/supabase-provider";
+import Link from "next/link";
 
 export default function Header() {
   const { supabase, session } = useSupabase();
@@ -48,7 +49,9 @@ export default function Header() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">myRoutine</a>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
+          myRoutine
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
