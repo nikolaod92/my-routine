@@ -12,7 +12,7 @@ const Slider = () => {
         min={1}
         max={7}
         value={value}
-        className="range"
+        className="range range-primary"
         step={1}
         onChange={(e) => setValue(+e.target.value)}
       />
