@@ -1,14 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 "use client";
+
 import Slider from "@/components/slider";
 import { useForm } from "react-hook-form";
 
 export default function Create() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors }
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => console.log(data);
 

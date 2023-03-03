@@ -11,4 +11,4 @@ export const exerciseList = data.map((exercise) => {
   };
 });
 
-export const unique = [...new Map(exerciseList.map((item) => [item["name"], item])).values()];
+export const unique = [...new Map(exerciseList.map((item) => [item.name, item])).values()];

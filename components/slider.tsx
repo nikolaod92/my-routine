@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+import { useState } from 'react'
 
-const Slider = () => {
-  const [value, setValue] = useState(1);
+function Slider() {
+  const [value, setValue] = useState(1)
 
   return (
     <div className="max-w-md">
@@ -18,11 +18,12 @@ const Slider = () => {
       />
       <div className="w-full flex justify-between text-xs px-2">
         {[...Array(7)].map((_, i) => (
+          // eslint-disable-next-line react/no-array-index-key
           <span key={i}>{i + 1}</span>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

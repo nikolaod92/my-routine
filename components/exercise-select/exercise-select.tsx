@@ -1,4 +1,3 @@
-import { Database } from "@/lib/database.types";
 import { createServerClient } from "@/utils/supabase-server";
 
 export default async function ExerciseSelect() {

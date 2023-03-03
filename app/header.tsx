@@ -1,20 +1,24 @@
-"use client";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 
-import { useSupabase } from "@/components/supabase-provider";
-import Link from "next/link";
+'use client'
+
+import { useSupabase } from '@/components/supabase-provider'
+import Link from 'next/link'
 
 export default function Header() {
-  const { supabase, session } = useSupabase();
+  const { supabase, session } = useSupabase()
 
   const signInWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "google"
-    });
-  };
+      provider: 'google',
+    })
+  }
 
   const logout = async () => {
-    await supabase.auth.signOut();
-  };
+    await supabase.auth.signOut()
+  }
 
   return (
     <div className="navbar bg-base-200 lg:px-32">
@@ -66,15 +70,19 @@ export default function Header() {
       </div>
       <div className="navbar-end">
         {!session ? (
-          <button onClick={signInWithGoogle} className="btn btn-primary">
+          <button
+            type="button"
+            onClick={signInWithGoogle}
+            className="btn btn-primary"
+          >
             Sign In
           </button>
         ) : (
-          <button onClick={logout} className="btn btn-accent">
+          <button type="button" onClick={logout} className="btn btn-accent">
             Logout
           </button>
         )}
       </div>
     </div>
-  );
+  )
 }

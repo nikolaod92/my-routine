@@ -1,14 +1,15 @@
+/* eslint-disable jsx-a11y/html-has-lang */
 import "./globals.css";
-import Header from "./header";
-
 import { Inter } from "@next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import Header from "./header";
 
 import "server-only";
 
 import SupabaseListener from "../components/supabase-listener";
 import SupabaseProvider from "../components/supabase-provider";
 import { createServerClient } from "../utils/supabase-server";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const revalidate = 0;
 
