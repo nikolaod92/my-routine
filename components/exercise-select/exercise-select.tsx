@@ -1,13 +1,27 @@
-import { createServerClient } from "@/utils/supabase-server";
+'use client'
 
-export default async function ExerciseSelect() {
-  const supabase = createServerClient();
+import { ChangeEvent } from 'react'
+import { useSupabase } from '../supabase-provider'
 
-  const { data: bodyParts } = await supabase.from("distinct_body_part").select();
+export default function ExerciseSelect({ bodyParts }) {
+  const { supabase } = useSupabase()
+
+  // const [selected, setSelected] = useState('');
+
+  const fetchExercises = async (e: ChangeEvent<HTMLSelectElement>) => {
+    const exercises = await supabase
+      .from('exercise')
+      .select()
+      .eq('bodyPart', e.target.value)
+      .limit(5)
+  }
 
   return (
     <div>
-      <select className="select select-primary w-full capitalize">
+      <select
+        className="select select-primary w-full capitalize"
+        onChange={fetchExercises}
+      >
         <option disabled selected>
           Pick a target muscle group:
         </option>
@@ -17,6 +31,7 @@ export default async function ExerciseSelect() {
           </option>
         ))}
       </select>
+      {/* <div>{JSON.stringify(exercises)}</div> */}
     </div>
-  );
+  )
 }

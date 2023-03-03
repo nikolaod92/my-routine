@@ -25,7 +25,7 @@ export default function Create() {
 
   const onSubmit = (data: any) => {
     setRoutine(data)
-    router.push('/create/day')
+    router.push('/create/day/1')
   }
 
   return (
