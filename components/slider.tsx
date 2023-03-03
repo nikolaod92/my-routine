@@ -18,7 +18,7 @@ const Slider = () => {
       />
       <div className="w-full flex justify-between text-xs px-2">
         {[...Array(7)].map((_, i) => (
-          <span>{i + 1}</span>
+          <span key={i}>{i + 1}</span>
         ))}
       </div>
     </div>

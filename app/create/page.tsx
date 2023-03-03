@@ -1,18 +1,20 @@
-import "server-only";
-
-import ExerciseSelect from "@/components/exercise-select/exercise-select";
+"use client";
 import Slider from "@/components/slider";
-import { createServerClient } from "@/utils/supabase-server";
+import { useForm } from "react-hook-form";
 
-const getData = async () => {
-  const supabase = createServerClient();
-};
+export default function Create() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm();
 
-export default async function Create() {
+  const onSubmit = (data: any) => console.log(data);
+
   return (
     <div className="w-full max-w-sm mx-auto">
-      {/* @ts-ignore ignore server components error */}
-      <form className="form-control ">
+      <form onSubmit={handleSubmit(onSubmit)} className="form-control">
         <label className="label">
           <span className="label-text">Routine name:</span>
         </label>
@@ -20,6 +22,7 @@ export default async function Create() {
           type="text"
           placeholder="Type here"
           className="input input-primary input-bordered input-sm w-full "
+          {...register("name")}
         />
         <label className="label">
           <span className="label-text">Routine description (optional):</span>
@@ -28,9 +31,12 @@ export default async function Create() {
           type="text"
           placeholder="Type here"
           className="input input-primary input-bordered input-sm w-full  mb-4"
+          {...register("description")}
         />
-        <p className="text-sm mb-2">Days per week</p>
         <Slider />
+        <button type="submit" className="btn btn-secondary">
+          Next
+        </button>
       </form>
     </div>
   );
