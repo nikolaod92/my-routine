@@ -2,35 +2,35 @@
 
 'use client'
 
-import Slider from '@/components/slider'
-import { useStore } from '@/zustand/store'
+import { useStore } from '@/store'
 import { Controller, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import Slider from '@/components/Slider'
 
 export default function Create() {
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       name: '',
       description: '',
-      days: 4,
+      daysPerWeek: 4,
     },
   })
 
-  const [routine, setRoutine] = useStore((state) => [
-    state.routine,
-    state.setRoutine,
+  const [routineInfo, setRoutineInfo] = useStore((state) => [
+    state.routineInfo,
+    state.setRoutineInfo,
   ])
 
   const router = useRouter()
 
   const onSubmit = (data: any) => {
-    setRoutine(data)
+    setRoutineInfo(data)
     router.push('/create/day/1')
   }
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <div>{JSON.stringify(routine)}</div>
+      <div>{JSON.stringify(routineInfo)}</div>
       <form onSubmit={handleSubmit(onSubmit)} className="form-control">
         <label className="label">
           <span className="label-text">Routine name:</span>
@@ -51,7 +51,7 @@ export default function Create() {
           {...register('description')}
         />
         <Controller
-          name="days"
+          name="daysPerWeek"
           control={control}
           render={({ field: { ref, ...field } }) => <Slider {...field} />}
         />

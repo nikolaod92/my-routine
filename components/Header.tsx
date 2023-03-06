@@ -4,7 +4,7 @@
 
 'use client'
 
-import { useSupabase } from '@/components/supabase-provider'
+import { useSupabase } from '@/components/SupabaseProvider'
 import Link from 'next/link'
 
 export default function Header() {
