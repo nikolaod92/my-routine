@@ -6,12 +6,25 @@ import { useSupabase } from '../SupabaseProvider'
 import Exercise from './Exercise'
 
 export type ExerciseType = Database['public']['Tables']['exercise']['Row']
+type BodyPart = Database['public']['Views']['distinct_body_part']['Row']
 
-export default function ExerciseSelect({ bodyParts }: any) {
+export default function ExerciseSelect() {
   const { supabase } = useSupabase()
 
-  const [selected, setSelected] = useState('')
+  const [bodyParts, setBodyParts] = useState<BodyPart[]>([])
+  const [selected, setSelected] = useState('chest')
   const [exercises, setExercises] = useState<ExerciseType[]>([])
+
+  useEffect(() => {
+    const fetchBodyParts = async () => {
+      const { data } = await supabase.from('distinct_body_part').select()
+
+      if (!data) return
+      setBodyParts(data)
+    }
+    fetchBodyParts()
+    console.log('Fetching....')
+  }, [supabase])
 
   useEffect(() => {
     setExercises([])
@@ -19,7 +32,7 @@ export default function ExerciseSelect({ bodyParts }: any) {
       const { data, error } = await supabase
         .from('exercise')
         .select()
-        .eq('bodyPart', selected)
+        .eq('body_part', selected)
         .limit(10)
 
       if (error) {

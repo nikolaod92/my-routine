@@ -1,11 +1,15 @@
+/* eslint-disable react/button-has-type */
+
+'use client'
+
 import ExerciseSelect from '@/components/ExerciseSelect/ExerciseSelect'
-import { createServerClient } from '@/utils/supabase-server'
+import { useStore } from '@/store'
+import { useRouter } from 'next/navigation'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function Day({ params }: { params: { id: string } }) {
-  const supabase = createServerClient()
-
-  const { data: bodyParts } = await supabase.from('distinct_body_part').select()
+export default function Day({ params }: { params: { id: string } }) {
+  const [exercises] = useStore((state) => [state.exercises])
+  const router = useRouter()
   // const a = await supabase.from('routine').insert({
   //   name: 'Hello',
   //   description: 'Hello',
@@ -34,7 +38,22 @@ export default async function Day({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      <ExerciseSelect bodyParts={bodyParts} />
+      <div
+        className="btn-group"
+        onClick={(e) => router.push(`create/day/${e.target.textContent}`)}
+      >
+        <button className="btn btn-xs">1</button>
+        <button className="btn btn-xs btn-active">2</button>
+        <button className="btn btn-xs">3</button>
+        <button className="btn btn-xs">4</button>
+      </div>
+      <p>Choose exercises for day {params.id}</p>
+      <h3>
+        {JSON.stringify(
+          exercises.filter((ex) => ex.day_id.toString() === params.id)
+        )}
+      </h3>
+      <ExerciseSelect />
     </div>
   )
 }

@@ -5,18 +5,33 @@
 
 'use client'
 
+import { DayExercise, useStore } from '@/store'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { ExerciseType } from './ExerciseSelect'
 
-type FormData = { sets: string; reps: string }
+type FormData = { sets: number; reps: number }
 
 export default function Exercise({ exercise }: { exercise: ExerciseType }) {
   const { register, handleSubmit } = useForm<FormData>()
   const [show, setShow] = useState(false)
+  const pathname = usePathname()
 
-  const onSubmit = handleSubmit((data: any) => {
+  const [exercises, addExercise] = useStore((state) => [
+    state.exercises,
+    state.addExercise,
+  ])
+
+  const onSubmit = handleSubmit((data: FormData) => {
+    const exerciseInfo = {
+      ...data,
+      day_id: pathname && Number(pathname.charAt(pathname.length - 1)),
+      exercise_id: exercise.id,
+    } as DayExercise
+
+    addExercise(exerciseInfo)
     setShow(false)
   })
 
@@ -52,7 +67,7 @@ export default function Exercise({ exercise }: { exercise: ExerciseType }) {
               type="text"
               placeholder="Sets"
               className="input input-bordered input-xs w-10"
-              {...register('sets')}
+              {...register('sets', { valueAsNumber: true })}
             />
           </div>
           <div className="flex justify-center items-center">
@@ -63,7 +78,7 @@ export default function Exercise({ exercise }: { exercise: ExerciseType }) {
               type="text"
               placeholder="Reps"
               className="input input-bordered input-xs w-10"
-              {...register('reps')}
+              {...register('reps', { valueAsNumber: true })}
             />
           </div>
           <button type="submit" className="btn btn-secondary btn-xs mt-1">
