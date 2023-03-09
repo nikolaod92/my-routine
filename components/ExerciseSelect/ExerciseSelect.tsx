@@ -16,7 +16,7 @@ export default function ExerciseSelect({
   return (
     <div>
       <select
-        className="select select-primary w-full capitalize"
+        className="select select-primary select-sm  capitalize"
         onChange={(e) => setSelected(e.target.value)}
         value={selected}
       >

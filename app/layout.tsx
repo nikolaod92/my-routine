@@ -31,7 +31,7 @@ export default async function RootLayout({
         <SupabaseProvider session={session}>
           <SupabaseListener serverAccessToken={session?.access_token} />
           <Header />
-          <div className="max-w-6xl mx-auto">{children}</div>
+          {children}
         </SupabaseProvider>
       </body>
     </html>

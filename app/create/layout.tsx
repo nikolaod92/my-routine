@@ -3,5 +3,5 @@ export default function CreateRoutineLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <section className=" flex flex-1 p-6 mx-auto">{children}</section>
+  return <section className="max-w-6xl mx-auto p-6">{children}</section>
 }

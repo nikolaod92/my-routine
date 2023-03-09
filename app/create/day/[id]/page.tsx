@@ -1,9 +1,7 @@
-/* eslint-disable react/button-has-type */
-
 import BodyPartProvider from '@/components/ExerciseSelect/BodyPartProvider'
+import ExerciseDayNavigation from '@/components/ExerciseSelect/ExerciseDayNavigation'
 import SelectedExerciseDisplay from '@/components/ExerciseSelect/SelectedExerciseDisplay'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Day({ params }: { params: { id: string } }) {
   // const [exercises] = useStore((state) => [state.exercises])
   // const router = useRouter()
@@ -35,20 +33,14 @@ export default function Day({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      {/* <div
-        className="btn-group"
-        onClick={(e) => router.push(`create/day/${e.target.textContent}`)}
-      >
-        <button className="btn btn-xs">1</button>
-        <button className="btn btn-xs btn-active">2</button>
-        <button className="btn btn-xs">3</button>
-        <button className="btn btn-xs">4</button>
-      </div> */}
+      <ExerciseDayNavigation />
       <p>Choose exercises for day {params.id}</p>
       <SelectedExerciseDisplay day={params.id} />
-      {/* <ExerciseSelect /> */}
       {/* @ts-expect-error Server Component */}
       <BodyPartProvider />
+      <button className="btn btn-success" type="button">
+        Complete
+      </button>
     </div>
   )
 }
