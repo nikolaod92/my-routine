@@ -4,8 +4,8 @@
 
 'use client'
 
-import { useSupabase } from '@/components/SupabaseProvider'
 import Link from 'next/link'
+import { useSupabase } from '@/components/SupabaseProvider'
 
 export default function Header() {
   const { supabase, session } = useSupabase()

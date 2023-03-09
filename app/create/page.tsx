@@ -2,9 +2,9 @@
 
 'use client'
 
-import { useStore } from '@/store'
 import { Controller, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { useStore } from '@/store'
 import Slider from '@/components/Slider'
 
 export default function Create() {

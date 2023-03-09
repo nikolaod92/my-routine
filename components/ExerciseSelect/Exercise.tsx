@@ -5,12 +5,12 @@
 
 'use client'
 
-import { DayExercise, useStore } from '@/store'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import type { ExerciseType } from './ExerciseSelect'
+import { DayExercise, useStore } from '@/store'
+import type { ExerciseType } from './ExerciseGrid'
 
 type FormData = { sets: number; reps: number }
 
