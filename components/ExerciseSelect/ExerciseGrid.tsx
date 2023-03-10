@@ -10,7 +10,6 @@ function ExerciseGrid({ selected }: { selected: string }) {
   const { supabase } = useSupabase()
 
   useEffect(() => {
-    setExercises([])
     const fetchExercises = async () => {
       const { data, error } = await supabase
         .from('exercise')
@@ -29,7 +28,7 @@ function ExerciseGrid({ selected }: { selected: string }) {
   }, [selected, supabase])
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
       {exercises.map((exercise) => (
         <Exercise key={exercise.id} exercise={exercise} />
       ))}

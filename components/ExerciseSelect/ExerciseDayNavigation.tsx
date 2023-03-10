@@ -20,7 +20,7 @@ function ExerciseDayNavigation() {
   }
 
   return (
-    <>
+    <div className="flex">
       <div className="btn-group" onClick={navigate} aria-hidden="true">
         {Array.from({ length: days }, (_, i) => (
           <button
@@ -37,15 +37,15 @@ function ExerciseDayNavigation() {
       </div>
       <button
         type="button"
-        className="btn btn-warning"
+        className="btn btn-warning btn-xs ml-2"
         onClick={(e) => {
           e.preventDefault()
           resetExercises()
         }}
       >
-        Reset All
+        Reset
       </button>
-    </>
+    </div>
   )
 }
 

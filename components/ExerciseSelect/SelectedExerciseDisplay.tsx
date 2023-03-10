@@ -1,8 +1,6 @@
-'use client'
-
 import { useStore } from '@/store'
 
-function SelectedExerciseDisplay({ day }: { day: string }) {
+function SelectedExerciseDisplay() {
   const [exercises] = useStore((state) => [state.exercises])
 
   console.log(exercises)

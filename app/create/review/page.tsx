@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import { useSupabase } from '@/components/SupabaseProvider'
 import { useStore } from '@/store'
 
@@ -9,6 +10,18 @@ export default function Review() {
     state.routineInfo,
     state.exercises,
   ])
+
+  const exerciseArray = useMemo(
+    () =>
+      exercises.map((ex) => {
+        const { name, ...rest } = ex
+        return {
+          ...rest,
+          routine_id: 'bd09736a-94e8-49de-af51-fb4f7dee59ac',
+        }
+      }),
+    [exercises]
+  )
 
   const submitRoutine = async () => {
     // const { data: routine } = await supabase
@@ -21,14 +34,6 @@ export default function Review() {
     //   .select()
 
     // bd09736a-94e8-49de-af51-fb4f7dee59ac
-
-    const exerciseArray = exercises.map((ex) => {
-      const { name, ...rest } = ex
-      return {
-        ...rest,
-        routine_id: 'bd09736a-94e8-49de-af51-fb4f7dee59ac',
-      }
-    })
 
     const { data, error } = await supabase
       .from('exercises_on_day')

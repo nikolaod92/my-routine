@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 import './globals.css'
-import { Inter } from '@next/font/google'
+import { Inter } from 'next/font/google'
 import Header from '../components/Header'
 
 import 'server-only'

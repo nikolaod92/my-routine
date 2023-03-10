@@ -20,7 +20,7 @@ export default function Create() {
 
   const router = useRouter()
 
-  const onSubmit = (data: any, e) => {
+  const onSubmit = (data: any, e: any) => {
     e.preventDefault()
     setRoutineInfo(data)
     router.push('/create/day/1')

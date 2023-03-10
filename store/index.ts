@@ -2,10 +2,12 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { Database } from '@/lib/database.types'
 
-export type DayExercise =
-  Database['public']['Tables']['exercises_on_day']['Insert'] & {
-    name: string
-  }
+type ExerciseWithoutRoutineId = Omit<
+  Database['public']['Tables']['exercises_on_day']['Row'],
+  'routine_id'
+>
+
+export type DayExercise = ExerciseWithoutRoutineId & { name: string }
 
 type State = {
   routineInfo: {
