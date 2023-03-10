@@ -1,8 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Database } from '@/lib/database.types'
 import Link from 'next/link'
-
-// type Exercise = Database["public"]["Tables"]["exercise"]["Row"];
 
 export default async function Home() {
   return (

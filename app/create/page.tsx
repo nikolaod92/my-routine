@@ -16,21 +16,18 @@ export default function Create() {
     },
   })
 
-  const [routineInfo, setRoutineInfo] = useStore((state) => [
-    state.routineInfo,
-    state.setRoutineInfo,
-  ])
+  const [setRoutineInfo] = useStore((state) => [state.setRoutineInfo])
 
   const router = useRouter()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: any, e) => {
+    e.preventDefault()
     setRoutineInfo(data)
     router.push('/create/day/1')
   }
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <div>{JSON.stringify(routineInfo)}</div>
       <form onSubmit={handleSubmit(onSubmit)} className="form-control">
         <label className="label">
           <span className="label-text">Routine name:</span>

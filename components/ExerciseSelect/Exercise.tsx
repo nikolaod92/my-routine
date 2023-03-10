@@ -27,8 +27,9 @@ export default function Exercise({ exercise }: { exercise: ExerciseType }) {
   const onSubmit = handleSubmit((data: FormData) => {
     const exerciseInfo = {
       ...data,
-      day_id: pathname && Number(pathname.charAt(pathname.length - 1)),
+      day_of_week: 'mon',
       exercise_id: exercise.id,
+      name: exercise.name,
     } as DayExercise
 
     addExercise(exerciseInfo)

@@ -8,26 +8,44 @@ function ExerciseDayNavigation() {
   const router = useRouter()
   const path = usePathname()
 
-  const days = useStore((state) => state.routineInfo.daysPerWeek)
+  const [days, resetExercises] = useStore((state) => [
+    state.routineInfo.daysPerWeek,
+    state.resetExercises,
+  ])
 
   const navigate: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
     const page = (e.target as HTMLElement).innerHTML
     router.push(`/create/day/${page}`)
   }
 
   return (
-    <div className="btn-group" onClick={navigate} aria-hidden="true">
-      {Array.from({ length: days }, (_, i) => (
-        <button
-          type="button"
-          className={`btn btn-xs ${
-            path?.charAt(path.length - 1) === (i + 1).toString() && 'btn-active'
-          }`}
-        >
-          {i + 1}
-        </button>
-      ))}
-    </div>
+    <>
+      <div className="btn-group" onClick={navigate} aria-hidden="true">
+        {Array.from({ length: days }, (_, i) => (
+          <button
+            type="button"
+            key={i}
+            className={`btn btn-xs ${
+              path?.charAt(path.length - 1) === (i + 1).toString() &&
+              'btn-active'
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="btn btn-warning"
+        onClick={(e) => {
+          e.preventDefault()
+          resetExercises()
+        }}
+      >
+        Reset All
+      </button>
+    </>
   )
 }
 

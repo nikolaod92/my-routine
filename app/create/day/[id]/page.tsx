@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import BodyPartProvider from '@/components/ExerciseSelect/BodyPartProvider'
 import ExerciseDayNavigation from '@/components/ExerciseSelect/ExerciseDayNavigation'
 import SelectedExerciseDisplay from '@/components/ExerciseSelect/SelectedExerciseDisplay'
@@ -38,9 +39,9 @@ export default function Day({ params }: { params: { id: string } }) {
       <SelectedExerciseDisplay day={params.id} />
       {/* @ts-expect-error Server Component */}
       <BodyPartProvider />
-      <button className="btn btn-success" type="button">
-        Complete
-      </button>
+      <Link className="btn btn-success" href="/create/review">
+        Review
+      </Link>
     </div>
   )
 }
