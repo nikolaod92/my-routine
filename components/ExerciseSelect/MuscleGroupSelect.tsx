@@ -1,7 +1,6 @@
 import { Database } from '@/lib/database.types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useSupabase } from '../SupabaseProvider'
-import ServerOptions from './ServerOptions'
 
 type BodyPart = Database['public']['Views']['distinct_body_part']['Row']
 
@@ -35,7 +34,6 @@ function MuscleGroupSelect({ selected, onChange }: Props) {
           {bodyPart.bodyPart}
         </option>
       ))}
-      <ServerOptions />
     </select>
   )
 }
