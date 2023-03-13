@@ -8,7 +8,7 @@ import ExerciseSelect from '@/components/ExerciseSelect/ExerciseSelect'
 export default function Day({ params }: { params: { id: string } }) {
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between w-full">
         <ExerciseDayNavigation />
         {/* <p>Choose exercises for day {params.id}</p> */}
         {/* <SelectedExerciseDisplay /> */}

@@ -5,7 +5,7 @@ async function BodyPartProvider() {
   const supabase = createServerClient()
   const { data } = await supabase.from('distinct_body_part').select()
 
-  if (data) return <ExerciseSelect bodyParts={data} />
+  if (data) return <ExerciseSelect />
 }
 
 export default BodyPartProvider

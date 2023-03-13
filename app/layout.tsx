@@ -27,11 +27,11 @@ export default async function RootLayout({
   return (
     <html data-theme="light">
       <head />
-      <body className={`flex flex-col min-h-screen  ${inter.className}`}>
+      <body className={`flex flex-col min-h-screen ${inter.className} `}>
         <SupabaseProvider session={session}>
           <SupabaseListener serverAccessToken={session?.access_token} />
           <Header />
-          {children}
+          <div>{children}</div>
         </SupabaseProvider>
       </body>
     </html>
