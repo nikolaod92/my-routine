@@ -59,7 +59,7 @@ export default function ExerciseSelect() {
         .limit(10)
 
       if (error) {
-        // TODO: handle errors
+        setErrorMsg(error.message)
       }
 
       if (!data) return
