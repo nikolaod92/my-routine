@@ -6,9 +6,35 @@
 
 import Link from 'next/link'
 import { useSupabase } from '@/components/SupabaseProvider'
+import { useEffect } from 'react'
+
+function MenuItems() {
+  return (
+    <>
+      <li>
+        <Link href="/create">Create</Link>
+      </li>
+      <li>
+        <Link href="/routines">All Routines</Link>
+      </li>
+    </>
+  )
+}
 
 export default function Header() {
   const { supabase, session } = useSupabase()
+
+  // ? Temporary solution: Modified DaisyUI dropdown component to close when clicking a menu item
+  useEffect(() => {
+    const dropdownContent = document.querySelectorAll('.dropdown-content>li')
+    dropdownContent.forEach((element) => {
+      element.addEventListener('click', () => {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur()
+        }
+      })
+    })
+  }, [])
 
   const signInWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
@@ -21,7 +47,7 @@ export default function Header() {
   }
 
   return (
-    <div className="navbar bg-base-200 xl:px-24 2xl:px-36">
+    <div className="navbar bg-base-200 lg:px-16 xl:px-24 2xl:px-36">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -44,18 +70,16 @@ export default function Header() {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <Link href="/routines">Routines</Link>
-            </li>
+            <MenuItems />
           </ul>
         </div>
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
+        <Link href="/" className="text-xl font-bold">
           myRoutine
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <Link href="/routines">Routines</Link>
+          <MenuItems />
         </ul>
       </div>
       <div className="navbar-end">
