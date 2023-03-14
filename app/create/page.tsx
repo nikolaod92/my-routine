@@ -8,15 +8,16 @@ import { useStore } from '@/store'
 import Slider from '@/components/Slider'
 
 export default function Create() {
+  const [setRoutineInfo, routineInfo] = useStore((state) => [
+    state.setRoutineInfo,
+    state.routineInfo,
+  ])
+
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
-      name: '',
-      description: '',
-      daysPerWeek: 4,
+      ...routineInfo,
     },
   })
-
-  const [setRoutineInfo] = useStore((state) => [state.setRoutineInfo])
 
   const router = useRouter()
 

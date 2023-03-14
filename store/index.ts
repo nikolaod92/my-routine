@@ -7,7 +7,10 @@ type ExerciseWithoutRoutineId = Omit<
   'routine_id'
 >
 
-export type DayExercise = ExerciseWithoutRoutineId & { name: string }
+export type DayExercise = ExerciseWithoutRoutineId & {
+  name: string
+  addedToRoutine: boolean
+}
 
 type State = {
   routineInfo: {
