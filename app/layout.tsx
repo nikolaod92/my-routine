@@ -31,7 +31,7 @@ export default async function RootLayout({
         <SupabaseProvider session={session}>
           <SupabaseListener serverAccessToken={session?.access_token} />
           <Header />
-          <div>{children}</div>
+          <div className="container mx-auto py-4">{children}</div>
         </SupabaseProvider>
       </body>
     </html>
