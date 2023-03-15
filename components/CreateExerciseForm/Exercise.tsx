@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { useStore } from '@/store'
 import { useState } from 'react'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import type { ExerciseType } from './ExerciseGrid'
+import { ExerciseType } from '@/lib/database.types'
 import { blurData } from '../../public/blurData'
 import AddExerciseForm from './AddExerciseForm'
 
