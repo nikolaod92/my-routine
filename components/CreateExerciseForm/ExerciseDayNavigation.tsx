@@ -20,8 +20,7 @@ function ExerciseDayNavigation() {
   }
 
   return (
-    <div className="flex space-x-2">
-      <p className="text-sm font-bold">Day: </p>
+    <div className="flex space-x-2 items-center">
       <div className="btn-group" onClick={navigate} aria-hidden="true">
         {Array.from({ length: days }, (_, i) => (
           <button

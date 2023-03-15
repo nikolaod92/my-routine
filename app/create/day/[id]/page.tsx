@@ -16,11 +16,17 @@ export default async function Day({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center">
+      <div className="flex justify-between w-full items-center mb-2">
+        <Link className="btn btn-success btn-xs md:btn-sm" href="/create">
+          Back
+        </Link>
         <ExerciseDayNavigation />
         {/* <p>Choose exercises for day {params.id}</p> */}
         {/* <SelectedExerciseDisplay /> */}
-        <Link className="btn btn-success" href="/create/review">
+        <Link
+          className="btn btn-success btn-xs md:btn-sm"
+          href="/create/review"
+        >
           Review
         </Link>
       </div>
