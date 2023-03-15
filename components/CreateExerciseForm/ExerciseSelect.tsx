@@ -55,6 +55,7 @@ export default function ExerciseSelect({
   })
 
   useEffect(() => {
+    setExercises([])
     setErrorMsg('')
     const fetchExercises = async () => {
       setLoading(true)

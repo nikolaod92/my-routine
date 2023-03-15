@@ -11,8 +11,8 @@ type Props = {
 function MuscleGroupSelect({ selected, onChange, muscleGroups }: Props) {
   return (
     <>
-      <label className="label">
-        <span className="label-text">or choose a muscle group: </span>
+      <label className="label p-1">
+        <span className="text-xs">or choose a muscle group: </span>
       </label>
       <select
         className="select select-primary select-xs capitalize w-36"

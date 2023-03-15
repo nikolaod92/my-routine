@@ -25,7 +25,7 @@ export default async function RootLayout({
   } = await supabase.auth.getSession()
 
   return (
-    <html data-theme="light">
+    <html data-theme="dracula">
       <head />
       <body className={`flex flex-col min-h-screen ${inter.className} `}>
         <SupabaseProvider session={session}>

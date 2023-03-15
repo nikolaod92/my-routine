@@ -22,7 +22,7 @@ export default function Exercise({ exercise }: { exercise: ExerciseType }) {
   return (
     <div
       key={exercise.id}
-      className="flex flex-col overflow-hidden rounded-lg shadow hover:cursor-pointer hover:shadow-lg"
+      className="flex flex-col h-48 overflow-hidden rounded-lg shadow hover:cursor-pointer hover:shadow-lg"
     >
       <div
         className={`${
@@ -41,21 +41,21 @@ export default function Exercise({ exercise }: { exercise: ExerciseType }) {
         </div>
       </div>
 
-      <div className="flex mx-auto h-32">
-        {exercise.gif && !show ? (
+      {exercise.gif && !show ? (
+        <div className="bg-white h-full w-full flex items-center justify-center">
           <Image
-            className="rounded-lg py-2"
+            className="p-4"
             placeholder="blur"
             blurDataURL={blurData}
             src={exercise.gif}
             alt="Shoes"
-            width={120}
-            height={120}
+            width={160}
+            height={160}
           />
-        ) : (
-          <AddExerciseForm id={id} name={name} setShow={setShow} />
-        )}
-      </div>
+        </div>
+      ) : (
+        <AddExerciseForm id={id} name={name} setShow={setShow} />
+      )}
     </div>
   )
 }

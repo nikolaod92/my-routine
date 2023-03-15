@@ -50,26 +50,30 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
   }, [reset, isSubmitSuccessful, setShow])
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex flex-col p-4 items-center justify-center"
-    >
-      <div className="flex flex-col space-y-1">
+    <form onSubmit={onSubmit} className="form-control p-4 items-end  space-y-1">
+      <div>
+        <label>
+          <span className="text-xs">Sets: </span>
+        </label>
         <input
           type="number"
           placeholder="Sets"
-          className="input input-bordered input-xs w-12"
+          className="input input-bordered input-xs input-secondary w-10 text-right"
           {...register('sets', { valueAsNumber: true })}
         />
-
+      </div>
+      <div>
+        <label>
+          <span className="text-xs">Reps: </span>
+        </label>
         <input
           type="number"
           placeholder="Reps"
-          className="input input-bordered input-xs w-12"
+          className="input input-bordered input-secondary input-xs w-10 text-right"
           {...register('reps', { valueAsNumber: true })}
         />
       </div>
-      <button type="submit" className="btn btn-secondary btn-xs mt-1">
+      <button type="submit" className="btn btn-secondary btn-xs ">
         {exerciseInState ? 'Edit' : 'Add'}
       </button>
     </form>
