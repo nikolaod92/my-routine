@@ -1,12 +1,13 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { MouseEventHandler } from 'react'
 import { useStore } from '@/store'
+import useDayPath from '@/hooks/useDayPath'
 
 function ExerciseDayNavigation() {
   const router = useRouter()
-  const path = usePathname()
+  const currentDayPath = useDayPath()
 
   const [days, resetExercises] = useStore((state) => [
     state.routineInfo.daysPerWeek,
@@ -26,10 +27,7 @@ function ExerciseDayNavigation() {
           <button
             type="button"
             key={i}
-            className={`btn btn-xs ${
-              path?.charAt(path.length - 1) === (i + 1).toString() &&
-              'btn-active'
-            }`}
+            className={`btn btn-xs ${currentDayPath === i + 1 && 'btn-active'}`}
           >
             {i + 1}
           </button>
@@ -37,7 +35,7 @@ function ExerciseDayNavigation() {
       </div>
       <button
         type="button"
-        className="btn btn-warning btn-xs "
+        className="btn btn-outline btn-primary btn-xs "
         onClick={(e) => {
           e.preventDefault()
           resetExercises()

@@ -62,8 +62,8 @@ export default function ExerciseSelect({
       const { data, error } = await supabase
         .from('exercise')
         .select()
-        .eq('body_part', selected)
-        .limit(10)
+        .eq('muscle_group', selected)
+        .limit(20)
 
       if (error) {
         setErrorMsg(error.message)

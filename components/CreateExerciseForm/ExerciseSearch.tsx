@@ -20,9 +20,9 @@ function ExerciseSearch({ register, onSubmit, name }: Props) {
         <input
           type="text"
           {...register(name)}
-          className="input input-bordered input-sm max-w-sm "
+          className="input input-bordered input-sm input-primary max-w-sm "
         />
-        <button type="submit" className="btn btn-square btn-sm">
+        <button type="submit" className="btn btn-square btn-primary btn-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4"

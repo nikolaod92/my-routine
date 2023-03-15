@@ -9,7 +9,6 @@ type ExerciseWithoutRoutineId = Omit<
 
 export type DayExercise = ExerciseWithoutRoutineId & {
   name: string
-  addedToRoutine: boolean
 }
 
 type State = {
@@ -25,6 +24,7 @@ type Action = {
   setRoutineInfo: (routineInfo: State['routineInfo']) => void
   setExercises: (exercises: State['exercises']) => void
   addExercise: (exercise: DayExercise) => void
+  deleteExercise: (exercise: DayExercise) => void
   resetExercises: () => void
 }
 
@@ -45,6 +45,12 @@ export const useStore = create(
       setExercises: (exercises) => set(() => ({ exercises })),
       addExercise: (exercise) =>
         set((state) => ({ exercises: [...state.exercises, exercise] })),
+      deleteExercise: (exercise) =>
+        set((state) => ({
+          exercises: state.exercises.filter(
+            (ex) => ex.exercise_id !== exercise.exercise_id
+          ),
+        })),
       resetExercises: () => set(() => ({ exercises: [] })),
     }),
     { name: 'routine' }
