@@ -8,8 +8,6 @@ function ExerciseDayNavigation() {
   const router = useRouter()
   const path = usePathname()
 
-  // TODO: use useSelectedLayoutSegment()
-
   const [days, resetExercises] = useStore((state) => [
     state.routineInfo.daysPerWeek,
     state.resetExercises,

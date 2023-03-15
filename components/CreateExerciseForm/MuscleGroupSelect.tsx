@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Database } from '@/lib/database.types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useSupabase } from '../SupabaseProvider'
@@ -23,18 +24,23 @@ function MuscleGroupSelect({ selected, onChange }: Props) {
   }, [supabase])
 
   return (
-    <select
-      className="select select-primary select-xs capitalize w-36"
-      onChange={onChange}
-      value={selected}
-    >
-      <option disabled>{selected}</option>
-      {bodyParts?.map((bodyPart: any) => (
-        <option key={bodyPart.bodyPart} className="capitalize">
-          {bodyPart.bodyPart}
-        </option>
-      ))}
-    </select>
+    <>
+      <label className="label">
+        <span className="label-text">or choose a muscle group: </span>
+      </label>
+      <select
+        className="select select-primary select-xs capitalize w-36"
+        onChange={onChange}
+        value={selected}
+      >
+        <option disabled>{selected}</option>
+        {bodyParts?.map((bodyPart: any) => (
+          <option key={bodyPart.bodyPart} className="capitalize">
+            {bodyPart.bodyPart}
+          </option>
+        ))}
+      </select>
+    </>
   )
 }
 

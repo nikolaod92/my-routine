@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 'use client'
 
 import { FieldValues, UseFormRegister } from 'react-hook-form'
@@ -11,6 +13,9 @@ type Props = {
 function ExerciseSearch({ register, onSubmit, name }: Props) {
   return (
     <form onSubmit={onSubmit}>
+      <label className="label">
+        <span className="label-text">Search for an exercise: </span>
+      </label>
       <input
         type="text"
         {...register(name)}

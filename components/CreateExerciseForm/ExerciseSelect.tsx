@@ -8,6 +8,7 @@ import ExerciseGrid, { ExerciseType } from './ExerciseGrid'
 import { useSupabase } from '../SupabaseProvider'
 import ExerciseSearch from './ExerciseSearch'
 import MuscleGroupSelect from './MuscleGroupSelect'
+import Exercise from './Exercise'
 
 export default function ExerciseSelect() {
   const { supabase } = useSupabase()
@@ -73,24 +74,27 @@ export default function ExerciseSelect() {
   }, [selected, supabase])
 
   return (
-    <div>
-      <label className="label">
-        <span className="label-text">Search for an exercise: </span>
-      </label>
+    <>
       <ExerciseSearch
         onSubmit={onSubmit}
         register={register}
         name="searchTerm"
       />
-      <label className="label">
-        <span className="label-text">or choose a body part: </span>
-      </label>
+
       <MuscleGroupSelect
         selected={selected}
         onChange={(e) => setSelected(e.target.value)}
       />
-      {loading ? <div>Loading...</div> : <ExerciseGrid exercises={exercises} />}
+      {loading ? (
+        <div className="mt-2">Loading...</div>
+      ) : (
+        <ExerciseGrid>
+          {exercises.map((exercise) => (
+            <Exercise key={exercise.id} exercise={exercise} />
+          ))}
+        </ExerciseGrid>
+      )}
       {errorMsg && <div>{errorMsg}</div>}
-    </div>
+    </>
   )
 }
