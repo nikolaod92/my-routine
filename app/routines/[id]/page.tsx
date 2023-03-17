@@ -1,6 +1,7 @@
 import ExerciseGrid from '@/components/CreateExerciseForm/ExerciseGrid'
 import { createServerClient } from '@/utils/supabase-server'
 import Image from 'next/image'
+import { StarIcon } from '@heroicons/react/20/solid'
 
 export const revalidate = 60
 
@@ -26,12 +27,18 @@ export default async function Routine({ params }: any) {
   if (data)
     return (
       <div className="p-1">
-        <h1 className="font-bold text-2xl">{data[0]?.routine?.name}</h1>
+        <div className="flex justify-between items-center space-x-1">
+          <h1 className="flex-1 font-bold text-2xl">
+            {data[0]?.routine?.name}
+          </h1>
+          <p className="text-xs font-bold mt-1">32</p>
+          <StarIcon width={24} height={24} className="fill-primary" />
+        </div>
         <h1 className="font-light text-lg">{data[0]?.routine?.description}</h1>
         <div className="btn-group mt-2">
           <button className="btn btn-sm">M</button>
           <button className="btn btn-sm capitalize btn-active">Tu</button>
-          <button className="btn btn-sm">W</button>
+          <button className="btn btn-sm btn-disabled">W</button>
           <button className="btn btn-sm capitalize">Th</button>
           <button className="btn btn-sm">F</button>
           <button className="btn btn-sm capitalize">Sa</button>
@@ -50,7 +57,7 @@ export default async function Routine({ params }: any) {
                 width={160}
                 height={160}
               />
-              <div className="card-body p-4  pt-2 justify-between">
+              <div className="card-body p-4 space-y-2 pt-2 justify-between">
                 <h2 className="text-center font-semibold text-sm capitalize line-clamp-2">
                   {ex?.exercise?.name}
                 </h2>
