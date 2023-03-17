@@ -9,7 +9,10 @@ import SupabaseListener from '../components/SupabaseListener'
 import SupabaseProvider from '../components/SupabaseProvider'
 import { createServerClient } from '../utils/supabase-server'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700'],
+})
 
 export const revalidate = 0
 
@@ -25,9 +28,11 @@ export default async function RootLayout({
   } = await supabase.auth.getSession()
 
   return (
-    <html data-theme="dracula">
+    <html data-theme="mytheme">
       <head />
-      <body className={`flex flex-col min-h-screen ${inter.className} `}>
+      <body
+        className={`flex flex-col min-h-screen bg-base-200 ${inter.className} `}
+      >
         <SupabaseProvider session={session}>
           <SupabaseListener serverAccessToken={session?.access_token} />
           <Header />

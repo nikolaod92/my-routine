@@ -6,7 +6,6 @@ import { Database } from '@/lib/database.types'
 
 export default async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  console.log('Running middleware')
 
   const supabase = createMiddlewareSupabaseClient<Database>({ req, res })
 
@@ -14,8 +13,6 @@ export default async function middleware(req: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data: { session },
   } = await supabase.auth.getSession()
-
-  console.log(session)
 
   if (!session && req.nextUrl.pathname.startsWith('/create')) {
     const redirectUrl = req.nextUrl.clone()

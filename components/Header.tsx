@@ -47,7 +47,7 @@ export default function Header() {
   }
 
   return (
-    <div className="navbar bg-base-200 lg:px-16 xl:px-24 2xl:px-36">
+    <div className="navbar bg-base-100 lg:px-16 xl:px-24 2xl:px-36">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -92,7 +92,7 @@ export default function Header() {
             Sign In
           </button>
         ) : (
-          <button type="button" onClick={logout} className="btn btn-accent">
+          <button type="button" onClick={logout} className="btn btn-warning">
             Logout
           </button>
         )}

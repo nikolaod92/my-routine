@@ -18,8 +18,23 @@ module.exports = {
     },
   },
 
-  plugins: [require('daisyui')],
+  plugins: [require('daisyui'), require('@tailwindcss/line-clamp')],
   daisyui: {
-    themes: ['light', 'dark', 'dracula', 'autumn'],
+    themes: [
+      {
+        mytheme: {
+          primary: '#22D3EE',
+          secondary: '#F000B8',
+          accent: '#37CDBE',
+          neutral: '#3D4451',
+          'base-100': '#FFFFFF',
+          'base-200': '#f5f5f4',
+          info: '#3ABFF8',
+          success: '#36D399',
+          warning: '#FBBD23',
+          error: '#F87272',
+        },
+      },
+    ],
   },
 }

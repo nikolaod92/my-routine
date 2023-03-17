@@ -24,7 +24,8 @@ export default function Review() {
       if (res.ok) {
         router.push('/routines')
       } else {
-        console.error(res)
+        const e = await res.json()
+        console.log(e)
       }
     } catch (error) {
       console.error(error)

@@ -1,6 +1,8 @@
 import { createServerClient } from '@/utils/supabase-server'
 import { NextRequest, NextResponse } from 'next/server'
 
+import { z } from 'zod'
+
 export async function POST(request: NextRequest) {
   const supabase = createServerClient()
 
@@ -8,8 +10,20 @@ export async function POST(request: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession()
 
+  if (!session) return null
+
   const json = await request.json()
   const { routineInfo, exercises } = json
+
+  const routineSchema = z.object({
+    name: z.string().min(1),
+    description: z.string().nullable(),
+  })
+
+  const routineValidationResponse = routineSchema.safeParse(routineInfo)
+
+  if (!routineValidationResponse.success)
+    return NextResponse.json(routineValidationResponse.error, { status: 400 })
 
   const { data: routine, error } = await supabase
     .from('routine')
