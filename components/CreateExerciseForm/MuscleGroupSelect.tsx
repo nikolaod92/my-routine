@@ -20,9 +20,9 @@ function MuscleGroupSelect({ selected, onChange, muscleGroups }: Props) {
         value={selected}
       >
         <option disabled>{selected}</option>
-        {muscleGroups?.map((bodyPart: any) => (
-          <option key={bodyPart.bodyPart} className="capitalize">
-            {bodyPart.bodyPart}
+        {muscleGroups?.map((muscleGroup: any) => (
+          <option key={muscleGroup.bodyPart} className="capitalize">
+            {muscleGroup.bodyPart}
           </option>
         ))}
       </select>

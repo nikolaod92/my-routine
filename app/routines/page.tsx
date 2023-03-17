@@ -1,5 +1,7 @@
 import { createServerClient } from '@/utils/supabase-server'
 
+export const revalidate = 0
+
 export default async function Routines() {
   const supabase = createServerClient()
 
