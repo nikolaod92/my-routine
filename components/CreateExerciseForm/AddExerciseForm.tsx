@@ -2,7 +2,6 @@
 import { useForm } from 'react-hook-form'
 import { DayExercise, useStore } from '@/store'
 import { Dispatch, SetStateAction, useEffect } from 'react'
-import useDayPath from '@/hooks/useDayPath'
 
 type FormData = { sets: number; reps: number }
 
@@ -13,12 +12,14 @@ type Props = {
 }
 
 export default function AddExerciseForm({ id, name, setShow }: Props) {
-  const currentDayPath = useDayPath()
-  const [addExercise, deleteExercise, exercises] = useStore((state) => [
-    state.addExercise,
-    state.deleteExercise,
-    state.exercises,
-  ])
+  const [currentDay, addExercise, deleteExercise, exercises] = useStore(
+    (state) => [
+      state.currentDay,
+      state.addExercise,
+      state.deleteExercise,
+      state.exercises,
+    ]
+  )
   const exerciseInState = exercises.find((ex) => ex.exercise_id === id)
   const { sets, reps } = exerciseInState || { sets: 0, reps: 0 }
 
@@ -37,7 +38,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
   const onSubmit = handleSubmit((data: FormData) => {
     const exerciseInfo = {
       ...data,
-      day_of_week: currentDayPath,
+      day_of_week: currentDay,
       exercise_id: id,
       name,
     } as DayExercise

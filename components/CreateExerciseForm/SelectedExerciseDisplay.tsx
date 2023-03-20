@@ -3,12 +3,15 @@
 import { useStore } from '@/store'
 import { useMemo } from 'react'
 
-function SelectedExerciseDisplay({ day }: { day: string }) {
-  const [exercises] = useStore((state) => [state.exercises])
+function SelectedExerciseDisplay() {
+  const [exercises, currentDay] = useStore((state) => [
+    state.exercises,
+    state.currentDay,
+  ])
 
   const exercisesOnDay = useMemo(
-    () => exercises.filter((ex) => ex.day_of_week === Number(day)),
-    [day, exercises]
+    () => exercises.filter((ex) => ex.day_of_week === currentDay),
+    [currentDay, exercises]
   )
 
   return (

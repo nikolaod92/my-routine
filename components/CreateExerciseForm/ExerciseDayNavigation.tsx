@@ -1,35 +1,29 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { MouseEventHandler } from 'react'
 import { useStore } from '@/store'
-import useDayPath from '@/hooks/useDayPath'
 
 function ExerciseDayNavigation() {
-  const router = useRouter()
-  const currentDayPath = useDayPath()
-
-  const [days, resetExercises] = useStore((state) => [
-    state.routineInfo.daysPerWeek,
+  const [currentDay, setCurrentDay, resetExercises] = useStore((state) => [
+    state.currentDay,
+    state.setCurrentDay,
     state.resetExercises,
   ])
 
-  const navigate: MouseEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault()
-    const page = (e.target as HTMLElement).innerHTML
-    router.push(`/create/day/${page}`)
-  }
+  const daysOfWeek = ['m', 'tu', 'w', 'th', 'f', 'sa', 'su'] as const
 
   return (
     <div className="flex space-x-2 items-center">
-      <div className="btn-group" onClick={navigate} aria-hidden="true">
-        {Array.from({ length: days }, (_, i) => (
+      <div className="btn-group">
+        {daysOfWeek.map((day) => (
           <button
+            key={day}
             type="button"
-            key={i}
-            className={`btn btn-xs ${currentDayPath === i + 1 && 'btn-active'}`}
+            className={`btn btn-xs capitalize ${
+              currentDay === day && 'btn-active'
+            }`}
+            onClick={() => setCurrentDay(day)}
           >
-            {i + 1}
+            {day}
           </button>
         ))}
       </div>
