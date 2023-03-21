@@ -1,8 +1,8 @@
 import ExerciseDayNavigation from '@/components/CreateExerciseForm/ExerciseDayNavigation'
 import SelectedExerciseDisplay from '@/components/CreateExerciseForm/SelectedExerciseDisplay'
-import ExerciseSelect from '@/components/CreateExerciseForm/ExerciseSelect'
 
 import SubmitRoutine from '@/components/CreateExerciseForm/SubmitRoutine'
+import ExerciseSelect from '@/components/New/ExerciseSelect'
 
 export default async function Day() {
   return (
