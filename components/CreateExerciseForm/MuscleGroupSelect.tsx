@@ -1,14 +1,25 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { MuscleGroup } from '@/lib/database.types'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { useSupabase } from '../SupabaseProvider'
 
 type Props = {
   selected: string
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void
-  muscleGroups: MuscleGroup[]
 }
 
-function MuscleGroupSelect({ selected, onChange, muscleGroups }: Props) {
+function MuscleGroupSelect({ selected, onChange }: Props) {
+  const { supabase } = useSupabase()
+  const [muscleGroups, setMuscleGroups] = useState<MuscleGroup[]>([])
+
+  useEffect(() => {
+    ;(async () => {
+      const { data } = await supabase.from('distinct_muscle_group').select()
+
+      if (data) setMuscleGroups(data)
+    })()
+  }, [supabase])
+
   return (
     <div className="flex-1">
       <label className="label p-1">

@@ -4,18 +4,14 @@
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { ExerciseType, MuscleGroup } from '@/lib/database.types'
+import { ExerciseType } from '@/lib/database.types'
 import ExerciseGrid from './ExerciseGrid'
 import { useSupabase } from '../SupabaseProvider'
 import ExerciseSearch from './ExerciseSearch'
 import MuscleGroupSelect from './MuscleGroupSelect'
 import Exercise from './Exercise'
 
-export default function ExerciseSelect({
-  muscleGroups,
-}: {
-  muscleGroups: MuscleGroup[]
-}) {
+export default function ExerciseSelect() {
   const { supabase } = useSupabase()
   const { register, handleSubmit } = useForm()
 
@@ -63,7 +59,7 @@ export default function ExerciseSelect({
         .from('exercise')
         .select()
         .eq('muscle_group', selected)
-        .limit(20)
+        .range(0, 9)
 
       if (error) {
         setErrorMsg(error.message)
@@ -73,7 +69,6 @@ export default function ExerciseSelect({
       setExercises(data)
       setLoading(false)
     }
-
     if (!selected) return
 
     fetchExercises()
@@ -85,7 +80,6 @@ export default function ExerciseSelect({
         <MuscleGroupSelect
           selected={selected}
           onChange={(e) => setSelected(e.target.value)}
-          muscleGroups={muscleGroups}
         />
         <ExerciseSearch
           onSubmit={onSubmit}
