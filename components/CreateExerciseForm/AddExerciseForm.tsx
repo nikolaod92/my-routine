@@ -64,7 +64,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
         <input
           type="number"
           placeholder="Sets"
-          className="input input-bordered input-xs input-secondary w-10 text-right"
+          className="input input-bordered input-xs input-primary w-10 text-right"
           {...register('sets', { valueAsNumber: true })}
         />
       </div>
@@ -75,11 +75,11 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
         <input
           type="number"
           placeholder="Reps"
-          className="input input-bordered input-secondary input-xs w-10 text-right"
+          className="input input-bordered input-primary input-xs w-10 text-right"
           {...register('reps', { valueAsNumber: true })}
         />
       </div>
-      <button type="submit" className="btn btn-secondary btn-xs ">
+      <button type="submit" className="btn btn-primary btn-xs ">
         {exerciseInState ? 'Edit' : 'Add'}
       </button>
     </form>

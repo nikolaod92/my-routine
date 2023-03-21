@@ -81,17 +81,18 @@ export default function ExerciseSelect({
 
   return (
     <>
-      <ExerciseSearch
-        onSubmit={onSubmit}
-        register={register}
-        name="searchTerm"
-      />
-
-      <MuscleGroupSelect
-        selected={selected}
-        onChange={(e) => setSelected(e.target.value)}
-        muscleGroups={muscleGroups}
-      />
+      <div className="flex justify-between space-x-2">
+        <MuscleGroupSelect
+          selected={selected}
+          onChange={(e) => setSelected(e.target.value)}
+          muscleGroups={muscleGroups}
+        />
+        <ExerciseSearch
+          onSubmit={onSubmit}
+          register={register}
+          name="searchTerm"
+        />
+      </div>
       {loading ? (
         <div className="mt-2">Loading...</div>
       ) : (

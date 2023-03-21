@@ -5,8 +5,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useSupabase } from '@/components/SupabaseProvider'
+
 import { useEffect } from 'react'
+
+import SignIn from './SignIn'
 
 function MenuItems() {
   return (
@@ -22,8 +24,6 @@ function MenuItems() {
 }
 
 export default function Header() {
-  const { supabase, session } = useSupabase()
-
   // ? Temporary solution: Modified DaisyUI dropdown component to close when clicking a menu item
   useEffect(() => {
     const dropdownContent = document.querySelectorAll('.dropdown-content>li')
@@ -35,16 +35,6 @@ export default function Header() {
       })
     })
   }, [])
-
-  const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: 'google',
-    })
-  }
-
-  const logout = async () => {
-    await supabase.auth.signOut()
-  }
 
   return (
     <div className="navbar bg-base-100 lg:px-16 xl:px-24 2xl:px-36">
@@ -83,19 +73,7 @@ export default function Header() {
         </ul>
       </div>
       <div className="navbar-end">
-        {!session ? (
-          <button
-            type="button"
-            onClick={signInWithGoogle}
-            className="btn btn-primary"
-          >
-            Sign In
-          </button>
-        ) : (
-          <button type="button" onClick={logout} className="btn btn-warning">
-            Logout
-          </button>
-        )}
+        <SignIn />
       </div>
     </div>
   )

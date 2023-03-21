@@ -4,8 +4,6 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { Database } from '@/lib/database.types'
 
-const PUBLIC_FILE = /\.(.*)$/
-
 export default async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   const { pathname } = req.nextUrl
@@ -13,8 +11,7 @@ export default async function middleware(req: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.startsWith('/static') ||
-    PUBLIC_FILE.test(pathname)
+    pathname.startsWith('/static')
   )
     return NextResponse.next()
 

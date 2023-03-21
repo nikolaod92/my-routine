@@ -12,23 +12,27 @@ type Props = {
 
 function ExerciseSearch({ register, onSubmit, name }: Props) {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="">
       <label className="label p-1">
-        <span className="text-xs">Search for an exercise: </span>
+        <span className="text-xs">or search:</span>
       </label>
-      <div className="input-group">
+      <div className="input-group ">
         <input
           type="text"
+          placeholder="Exercise name"
           {...register(name)}
-          className="input input-bordered input-sm input-primary max-w-sm "
+          className="input input-bordered input-xs sm:input-sm input-primary w-full"
         />
-        <button type="submit" className="btn btn-square btn-primary btn-sm">
+        <button
+          type="submit"
+          className="btn btn-square btn-primary btn-xs sm:btn-sm "
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
+            className="h-3 w-3 sm:h-4 sm:w-4"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="white"
           >
             <path
               strokeLinecap="round"

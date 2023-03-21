@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import ExerciseDayNavigation from '@/components/CreateExerciseForm/ExerciseDayNavigation'
 import SelectedExerciseDisplay from '@/components/CreateExerciseForm/SelectedExerciseDisplay'
 import ExerciseSelect from '@/components/CreateExerciseForm/ExerciseSelect'
 import { createServerClient } from '@/utils/supabase-server'
+import SubmitRoutine from '@/components/CreateExerciseForm/SubmitRoutine'
 
 export default async function Day() {
   const supabase = createServerClient()
@@ -14,14 +14,12 @@ export default async function Day() {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center mb-2">
-        <Link className="btn btn-accent btn-xs md:btn-sm" href="/create">
-          Back
-        </Link>
+      <div className="flex flex-col w-full mb-2 space-y-2">
+        <div className="flex">
+          <p className="text-xl font-semibold flex-1">Push Pull Legs</p>
+          <SubmitRoutine />
+        </div>
         <ExerciseDayNavigation />
-        <Link className="btn btn-accent btn-xs md:btn-sm" href="/create/review">
-          Review
-        </Link>
       </div>
       <SelectedExerciseDisplay />
       {muscleGroups && <ExerciseSelect muscleGroups={muscleGroups} />}
