@@ -9,21 +9,20 @@ function ExerciseSelect() {
 
   return (
     <>
-      <div className="flex space-x-2 items-center">
-        <p>Search by: </p>
+      <div className="flex space-x-2 items-center mb-2">
         <button
           type="button"
           className="btn btn-xs btn-primary text-base-100 "
           onClick={() => setCurrent(<MuscleGroupSelect />)}
         >
-          Muscle Group
+          Choose Muscle Group
         </button>
         <button
           type="button"
           className="btn btn-xs btn-primary text-base-100"
           onClick={() => setCurrent(<NameSearch />)}
         >
-          Name
+          Search By Name
         </button>
       </div>
       {current}
