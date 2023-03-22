@@ -1,12 +1,13 @@
-import Link from 'next/link'
+import { createServerClient } from '@/utils/supabase-server'
 
 export default async function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center space-y-2">
-      <p className="text-xl font-bold">Welcome.</p>
-      <Link href="/create" className="btn btn-secondary">
-        Create Routine
-      </Link>
-    </div>
-  )
+  const supabase = createServerClient()
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session) return <p>You have not chosen a routine yet. </p>
+
+  return <div>Current routine: </div>
 }

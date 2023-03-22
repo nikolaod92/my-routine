@@ -8,6 +8,9 @@ function SignInButton() {
   const signInWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        redirectTo: '/',
+      },
     })
   }
 
@@ -18,7 +21,7 @@ function SignInButton() {
         onClick={signInWithGoogle}
         className="btn btn-primary text-base-100"
       >
-        Sign In
+        Sign In With Google
       </button>
     )
 

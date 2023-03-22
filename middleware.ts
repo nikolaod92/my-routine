@@ -6,14 +6,6 @@ import { Database } from '@/lib/database.types'
 
 export default async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  const { pathname } = req.nextUrl
-
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/api') ||
-    pathname.startsWith('/static')
-  )
-    return NextResponse.next()
 
   const supabase = createMiddlewareSupabaseClient<Database>({ req, res })
 
@@ -24,7 +16,7 @@ export default async function middleware(req: NextRequest) {
 
   if (!session) {
     const redirectUrl = req.nextUrl.clone()
-    redirectUrl.pathname = '/'
+    redirectUrl.pathname = '/login'
     return NextResponse.redirect(redirectUrl)
   }
 
@@ -32,5 +24,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/create/:path*', '/routines/:path*'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|login).*)'],
 }

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
@@ -7,7 +6,8 @@
 import Link from 'next/link'
 
 import { useEffect } from 'react'
-import SignIn from './SignIn/SignIn'
+import LogoutButton from './SignIn/LogoutButton'
+import { useSupabase } from './SupabaseProvider'
 
 function MenuItems() {
   return (
@@ -23,6 +23,8 @@ function MenuItems() {
 }
 
 export default function Header() {
+  const { session } = useSupabase()
+
   // ? Temporary solution: Modified DaisyUI dropdown component to close when clicking a menu item
   useEffect(() => {
     const dropdownContent = document.querySelectorAll('.dropdown-content>li')
@@ -71,9 +73,7 @@ export default function Header() {
           <MenuItems />
         </ul>
       </div>
-      <div className="navbar-end">
-        <SignIn />
-      </div>
+      <div className="navbar-end">{session && <LogoutButton />}</div>
     </div>
   )
 }

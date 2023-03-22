@@ -19,6 +19,10 @@ export default function SupabaseListener({
       if (session?.access_token !== serverAccessToken) {
         router.refresh()
       }
+
+      if (event === 'SIGNED_IN') {
+        router.push('/')
+      }
     })
 
     return () => {
