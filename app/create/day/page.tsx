@@ -3,7 +3,7 @@ import ResetButton from '@/components/CreateExerciseForm/ResetButton'
 import SelectedExerciseDisplay from '@/components/CreateExerciseForm/SelectedExerciseDisplay'
 
 import SubmitRoutine from '@/components/CreateExerciseForm/SubmitRoutine'
-import ExerciseSelect from '@/components/New/ExerciseSelect'
+import ExerciseSelect from '@/components/CreateExerciseForm/Select/ExerciseSelect'
 
 export default async function Day() {
   return (

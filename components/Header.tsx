@@ -7,8 +7,7 @@
 import Link from 'next/link'
 
 import { useEffect } from 'react'
-
-import SignIn from './SignIn'
+import SignIn from './SignIn/SignIn'
 
 function MenuItems() {
   return (

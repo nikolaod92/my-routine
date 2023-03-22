@@ -4,9 +4,9 @@
 import { PAGINATION_STEP } from '@/lib/constants'
 import type { Exercise, MuscleGroup } from '@/lib/database.types'
 import { useEffect, useRef, useState } from 'react'
-import ExerciseCard from '../CreateExerciseForm/ExerciseCard'
-import ExerciseGrid from '../CreateExerciseForm/ExerciseGrid'
-import { useSupabase } from '../SupabaseProvider'
+import ExerciseCard from '../ExerciseCard'
+import ExerciseGrid from '../ResponsiveGrid'
+import { useSupabase } from '../../SupabaseProvider'
 import ExercisePagination from './ExercisePagination'
 
 function MuscleGroupSelect() {

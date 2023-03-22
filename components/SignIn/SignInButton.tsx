@@ -1,6 +1,6 @@
 'use client'
 
-import { useSupabase } from './SupabaseProvider'
+import { useSupabase } from '../SupabaseProvider'
 
 function SignInButton() {
   const { supabase, session } = useSupabase()

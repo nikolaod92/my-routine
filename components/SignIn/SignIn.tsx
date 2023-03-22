@@ -1,8 +1,8 @@
 'use client'
 
+import { useSupabase } from '../SupabaseProvider'
 import LogoutButton from './LogoutButton'
 import SignInButton from './SignInButton'
-import { useSupabase } from './SupabaseProvider'
 
 function SignIn() {
   const { session } = useSupabase()

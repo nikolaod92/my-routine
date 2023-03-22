@@ -6,7 +6,7 @@ import { Exercise } from '@/lib/database.types'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import ExerciseCard from '../CreateExerciseForm/ExerciseCard'
-import ExerciseGrid from '../CreateExerciseForm/ExerciseGrid'
+import ExerciseGrid from '../CreateExerciseForm/ResponsiveGrid'
 import { useSupabase } from '../SupabaseProvider'
 
 function NameSearch() {
