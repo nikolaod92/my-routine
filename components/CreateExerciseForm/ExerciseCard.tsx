@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
@@ -8,11 +7,10 @@ import Image from 'next/image'
 import { useStore } from '@/store'
 import { useState } from 'react'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import { ExerciseType } from '@/lib/database.types'
-import { blurData } from '../../public/blurData'
+import { Exercise } from '@/lib/database.types'
 import AddExerciseForm from './AddExerciseForm'
 
-export default function Exercise({ exercise }: { exercise: ExerciseType }) {
+export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
   const { id, name } = exercise
   const [show, setShow] = useState(false)
 
@@ -45,10 +43,8 @@ export default function Exercise({ exercise }: { exercise: ExerciseType }) {
         <div className="bg-white h-full w-full flex items-center justify-center">
           <Image
             className="p-4"
-            placeholder="blur"
-            blurDataURL={blurData}
             src={exercise.gif}
-            alt="Shoes"
+            alt={exercise.name}
             width={160}
             height={160}
           />

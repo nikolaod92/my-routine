@@ -4,6 +4,8 @@ import { RoutineExercise } from '@/lib/database.types'
 import Image from 'next/image'
 
 function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
+  if (!exercises.length) return <div>Rest day.</div>
+
   return (
     <>
       {exercises.map((ex) => (

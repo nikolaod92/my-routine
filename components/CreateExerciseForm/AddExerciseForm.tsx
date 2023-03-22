@@ -20,8 +20,8 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       state.exercises,
     ]
   )
-  const exerciseInState = exercises.find((ex) => ex.exercise_id === id)
-  const { sets, reps } = exerciseInState || { sets: 0, reps: 0 }
+  const isExerciseInState = exercises.find((ex) => ex.exercise_id === id)
+  const { sets, reps } = isExerciseInState || { sets: 0, reps: 0 }
 
   const {
     register,
@@ -43,7 +43,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       name,
     } as DayExercise
 
-    if (exerciseInState) deleteExercise(exerciseInfo)
+    if (isExerciseInState) deleteExercise(exerciseInfo)
 
     addExercise(exerciseInfo)
   })
@@ -80,7 +80,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
         />
       </div>
       <button type="submit" className="btn btn-primary btn-xs ">
-        {exerciseInState ? 'Edit' : 'Add'}
+        {isExerciseInState ? 'Edit' : 'Add'}
       </button>
     </form>
   )

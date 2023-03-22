@@ -10,10 +10,8 @@ export async function POST(request: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (!session) return null
-
-  const json = await request.json()
-  const { routineInfo, exercises } = json
+  const data = await request.json()
+  const { routineInfo, exercises } = data
 
   const routineSchema = z.object({
     name: z.string().min(1),
@@ -39,7 +37,7 @@ export async function POST(request: NextRequest) {
       status: 500,
     })
 
-  const exerciseArray = exercises.map((ex) => {
+  const exerciseArray = exercises.map((ex: any) => {
     const { name, ...rest } = ex
     return {
       ...rest,

@@ -2,9 +2,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { PAGINATION_STEP } from '@/lib/constants'
-import { ExerciseType, MuscleGroup } from '@/lib/database.types'
+import type { Exercise, MuscleGroup } from '@/lib/database.types'
 import { useEffect, useRef, useState } from 'react'
-import Exercise from '../CreateExerciseForm/Exercise'
+import ExerciseCard from '../CreateExerciseForm/ExerciseCard'
 import ExerciseGrid from '../CreateExerciseForm/ExerciseGrid'
 import { useSupabase } from '../SupabaseProvider'
 import ExercisePagination from './ExercisePagination'
@@ -12,7 +12,7 @@ import ExercisePagination from './ExercisePagination'
 function MuscleGroupSelect() {
   const { supabase } = useSupabase()
   const [selected, setSelected] = useState('')
-  const [exercises, setExercises] = useState<ExerciseType[]>()
+  const [exercises, setExercises] = useState<Exercise[]>()
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [muscleGroups, setMuscleGroups] = useState<MuscleGroup[]>([])
@@ -32,7 +32,6 @@ function MuscleGroupSelect() {
   }, [selected])
 
   useEffect(() => {
-    setExercises([])
     setErrorMsg('')
     const fetchExercises = async () => {
       setLoading(true)
@@ -48,8 +47,7 @@ function MuscleGroupSelect() {
         setErrorMsg(error.message)
       }
 
-      if (!data) return
-      setExercises(data)
+      if (data) setExercises(data)
       setLoading(false)
     }
     if (!selected) return
@@ -83,7 +81,7 @@ function MuscleGroupSelect() {
       {exercises && (
         <ExerciseGrid>
           {exercises.map((exercise) => (
-            <Exercise key={exercise.id} exercise={exercise} />
+            <ExerciseCard key={exercise.id} exercise={exercise} />
           ))}
         </ExerciseGrid>
       )}

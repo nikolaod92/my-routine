@@ -4,12 +4,12 @@
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { ExerciseType } from '@/lib/database.types'
+import { Exercise } from '@/lib/database.types'
 import ExerciseGrid from './ExerciseGrid'
 import { useSupabase } from '../SupabaseProvider'
 import ExerciseSearch from './ExerciseSearch'
 import MuscleGroupSelect from './MuscleGroupSelect'
-import Exercise from './Exercise'
+import Exercise from './ExerciseCard'
 
 export default function ExerciseSelect() {
   const { supabase } = useSupabase()
@@ -17,7 +17,7 @@ export default function ExerciseSelect() {
 
   const [selected, setSelected] = useState<string>('')
   const [loading, setLoading] = useState(false)
-  const [exercises, setExercises] = useState<ExerciseType[]>([])
+  const [exercises, setExercises] = useState<Exercise[]>([])
   const [errorMsg, setErrorMsg] = useState('')
 
   const onSubmit = handleSubmit(async (formData, e) => {

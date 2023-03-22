@@ -2,10 +2,10 @@
 
 'use client'
 
-import { ExerciseType } from '@/lib/database.types'
+import { Exercise } from '@/lib/database.types'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import Exercise from '../CreateExerciseForm/Exercise'
+import ExerciseCard from '../CreateExerciseForm/ExerciseCard'
 import ExerciseGrid from '../CreateExerciseForm/ExerciseGrid'
 import { useSupabase } from '../SupabaseProvider'
 
@@ -14,7 +14,7 @@ function NameSearch() {
   const { register, handleSubmit } = useForm()
 
   const [loading, setLoading] = useState(false)
-  const [exercises, setExercises] = useState<ExerciseType[]>([])
+  const [exercises, setExercises] = useState<Exercise[]>([])
   const [errorMsg, setErrorMsg] = useState('')
 
   const onSubmit = handleSubmit(async (formData, e) => {
@@ -82,7 +82,7 @@ function NameSearch() {
       {exercises && (
         <ExerciseGrid>
           {exercises.map((exercise) => (
-            <Exercise key={exercise.id} exercise={exercise} />
+            <ExerciseCard key={exercise.id} exercise={exercise} />
           ))}
         </ExerciseGrid>
       )}
