@@ -20,7 +20,7 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
   return (
     <div
       key={exercise.id}
-      className="flex flex-col h-48 overflow-hidden rounded-lg shadow hover:cursor-pointer hover:shadow-lg"
+      className="flex flex-col h-48 overflow-hidden rounded shadow hover:cursor-pointer hover:shadow-lg"
     >
       <div
         className={`${

@@ -9,3 +9,7 @@
     margin: 0;
   }
 }
+
+.btn {
+  @apply shadow-sm text-base-100;
+}

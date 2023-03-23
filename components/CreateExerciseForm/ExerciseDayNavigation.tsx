@@ -15,8 +15,8 @@ function ExerciseDayNavigation() {
         <button
           key={day}
           type="button"
-          className={`btn btn-xs relative capitalize ${
-            currentDay === day && 'btn-active'
+          className={`btn btn-xs md:btn-sm relative capitalize ${
+            currentDay === day && 'btn-primary '
           }`}
           onClick={() => setCurrentDay(day)}
         >

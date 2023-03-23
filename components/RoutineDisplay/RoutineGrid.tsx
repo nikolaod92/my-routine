@@ -9,7 +9,7 @@ function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
   return (
     <>
       {exercises.map((ex) => (
-        <div className="card bg-base-100 shadow-md">
+        <div className="card bg-base-100 shadow">
           <p className="badge badge-xs badge-primary text-base-100 rounded-xl p-2 m-2 font-semibold uppercase">
             {ex?.exercise.target}
           </p>

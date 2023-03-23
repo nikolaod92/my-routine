@@ -11,7 +11,7 @@ function LogoutButton() {
 
   if (session)
     return (
-      <button type="button" onClick={logout} className="btn btn-warning">
+      <button type="button" onClick={logout} className="btn btn-secondary">
         Logout
       </button>
     )

@@ -8,13 +8,13 @@ function ResetButton() {
   return (
     <button
       type="button"
-      className="btn btn-outline btn-error btn-xs "
+      className="btn btn-outline btn-secondary btn-xs "
       onClick={(e) => {
         e.preventDefault()
         resetExercises()
       }}
     >
-      Clear
+      Clear All
     </button>
   )
 }
