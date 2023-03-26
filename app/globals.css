@@ -11,5 +11,5 @@
 }
 
 .btn {
-  @apply shadow-sm text-base-100;
+  @apply text-base-100;
 }

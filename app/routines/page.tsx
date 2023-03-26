@@ -27,7 +27,7 @@ export default async function Routines() {
     <div className="grid gap-4 md:grid-cols-2">
       {data &&
         data.map((routine) => (
-          <div className="card bg-base-100 shadow-md">
+          <div className="card bg-base-100 shadow">
             <div className="card-body p-6">
               <div className="flex items-center space-x-1">
                 <Link

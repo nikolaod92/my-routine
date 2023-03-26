@@ -56,7 +56,10 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
   }, [reset, isSubmitSuccessful, setShow])
 
   return (
-    <form onSubmit={onSubmit} className="form-control p-4 items-end  space-y-1">
+    <form
+      onSubmit={onSubmit}
+      className="form-control p-4 items-end bg-base-100 flex-1 space-y-1 justify-end"
+    >
       <div>
         <label>
           <span className="text-xs">Sets: </span>

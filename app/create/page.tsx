@@ -7,9 +7,10 @@ import { useRouter } from 'next/navigation'
 import { useStore } from '@/store'
 
 export default function Create() {
-  const [setRoutineInfo, routineInfo] = useStore((state) => [
+  const [setRoutineInfo, routineInfo, setCurrentDay] = useStore((state) => [
     state.setRoutineInfo,
     state.routineInfo,
+    state.setCurrentDay,
   ])
 
   const { register, handleSubmit } = useForm({
@@ -23,28 +24,27 @@ export default function Create() {
   const onSubmit = (data: any, e: any) => {
     e.preventDefault()
     setRoutineInfo(data)
+    setCurrentDay('m')
     router.push('/create/day')
   }
 
   return (
-    <div className="w-full max-w-sm mx-auto">
+    <div className="card card-body bg-base-100 rounded shadow max-w-sm mx-auto">
       <form onSubmit={handleSubmit(onSubmit)} className="form-control">
+        <h1 className="text-xl font-bold mb-4">Create a routine</h1>
         <label className="label">
-          <span className="label-text">Routine name:</span>
+          <span className="label-text">Name</span>
         </label>
         <input
           type="text"
-          placeholder="Type here"
-          className="input input-primary input-bordered input-sm w-full"
+          className="input input-bordered input-sm w-full"
           {...register('name')}
         />
         <label className="label">
-          <span className="label-text">Routine description (optional):</span>
+          <span className="label-text">Description</span>
         </label>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input input-primary input-bordered input-sm w-full mb-4"
+        <textarea
+          className="textarea textarea-bordered textarea-md"
           {...register('description')}
         />
         {/* <Controller
@@ -52,7 +52,7 @@ export default function Create() {
           control={control}
           render={({ field: { ref, ...field } }) => <Slider {...field} />}
         /> */}
-        <button type="submit" className="btn btn-secondary mt-4 self-end">
+        <button type="submit" className="btn btn-primary mt-6 self-end">
           Next
         </button>
       </form>
