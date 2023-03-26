@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 import './globals.css'
-import { Inter, Roboto_Condensed } from 'next/font/google'
+import { Roboto_Condensed } from 'next/font/google'
+import UserRoutineProvider from '@/contexts/userRoutine'
 import Header from '../components/Header'
 
 import 'server-only'
@@ -34,9 +35,11 @@ export default async function RootLayout({
         className={`flex flex-col min-h-screen bg-base-200 ${font.className} `}
       >
         <SupabaseProvider session={session}>
-          <SupabaseListener serverAccessToken={session?.access_token} />
-          <Header />
-          <div className="container mx-auto py-4 md:py-8">{children}</div>
+          <UserRoutineProvider>
+            <SupabaseListener serverAccessToken={session?.access_token} />
+            <Header />
+            <div className="container mx-auto py-4 md:py-8">{children}</div>
+          </UserRoutineProvider>
         </SupabaseProvider>
       </body>
     </html>
