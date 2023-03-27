@@ -30,5 +30,22 @@ export default function SupabaseListener({
     }
   }, [serverAccessToken, router, supabase])
 
+  useEffect(() => {
+    const profile = supabase
+      .channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'profile' },
+        () => {
+          router.replace('/')
+        }
+      )
+      .subscribe()
+
+    return () => {
+      profile.unsubscribe()
+    }
+  }, [router, supabase])
+
   return null
 }

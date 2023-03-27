@@ -1,4 +1,7 @@
 import { createServerClient } from '@/utils/supabase-server'
+import Link from 'next/link'
+
+export const revalidate = 0
 
 export default async function Home() {
   const supabase = createServerClient()
@@ -7,7 +10,32 @@ export default async function Home() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (!session) return <p>You have not chosen a routine yet. </p>
+  const { data } = await supabase
+    .from('profile')
+    .select('routine_id')
+    .eq('id', session?.user.id)
+    .single()
 
-  return <div>Current routine: </div>
+  if (!data?.routine_id)
+    return (
+      <div className="card card-body bg-base-100 shadow-sm items-center max-w-sm mx-auto">
+        <p className="font-light">You are not currently following a routine.</p>
+        <div className="divider" />
+        <p className="text-sm ">Choose one already created by our users:</p>
+        <Link
+          href="/routines"
+          className="btn btn-wide btn-secondary text-base-100"
+        >
+          Routines
+        </Link>
+        <div className="divider" />
+
+        <p className="text-sm ">or create your own and share it!</p>
+        <Link href="/create" className="btn btn-wide btn-primary text-base-100">
+          Create
+        </Link>
+      </div>
+    )
+
+  return <div>Current routine: {data.routine_id}</div>
 }
