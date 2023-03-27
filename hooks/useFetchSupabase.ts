@@ -1,28 +1,37 @@
+import { PostgrestError } from '@supabase/supabase-js'
 import { useState, useEffect } from 'react'
 
-const useFetchSupabase = (supaCall) => {
+const useFetchSupabase = <T>(
+  supabaseCallback: () => Promise<{
+    data: T | null
+    error: PostgrestError | Error | null
+  }>
+) => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [data, setData] = useState(null)
+  const [error, setError] = useState<PostgrestError | Error | null>(null)
+  const [data, setData] = useState<T | null>(null)
 
   useEffect(() => {
     async function getData() {
       setLoading(true)
       try {
-        const { data, error } = await supaCall()
-        if (error) {
-          setError(error)
+        const { data: supabaseData, error: supabaseError } =
+          await supabaseCallback()
+        if (supabaseError) {
+          setError(supabaseError)
         } else {
-          setData(data)
+          setData(supabaseData)
         }
-      } catch (e) {
-        setError(e)
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e)
+        }
       } finally {
         setLoading(false)
       }
     }
     getData()
-  }, [supaCall])
+  }, [supabaseCallback])
 
   return { loading, data, error }
 }
