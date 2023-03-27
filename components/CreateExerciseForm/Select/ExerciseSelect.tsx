@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import MuscleGroupSelect from './MuscleGroupSelect'
+import MuscleGroupSearch from './MuscleGroupSearch'
 import NameSearch from './NameSearch'
 
 function ExerciseSelect() {
@@ -13,7 +13,7 @@ function ExerciseSelect() {
         <button
           type="button"
           className="btn btn-xs btn-primary text-base-100 "
-          onClick={() => setCurrent(<MuscleGroupSelect />)}
+          onClick={() => setCurrent(<MuscleGroupSearch />)}
         >
           Choose Muscle Group
         </button>

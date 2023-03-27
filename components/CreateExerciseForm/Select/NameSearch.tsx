@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 'use client'
 
-import { Exercise } from '@/lib/database.types'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
+import useFetchSupabase from '@/hooks/useFetchSupabase'
 import ExerciseCard from '../ExerciseCard'
 import ExerciseGrid from '../ResponsiveGrid'
 import { useSupabase } from '../../SupabaseProvider'
@@ -13,40 +10,26 @@ function NameSearch() {
   const { supabase } = useSupabase()
   const { register, handleSubmit } = useForm()
 
-  const [loading, setLoading] = useState(false)
-  const [exercises, setExercises] = useState<Exercise[]>([])
-  const [errorMsg, setErrorMsg] = useState('')
+  const getExercises = async (formData: FieldValues) => {
+    const { data, error } = await supabase
+      .from('exercise')
+      .select()
+      .textSearch('name', formData.searchTerm, {
+        config: 'english',
+        type: 'websearch',
+      })
+      .limit(20)
+
+    return { data, error }
+  }
+
+  const { fetchData, data: exercises } = useFetchSupabase(getExercises)
 
   const onSubmit = handleSubmit(async (formData, e) => {
     e?.preventDefault()
-    setExercises([])
-    setErrorMsg('')
-    setLoading(true)
-    try {
-      const { data, error } = await supabase
-        .from('exercise')
-        .select()
-        .textSearch('name', formData.searchTerm, {
-          config: 'english',
-          type: 'websearch',
-        })
-        .limit(20)
-      if (error) {
-        setErrorMsg(error.message)
-      }
-
-      if (!data || data.length === 0) {
-        setLoading(false)
-        setErrorMsg('No exercises found.')
-        return
-      }
-
-      setExercises(data)
-    } catch (error) {
-      setErrorMsg('Something went wrong.')
-    }
-    setLoading(false)
+    fetchData(formData)
   })
+
   return (
     <>
       <form onSubmit={onSubmit} className="">

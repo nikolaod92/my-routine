@@ -1,22 +1,25 @@
 import { PostgrestError } from '@supabase/supabase-js'
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const useFetchSupabase = <T>(
-  supabaseCallback: () => Promise<{
+  supabaseCallback: (...args: any[]) => Promise<{
     data: T | null
     error: PostgrestError | Error | null
-  }>
+  }>,
+  options?: {
+    executeOnMount: boolean
+  }
 ) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<PostgrestError | Error | null>(null)
   const [data, setData] = useState<T | null>(null)
 
-  useEffect(() => {
-    async function getData() {
+  const fetchData = useCallback(
+    async (...args: any[]) => {
       setLoading(true)
       try {
         const { data: supabaseData, error: supabaseError } =
-          await supabaseCallback()
+          await supabaseCallback(...args)
         if (supabaseError) {
           setError(supabaseError)
         } else {
@@ -29,11 +32,14 @@ const useFetchSupabase = <T>(
       } finally {
         setLoading(false)
       }
-    }
-    getData()
-  }, [supabaseCallback])
+    },
+    [supabaseCallback]
+  )
+  useEffect(() => {
+    if (options?.executeOnMount) fetchData()
+  }, [fetchData, options?.executeOnMount])
 
-  return { loading, data, error }
+  return { fetchData, loading, data, error }
 }
 
 export default useFetchSupabase
