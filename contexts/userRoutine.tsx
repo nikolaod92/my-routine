@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { createContext, useState, useEffect, useContext } from 'react'
 import { useSupabase } from '../components/SupabaseProvider'
 
@@ -9,11 +10,11 @@ const Context = createContext<ContextType>({} as ContextType)
 
 function UserRoutineProvider({ children }: { children: React.ReactNode }) {
   const { supabase, session } = useSupabase()
+  const router = useRouter()
+
   const [routineId, setRoutineId] = useState<string | null>(null)
 
   const userId = session?.user.id
-
-  console.log('Fetching', routineId)
 
   useEffect(() => {
     const getUserRoutine = async () => {
@@ -33,6 +34,24 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
     }
     getUserRoutine()
   }, [userId, supabase])
+
+  useEffect(() => {
+    const profile = supabase
+      .channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'profile' },
+        (payload) => {
+          setRoutineId(payload.new.routine_id)
+          router.replace('/')
+        }
+      )
+      .subscribe()
+
+    return () => {
+      profile.unsubscribe()
+    }
+  }, [router, supabase])
 
   return <Context.Provider value={{ routineId }}>{children}</Context.Provider>
 }
