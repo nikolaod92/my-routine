@@ -27,12 +27,13 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
     register,
     handleSubmit,
     reset,
-    formState: { isSubmitSuccessful },
+    formState: { isSubmitSuccessful, isValid, isDirty },
   } = useForm<FormData>({
     defaultValues: {
       sets,
       reps,
     },
+    mode: 'onChange',
   })
 
   const onSubmit = handleSubmit((data: FormData) => {
@@ -68,7 +69,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
           type="number"
           placeholder="Sets"
           className="input input-bordered input-xs input-primary w-10 text-right"
-          {...register('sets', { valueAsNumber: true })}
+          {...register('sets', { valueAsNumber: true, min: 1, required: true })}
         />
       </div>
       <div>
@@ -79,10 +80,14 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
           type="number"
           placeholder="Reps"
           className="input input-bordered input-primary input-xs w-10 text-right"
-          {...register('reps', { valueAsNumber: true })}
+          {...register('reps', { valueAsNumber: true, min: 1, required: true })}
         />
       </div>
-      <button type="submit" className="btn btn-primary btn-xs ">
+      <button
+        disabled={!isValid || !isDirty}
+        type="submit"
+        className="btn btn-primary btn-xs"
+      >
         {isExerciseInState ? 'Edit' : 'Add'}
       </button>
     </form>
