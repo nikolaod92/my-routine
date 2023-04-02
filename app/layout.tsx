@@ -32,7 +32,7 @@ export default async function RootLayout({
     <html data-theme="mytheme">
       <head />
       <body
-        className={`flex flex-col min-h-screen bg-base-200 ${font.className} `}
+        className={`flex flex-col min-h-screen bg-base-200 overflow-x-hidden ${font.className} `}
       >
         <SupabaseProvider session={session}>
           <UserRoutineProvider>
