@@ -2,27 +2,33 @@
 
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useStore } from '@/store'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { RoutineInfo, routineSchema } from '@/lib/vaildators'
 
 export default function Create() {
+  const router = useRouter()
+
   const [setRoutineInfo, routineInfo, setCurrentDay] = useStore((state) => [
     state.setRoutineInfo,
     state.routineInfo,
     state.setCurrentDay,
   ])
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
     defaultValues: {
       ...routineInfo,
     },
+    resolver: zodResolver(routineSchema),
   })
 
-  const router = useRouter()
-
-  const onSubmit = (data: any, e: any) => {
-    e.preventDefault()
+  const onSubmit: SubmitHandler<RoutineInfo> = (data) => {
     setRoutineInfo(data)
     setCurrentDay('m')
     router.push('/create/day')
@@ -40,6 +46,11 @@ export default function Create() {
           className="input input-bordered input-sm w-full"
           {...register('name')}
         />
+        {errors.name && (
+          <p className="text-xs italic text-red-500 mt-2">
+            {errors.name?.message}
+          </p>
+        )}
         <label className="label">
           <span className="label-text">Description</span>
         </label>
@@ -47,12 +58,18 @@ export default function Create() {
           className="textarea textarea-bordered textarea-md"
           {...register('description')}
         />
-        {/* <Controller
-          name="daysPerWeek"
-          control={control}
-          render={({ field: { ref, ...field } }) => <Slider {...field} />}
-        /> */}
-        <button type="submit" className="btn btn-primary mt-6 self-end">
+        {errors.description && (
+          <p className="text-xs italic text-red-500 mt-2">
+            {errors.description?.message}
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`btn btn-primary mt-6 self-end  ${
+            isSubmitting && 'loading'
+          }`}
+        >
           Next
         </button>
       </form>

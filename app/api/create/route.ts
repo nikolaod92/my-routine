@@ -1,7 +1,6 @@
+import { routineSchema } from '@/lib/vaildators'
 import { createServerClient } from '@/utils/supabase-server'
 import { NextRequest, NextResponse } from 'next/server'
-
-import { z } from 'zod'
 
 export async function POST(request: NextRequest) {
   const supabase = createServerClient()
@@ -13,11 +12,6 @@ export async function POST(request: NextRequest) {
   const data = await request.json()
   const { routineInfo, exercises } = data
 
-  const routineSchema = z.object({
-    name: z.string().min(1),
-    description: z.string().nullable(),
-  })
-
   const routineValidationResponse = routineSchema.safeParse(routineInfo)
 
   if (!routineValidationResponse.success)
@@ -28,7 +22,7 @@ export async function POST(request: NextRequest) {
     .insert({
       name: routineInfo.name,
       description: routineInfo.description,
-      author_id: session.user.id,
+      author_id: session!.user.id,
     })
     .select()
 
