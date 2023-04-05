@@ -25,9 +25,25 @@ function Follow({ id }: { id: string }) {
     }
   }
 
+  const unfollowRoutine = async () => {
+    try {
+      const { error } = await supabase
+        .from('profile')
+        .update({ routine_id: null })
+        .eq('id', session?.user.id)
+
+      if (error) {
+        alert(error.message)
+        return
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <button
-      onClick={followRoutine}
+      onClick={isUserFollowingRoutine ? unfollowRoutine : followRoutine}
       type="button"
       className="btn btn-sm btn-secondary"
     >
