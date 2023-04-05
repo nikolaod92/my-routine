@@ -1,30 +1,33 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 'use client'
 
 import Link from 'next/link'
 
 import { useEffect } from 'react'
-import LogoutButton from './SignIn/LogoutButton'
-import { useSupabase } from './SupabaseProvider'
+import SignIn from './SignIn/SignIn'
 
 function MenuItems() {
   return (
     <>
       <li>
-        <Link href="/create">Create</Link>
+        <Link href="/my-routine" className="font-semibold">
+          Your Routine
+        </Link>
       </li>
       <li>
-        <Link href="/routines">All Routines</Link>
+        <Link href="/routines" className="font-semibold">
+          Routines
+        </Link>
+      </li>
+      <li>
+        <Link href="/create" className="font-semibold">
+          Create
+        </Link>
       </li>
     </>
   )
 }
 
 export default function Header() {
-  const { session } = useSupabase()
-
   // ? Temporary solution: Modified DaisyUI dropdown component to close when clicking a menu item
   useEffect(() => {
     const dropdownContent = document.querySelectorAll('.dropdown-content>li')
@@ -41,7 +44,7 @@ export default function Header() {
     <div className="navbar bg-base-100 lg:px-16 xl:px-24 2xl:px-36">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden ">
+          <button type="button" className="btn-ghost btn lg:hidden ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-primary"
@@ -56,24 +59,23 @@ export default function Header() {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
+          </button>
+          <ul className="dropdown-content menu menu-compact mt-4 w-52 border-l-4 border-l-primary rounded-b-md  bg-base-100 p-2 shadow-lg">
             <MenuItems />
           </ul>
         </div>
-        <Link href="/" className="text-xl font-bold">
+        <Link prefetch={false} href="/" className="pb-1 text-2xl font-bold">
           myRoutine
         </Link>
+        <div className="ml-4 hidden lg:flex">
+          <ul className="menu menu-horizontal">
+            <MenuItems />
+          </ul>
+        </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <MenuItems />
-        </ul>
+      <div className="navbar-end">
+        <SignIn />
       </div>
-      <div className="navbar-end">{session && <LogoutButton />}</div>
     </div>
   )
 }
