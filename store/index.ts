@@ -1,15 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { Database, DayOfWeek } from '@/lib/database.types'
-
-type ExerciseWithoutRoutineId = Omit<
-  Database['public']['Tables']['exercises_on_day']['Row'],
-  'routine_id'
->
-
-export type DayExercise = ExerciseWithoutRoutineId & {
-  name: string
-}
+import { ExerciseOnDay, DayOfWeek } from '@/lib/database.types'
 
 type State = {
   currentDay: DayOfWeek
@@ -17,16 +8,17 @@ type State = {
     name: string
     description: string
   }
-  exercises: DayExercise[]
+  exercises: ExerciseOnDay[]
 }
 
 type Action = {
   setCurrentDay: (currentDay: State['currentDay']) => void
   setRoutineInfo: (routineInfo: State['routineInfo']) => void
   setExercises: (exercises: State['exercises']) => void
-  addExercise: (exercise: DayExercise) => void
-  deleteExercise: (exercise: DayExercise) => void
+  addExercise: (exercise: ExerciseOnDay) => void
+  deleteExercise: (exercise: ExerciseOnDay) => void
   resetExercises: () => void
+  reset: () => void
 }
 
 const initialState: State = {
@@ -54,6 +46,9 @@ export const useStore = create(
           ),
         })),
       resetExercises: () => set(() => ({ exercises: [] })),
+      reset: () => {
+        set(initialState)
+      },
     }),
     { name: 'routine' }
   )
