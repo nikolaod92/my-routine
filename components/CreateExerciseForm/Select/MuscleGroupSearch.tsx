@@ -1,3 +1,6 @@
+'use client'
+
+import Loader from '@/components/Loader'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import { PAGINATION_STEP } from '@/lib/constants'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -9,12 +12,14 @@ import MuscleGroupSelect from './MuscleGroupSelect'
 
 function MuscleGroupSearch() {
   const { supabase } = useSupabase()
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState('chest')
   const [range, setRange] = useState(0)
 
   const exerciseCount = useRef(0)
 
   const getPaginatedExercises = useCallback(async () => {
+    if (!selected) return { data: null, error: null }
+
     const { data, count, error } = await supabase
       .from('exercise')
       .select('*', { count: 'exact' })
@@ -26,7 +31,11 @@ function MuscleGroupSearch() {
     return { data, error }
   }, [range, selected, supabase])
 
-  const { data: exercises, error } = useFetchSupabase(getPaginatedExercises, {
+  const {
+    data: exercises,
+    error,
+    loading,
+  } = useFetchSupabase(getPaginatedExercises, {
     executeOnMount: true,
   })
 
@@ -49,13 +58,14 @@ function MuscleGroupSearch() {
           />
         )}
       </div>
-      {exercises && (
+      <Loader loading={loading} size={32}>
         <ExerciseGrid>
-          {exercises.map((exercise) => (
-            <ExerciseCard key={exercise.id} exercise={exercise} />
-          ))}
+          {exercises &&
+            exercises.map((exercise) => (
+              <ExerciseCard key={exercise.id} exercise={exercise} />
+            ))}
         </ExerciseGrid>
-      )}
+      </Loader>
       {error && <div>{error.message}</div>}
     </div>
   )

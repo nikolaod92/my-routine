@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 import './globals.css'
-import { Roboto_Condensed } from 'next/font/google'
+import { Dosis } from '@next/font/google'
 import UserRoutineProvider from '@/contexts/userRoutine'
+import ToastContainer from '@/components/ToastContainer'
 import Header from '../components/Header'
 
 import 'server-only'
@@ -10,7 +11,7 @@ import SupabaseListener from '../components/SupabaseListener'
 import SupabaseProvider from '../components/SupabaseProvider'
 import { createServerClient } from '../utils/supabase-server'
 
-const font = Roboto_Condensed({
+const font = Dosis({
   subsets: ['latin'],
   weight: ['300', '400', '700'],
 })
@@ -39,6 +40,7 @@ export default async function RootLayout({
             <SupabaseListener serverAccessToken={session?.access_token} />
             <Header />
             <div className="container mx-auto py-4 md:py-8">{children}</div>
+            <ToastContainer />
           </UserRoutineProvider>
         </SupabaseProvider>
       </body>
