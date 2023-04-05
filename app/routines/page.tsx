@@ -1,8 +1,8 @@
+import FollowerCount from '@/components/RoutineDisplay/FollowerCount'
 import { createServerClient } from '@/utils/supabase-server'
-import { UserIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 
-export const revalidate = 0
+export const revalidate = 30
 
 type ReturnType =
   | {
@@ -27,17 +27,13 @@ export default async function Routines() {
     <div className="grid gap-4 md:grid-cols-2">
       {data &&
         data.map((routine) => (
-          <div className="card bg-base-100 shadow">
+          <div className="card bg-base-100 shadow hover:shadow-md">
             <div className="card-body p-6">
-              <div className="flex items-center space-x-1">
-                <Link
-                  href={`/routines/${routine.id}`}
-                  className="card-title flex-1"
-                >
+              <div className="flex justify-between items-center">
+                <Link href={`/routines/${routine.id}`} className="card-title">
                   {routine.name}
                 </Link>
-                <p className="text-xs font-bold flex-grow-0">32</p>
-                <UserIcon width={20} height={20} className="fill-primary" />
+                <FollowerCount routineId={routine.id} />
               </div>
 
               <p>{routine.description}</p>

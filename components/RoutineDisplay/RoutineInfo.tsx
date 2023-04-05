@@ -1,15 +1,16 @@
+'use client'
+
 import { Routine } from '@/lib/database.types'
-import { UserIcon } from '@heroicons/react/20/solid'
 import Follow from '../Follow'
+import FollowerCount from './FollowerCount'
 
 function RoutineInfo({ routine }: { routine: Routine }) {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <div className="flex  items-center">
+        <div className="flex items-center">
           <h1 className="font-bold text-2xl mr-2">{routine?.name}</h1>
-          <UserIcon width={24} height={24} className="fill-primary" />
-          <p className="text-xs font-bold ">32</p>
+          <FollowerCount routineId={routine.id} />
         </div>
         <Follow id={routine.id} />
       </div>
