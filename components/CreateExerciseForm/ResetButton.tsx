@@ -8,7 +8,7 @@ function ResetButton() {
   return (
     <button
       type="button"
-      className="btn btn-outline btn-secondary btn-xs "
+      className="btn btn-secondary btn-outline btn-sm "
       onClick={(e) => {
         e.preventDefault()
         resetExercises()

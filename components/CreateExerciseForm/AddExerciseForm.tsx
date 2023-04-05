@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from 'react-hook-form'
-import { DayExercise, useStore } from '@/store'
+import { useStore } from '@/store'
 import { Dispatch, SetStateAction, useEffect } from 'react'
+import { ExerciseOnDay } from '@/lib/database.types'
 
 type FormData = { sets: number; reps: number }
 
@@ -42,7 +43,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       day_of_week: currentDay,
       exercise_id: id,
       name,
-    } as DayExercise
+    } as ExerciseOnDay
 
     if (isExerciseInState) deleteExercise(exerciseInfo)
 
@@ -59,7 +60,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
   return (
     <form
       onSubmit={onSubmit}
-      className="form-control p-4 items-end bg-base-100 flex-1 space-y-1 justify-end"
+      className="form-control flex-1 items-end justify-end space-y-1 bg-base-100 p-4"
     >
       <div>
         <label>
@@ -68,7 +69,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
         <input
           type="number"
           placeholder="Sets"
-          className="input input-bordered input-xs input-primary w-10 text-right"
+          className="input-bordered input-primary input input-xs w-10 text-right"
           {...register('sets', { valueAsNumber: true, min: 1, required: true })}
         />
       </div>
@@ -79,14 +80,14 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
         <input
           type="number"
           placeholder="Reps"
-          className="input input-bordered input-primary input-xs w-10 text-right"
+          className="input-bordered input-primary input input-xs w-10 text-right"
           {...register('reps', { valueAsNumber: true, min: 1, required: true })}
         />
       </div>
       <button
         disabled={!isValid || !isDirty}
         type="submit"
-        className="btn btn-primary btn-xs"
+        className="btn-primary btn-xs btn"
       >
         {isExerciseInState ? 'Edit' : 'Add'}
       </button>

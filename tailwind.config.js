@@ -33,7 +33,7 @@ module.exports = {
           success: '#36D399',
           warning: '#FBBD23',
           error: '#F87272',
-          '--rounded-box': '0.5rem', // border radius rounded-box utility class, used in card and other large boxes
+          '--rounded-box': '0.5rem',
           '--rounded-btn': '0.25rem',
         },
       },
