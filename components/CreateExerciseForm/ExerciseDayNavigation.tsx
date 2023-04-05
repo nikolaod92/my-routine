@@ -1,6 +1,6 @@
 'use client'
 
-import { daysOfWeek } from '@/lib/constants'
+import { DAYS_OF_WEEK } from '@/lib/constants'
 import { useStore } from '@/store'
 
 function ExerciseDayNavigation() {
@@ -11,11 +11,11 @@ function ExerciseDayNavigation() {
 
   return (
     <div className="btn-group">
-      {daysOfWeek.map((day) => (
+      {DAYS_OF_WEEK.map((day) => (
         <button
           key={day}
           type="button"
-          className={`btn btn-xs md:btn-sm relative capitalize ${
+          className={`btn-xs btn relative capitalize md:btn-sm ${
             currentDay === day && 'btn-primary '
           }`}
           onClick={() => setCurrentDay(day)}
