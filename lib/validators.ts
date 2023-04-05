@@ -2,9 +2,14 @@ import { z } from 'zod'
 import { DAYS_OF_WEEK } from './constants'
 
 export const routineSchema = z.object({
-  name: z.string().min(92, { message: 'A routine name is required.' }),
+  name: z
+    .string()
+    .trim()
+    .min(4, { message: 'Name has to be longer than 4 characters.' }),
+
   description: z
     .string()
+    .trim()
     .min(1, { message: 'A short description is required.' }),
 })
 

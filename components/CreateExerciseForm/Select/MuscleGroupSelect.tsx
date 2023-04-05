@@ -28,7 +28,6 @@ function MuscleGroupSelect({ selected, onChange }: Props) {
       onChange={onChange}
       value={selected}
     >
-      {/* <option disabled>{selected}</option> */}
       {muscleGroupArray?.map(({ muscle_group }: MuscleGroup) => (
         <option key={muscle_group} className="capitalize">
           {muscle_group}
