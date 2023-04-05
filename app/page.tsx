@@ -1,3 +1,4 @@
+import Routine from '@/components/RoutineDisplay/Routine'
 import { createServerClient } from '@/utils/supabase-server'
 import Link from 'next/link'
 
@@ -37,5 +38,11 @@ export default async function Home() {
       </div>
     )
 
-  return <div>Current routine: {data.routine_id}</div>
+  return (
+    <div>
+      <h2>Your current routine is:</h2>
+      {/* @ts-expect-error Server Component */}
+      <Routine id={data.routine_id} />
+    </div>
+  )
 }
