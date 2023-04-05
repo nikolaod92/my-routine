@@ -13,7 +13,7 @@ import { createServerClient } from '../utils/supabase-server'
 
 const font = Dosis({
   subsets: ['latin'],
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 export const revalidate = 0
@@ -33,7 +33,7 @@ export default async function RootLayout({
     <html data-theme="mytheme">
       <head />
       <body
-        className={`flex flex-col min-h-screen bg-base-200 overflow-x-hidden ${font.className} `}
+        className={`flex min-h-screen flex-col overflow-x-hidden bg-base-200 ${font.className} `}
       >
         <SupabaseProvider session={session}>
           <UserRoutineProvider>
