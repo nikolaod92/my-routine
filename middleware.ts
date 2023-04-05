@@ -10,7 +10,6 @@ export default async function middleware(req: NextRequest) {
   const supabase = createMiddlewareSupabaseClient<Database>({ req, res })
 
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data: { session },
   } = await supabase.auth.getSession()
 

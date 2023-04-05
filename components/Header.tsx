@@ -9,17 +9,17 @@ function MenuItems() {
   return (
     <>
       <li>
-        <Link href="/my-routine" className="font-semibold">
+        <Link prefetch={false} href="/my-routine" className="font-semibold">
           Your Routine
         </Link>
       </li>
       <li>
-        <Link href="/routines" className="font-semibold">
+        <Link prefetch={false} href="/routines" className="font-semibold">
           Routines
         </Link>
       </li>
       <li>
-        <Link href="/create" className="font-semibold">
+        <Link prefetch={false} href="/create" className="font-semibold">
           Create
         </Link>
       </li>
