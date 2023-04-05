@@ -5,7 +5,9 @@ import MuscleGroupSearch from './MuscleGroupSearch'
 import NameSearch from './NameSearch'
 
 function ExerciseSelect() {
-  const [current, setCurrent] = useState<JSX.Element | null>(null)
+  const [current, setCurrent] = useState<JSX.Element | null>(
+    <MuscleGroupSearch />
+  )
 
   return (
     <>

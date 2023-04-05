@@ -42,7 +42,7 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
         { event: 'UPDATE', schema: 'public', table: 'profile' },
         (payload) => {
           setRoutineId(payload.new.routine_id)
-          router.replace('/')
+          router.replace('/my-routine')
         }
       )
       .subscribe()

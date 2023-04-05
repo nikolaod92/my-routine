@@ -1,6 +1,7 @@
 'use client'
 
 import { useUserRoutine } from '@/contexts/userRoutine'
+import { toast } from 'react-toastify'
 import { useSupabase } from './SupabaseProvider'
 
 function Follow({ id }: { id: string }) {
@@ -17,11 +18,11 @@ function Follow({ id }: { id: string }) {
         .eq('id', session?.user.id)
 
       if (error) {
-        alert(error.message)
+        toast.error(error.message)
         return
       }
-    } catch (error) {
-      console.log(error)
+    } catch (e: unknown) {
+      if (e instanceof Error) toast.error(e.message)
     }
   }
 
@@ -33,11 +34,11 @@ function Follow({ id }: { id: string }) {
         .eq('id', session?.user.id)
 
       if (error) {
-        alert(error.message)
+        toast.error(error.message)
         return
       }
-    } catch (error) {
-      console.log(error)
+    } catch (e: unknown) {
+      if (e instanceof Error) toast.error(e.message)
     }
   }
 
