@@ -5,6 +5,7 @@ const useFetchSupabase = <T>(
   supabaseCallback: (...args: any[]) => Promise<{
     data: T | null
     error: PostgrestError | Error | null
+    count?: number | null
   }>,
   options?: {
     executeOnMount: boolean
@@ -13,17 +14,22 @@ const useFetchSupabase = <T>(
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<PostgrestError | Error | null>(null)
   const [data, setData] = useState<T | null>(null)
+  const [count, setCount] = useState<number | null | undefined>(null)
 
   const fetchData = useCallback(
     async (...args: any[]) => {
       setLoading(true)
       try {
-        const { data: supabaseData, error: supabaseError } =
-          await supabaseCallback(...args)
+        const {
+          data: supabaseData,
+          error: supabaseError,
+          count: supabaseCount,
+        } = await supabaseCallback(...args)
         if (supabaseError) {
           setError(supabaseError)
         } else {
           setData(supabaseData)
+          setCount(supabaseCount)
         }
       } catch (e: unknown) {
         if (e instanceof Error) {
@@ -39,7 +45,7 @@ const useFetchSupabase = <T>(
     if (options?.executeOnMount) fetchData()
   }, [fetchData, options?.executeOnMount])
 
-  return { fetchData, loading, data, error }
+  return { fetchData, loading, data, error, count }
 }
 
 export default useFetchSupabase
