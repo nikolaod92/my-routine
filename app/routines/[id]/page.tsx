@@ -1,6 +1,6 @@
 import Routine from '@/components/RoutineDisplay/Routine'
 
-export const revalidate = 60
+export const revalidate = 0
 
 export default async function RoutinePage({
   params,
