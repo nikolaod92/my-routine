@@ -10,6 +10,7 @@ const Context = createContext<ContextType>({} as ContextType)
 
 function UserRoutineProvider({ children }: { children: React.ReactNode }) {
   const { supabase, session } = useSupabase()
+
   const router = useRouter()
 
   const [routineId, setRoutineId] = useState<string | null>(null)
@@ -18,7 +19,7 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const getUserRoutine = async () => {
-      try {
+      if (session) {
         const { data } = await supabase
           .from('profile')
           .select('routine_id')
@@ -28,12 +29,10 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
         if (data) {
           setRoutineId(data.routine_id)
         }
-      } catch (error) {
-        console.log(error)
       }
     }
     getUserRoutine()
-  }, [userId, supabase])
+  }, [userId, supabase, session])
 
   useEffect(() => {
     const profile = supabase
