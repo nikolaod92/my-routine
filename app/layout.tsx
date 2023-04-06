@@ -37,7 +37,7 @@ export default async function RootLayout({
       >
         <SupabaseProvider session={session}>
           <UserRoutineProvider>
-            <SupabaseListener serverAccessToken={session?.access_token} />
+            <SupabaseListener />
             <Header />
             <div className="container mx-auto py-4 md:py-8">{children}</div>
             <ToastContainer />
