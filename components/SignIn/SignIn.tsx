@@ -1,5 +1,6 @@
 'use client'
 
+import Avatar from '../Avatar'
 import { useSupabase } from '../SupabaseProvider'
 import LogoutButton from './LogoutButton'
 import SignInButton from './SignInButton'
@@ -9,7 +10,12 @@ function SignIn() {
 
   if (!session) return <SignInButton />
 
-  return <LogoutButton />
+  return (
+    <>
+      <Avatar />
+      <LogoutButton />
+    </>
+  )
 }
 
 export default SignIn

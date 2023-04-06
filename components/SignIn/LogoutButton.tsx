@@ -3,20 +3,21 @@
 import { useSupabase } from '../SupabaseProvider'
 
 function LogoutButton() {
-  const { supabase, session } = useSupabase()
+  const { supabase } = useSupabase()
 
   const logout = async () => {
     await supabase.auth.signOut()
   }
 
-  if (session)
-    return (
-      <button type="button" onClick={logout} className="btn btn-secondary">
-        Logout
-      </button>
-    )
-
-  return null
+  return (
+    <button
+      type="button"
+      onClick={logout}
+      className="btn btn-sm p-2 mx-1 btn-ghost capitalize"
+    >
+      Log Out
+    </button>
+  )
 }
 
 export default LogoutButton
