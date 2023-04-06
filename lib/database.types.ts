@@ -25,6 +25,7 @@ export type RoutineExercise = Omit<
 > & {
   exercise: Database['public']['Tables']['exercise']['Row']
 }
+export type User = Database['public']['Tables']['profile']['Row']
 
 export type Json =
   | string
@@ -120,22 +121,25 @@ export interface Database {
       }
       profile: {
         Row: {
+          avatar: string | null
           created_at: string | null
-          email: string | null
+          email: string
           id: string
           name: string | null
           routine_id: string | null
         }
         Insert: {
+          avatar?: string | null
           created_at?: string | null
-          email?: string | null
+          email: string
           id?: string
           name?: string | null
           routine_id?: string | null
         }
         Update: {
+          avatar?: string | null
           created_at?: string | null
-          email?: string | null
+          email?: string
           id?: string
           name?: string | null
           routine_id?: string | null

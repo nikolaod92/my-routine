@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 import './globals.css'
 import { Dosis } from '@next/font/google'
-import UserRoutineProvider from '@/contexts/userRoutine'
+import UserProvider from '@/contexts/userContext'
 import ToastContainer from '@/components/ToastContainer'
 import Header from '../components/Header'
 
@@ -36,12 +36,12 @@ export default async function RootLayout({
         className={`flex min-h-screen flex-col overflow-x-hidden bg-base-200 ${font.className} `}
       >
         <SupabaseProvider session={session}>
-          <UserRoutineProvider>
+          <UserProvider>
             <SupabaseListener />
             <Header />
             <div className="container mx-auto py-4 md:py-8">{children}</div>
             <ToastContainer />
-          </UserRoutineProvider>
+          </UserProvider>
         </SupabaseProvider>
       </body>
     </html>

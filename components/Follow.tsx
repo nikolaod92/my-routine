@@ -1,14 +1,14 @@
 'use client'
 
-import { useUserRoutine } from '@/contexts/userRoutine'
+import { useUser } from '@/contexts/userContext'
 import { toast } from 'react-toastify'
 import { useSupabase } from './SupabaseProvider'
 
 function Follow({ id }: { id: string }) {
   const { supabase, session } = useSupabase()
-  const { routineId } = useUserRoutine()
+  const { user } = useUser()
 
-  const isUserFollowingRoutine = routineId === id
+  const isUserFollowingRoutine = user?.routine_id === id
 
   const followRoutine = async () => {
     try {
@@ -42,15 +42,18 @@ function Follow({ id }: { id: string }) {
     }
   }
 
-  return (
-    <button
-      onClick={isUserFollowingRoutine ? unfollowRoutine : followRoutine}
-      type="button"
-      className="btn btn-sm btn-secondary"
-    >
-      {isUserFollowingRoutine ? 'Unfollow' : 'Follow'}
-    </button>
-  )
+  if (session)
+    return (
+      <button
+        onClick={isUserFollowingRoutine ? unfollowRoutine : followRoutine}
+        type="button"
+        className="btn btn-sm btn-secondary"
+      >
+        {isUserFollowingRoutine ? 'Unfollow' : 'Follow'}
+      </button>
+    )
+
+  return null
 }
 
 export default Follow

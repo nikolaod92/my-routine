@@ -1,19 +1,20 @@
 'use client'
 
+import { User } from '@/lib/database.types'
 import { useRouter } from 'next/navigation'
 import { createContext, useState, useEffect, useContext } from 'react'
 import { useSupabase } from '../components/SupabaseProvider'
 
-type ContextType = { routineId: string | null }
+type ContextType = { user: User | null }
 
 const Context = createContext<ContextType>({} as ContextType)
 
-function UserRoutineProvider({ children }: { children: React.ReactNode }) {
+function UserProvider({ children }: { children: React.ReactNode }) {
   const { supabase, session } = useSupabase()
 
   const router = useRouter()
 
-  const [routineId, setRoutineId] = useState<string | null>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   const userId = session?.user.id
 
@@ -22,12 +23,12 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
       if (session) {
         const { data } = await supabase
           .from('profile')
-          .select('routine_id')
+          .select()
           .eq('id', userId)
           .single()
 
         if (data) {
-          setRoutineId(data.routine_id)
+          setUser(data)
         }
       }
     }
@@ -46,7 +47,7 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
           filter: `id=eq.${userId}`,
         },
         (payload) => {
-          setRoutineId(payload.new.routine_id)
+          setUser(payload.new.user)
           router.replace('/my-routine')
         }
       )
@@ -57,9 +58,9 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
     }
   }, [userId, router, supabase])
 
-  return <Context.Provider value={{ routineId }}>{children}</Context.Provider>
+  return <Context.Provider value={{ user }}>{children}</Context.Provider>
 }
 
-export const useUserRoutine = () => useContext(Context)
+export const useUser = () => useContext(Context)
 
-export default UserRoutineProvider
+export default UserProvider
