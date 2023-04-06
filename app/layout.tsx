@@ -33,7 +33,7 @@ export default async function RootLayout({
     <html data-theme="mytheme">
       <head />
       <body
-        className={`flex min-h-screen flex-col overflow-x-hidden bg-base-200 ${font.className} `}
+        className={`flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-b from-base-200 from-75% to-primary/10 ${font.className} `}
       >
         <SupabaseProvider session={session}>
           <UserProvider>
