@@ -23,9 +23,9 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
       className="flex flex-col h-48 overflow-hidden rounded shadow hover:cursor-pointer hover:shadow-lg"
     >
       <div
-        className={`${
-          isAddedToState ? 'bg-success' : 'bg-primary'
-        } flex space-x-2 justify-between items-center text-base-100 py-1 px-2`}
+        className={`bg-primary ${
+          isAddedToState && 'bg-success'
+        } flex space-x-2 justify-between items-center py-1 px-2 text-primary-content`}
       >
         <p className="truncate capitalize font-semibold text-xs ml-1">
           {exercise.name}

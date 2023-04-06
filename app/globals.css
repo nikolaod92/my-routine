@@ -9,7 +9,3 @@
     margin: 0;
   }
 }
-
-.btn {
-  @apply text-base-100;
-}

@@ -15,14 +15,14 @@ function ExerciseSelect() {
         <p className="text-sm">Search exercises by: </p>
         <button
           type="button"
-          className="btn btn-xs text-base-100 "
+          className="btn btn-xs "
           onClick={() => setCurrent(<MuscleGroupSearch />)}
         >
           Muscle Group
         </button>
         <button
           type="button"
-          className="btn btn-xs text-base-100"
+          className="btn btn-xs"
           onClick={() => setCurrent(<NameSearch />)}
         >
           Name

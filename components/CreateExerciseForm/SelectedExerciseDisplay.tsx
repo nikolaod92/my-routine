@@ -41,7 +41,7 @@ function SelectedExerciseDisplay() {
             <div className="flex flex-1 justify-between capitalize text-xs bg-base-100 px-2 py-1 ">
               <h2 className=" font-semibold line-clamp-1">{ex.name}</h2>
               <div className="flex space-x-2">
-                <p className="badge badge-sm badge-primary font-semibold text-base-100 whitespace-nowrap">
+                <p className="badge badge-sm badge-primary font-semibold whitespace-nowrap">
                   {ex.sets} / {ex.reps}
                 </p>
               </div>

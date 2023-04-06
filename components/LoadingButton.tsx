@@ -11,9 +11,7 @@ function LoadingButton(props: Props) {
 
   return (
     <button
-      className={`btn btn-sm md:btn-md btn-primary text-base-100 ${
-        loading && 'loading'
-      }`}
+      className={`btn btn-sm md:btn-md btn-primary ${loading && 'loading'}`}
       {...rest}
     >
       {children}

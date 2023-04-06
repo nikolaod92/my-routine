@@ -23,16 +23,13 @@ export default async function Home() {
         <p className="font-light">You are not currently following a routine.</p>
         <div className="divider" />
         <p className="text-sm ">Choose one already created by our users:</p>
-        <Link
-          href="/routines"
-          className="btn btn-wide btn-secondary text-base-100"
-        >
+        <Link href="/routines" className="btn btn-wide btn-secondary">
           Routines
         </Link>
         <div className="divider" />
 
         <p className="text-sm ">or create your own and share it!</p>
-        <Link href="/create" className="btn btn-wide btn-primary text-base-100">
+        <Link href="/create" className="btn btn-wide btn-primary">
           Create
         </Link>
       </div>

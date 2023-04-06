@@ -19,7 +19,7 @@ function SignInButton() {
       <button
         type="button"
         onClick={signInWithGoogle}
-        className="btn btn-primary text-base-100"
+        className="btn btn-primary"
       >
         Sign In
       </button>

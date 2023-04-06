@@ -10,7 +10,7 @@ function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
     <>
       {exercises.map((ex) => (
         <div className="card bg-base-100 shadow">
-          <p className="badge badge-xs badge-primary text-base-100 rounded-xl p-2 m-2 font-semibold uppercase">
+          <p className="badge badge-xs badge-primary rounded-xl p-2 m-2 font-semibold uppercase">
             {ex?.exercise.target}
           </p>
           {ex.exercise.gif && (
@@ -28,11 +28,11 @@ function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
             </h2>
             <div className="flex space-x-2 justify-center items-center  self-center">
               <p className="text-xs text-end font-light">Sets</p>
-              <p className="badge badge-sm badge-primary text-base-100 font-bold">
+              <p className="badge badge-sm badge-primary font-bold">
                 {ex.sets}
               </p>
               <p className="text-xs text-end font-light">Reps</p>
-              <p className="badge badge-sm badge-primary text-base-100 font-bold">
+              <p className="badge badge-sm badge-primary font-bold">
                 {ex.reps}
               </p>
             </div>
