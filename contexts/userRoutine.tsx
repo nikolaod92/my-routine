@@ -39,7 +39,12 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
       .channel('custom-all-channel')
       .on(
         'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'profile' },
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'profile',
+          filter: `id=eq.${userId}`,
+        },
         (payload) => {
           setRoutineId(payload.new.routine_id)
           router.replace('/my-routine')
@@ -50,7 +55,7 @@ function UserRoutineProvider({ children }: { children: React.ReactNode }) {
     return () => {
       profile.unsubscribe()
     }
-  }, [router, supabase])
+  }, [userId, router, supabase])
 
   return <Context.Provider value={{ routineId }}>{children}</Context.Provider>
 }
