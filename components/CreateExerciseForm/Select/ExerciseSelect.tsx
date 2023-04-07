@@ -11,18 +11,18 @@ function ExerciseSelect() {
 
   return (
     <>
-      <div className="flex space-x-2 items-center mb-4">
-        <p className="text-sm">Search exercises by: </p>
+      <div className="flex space-x-2 items-center justify-center mb-4">
+        <p className="text-sm font-semibold uppercase">Search exercises by: </p>
         <button
           type="button"
-          className="btn btn-xs "
+          className="btn btn-xs md:btn-sm"
           onClick={() => setCurrent(<MuscleGroupSearch />)}
         >
           Muscle Group
         </button>
         <button
           type="button"
-          className="btn btn-xs"
+          className="btn btn-xs md:btn-sm"
           onClick={() => setCurrent(<NameSearch />)}
         >
           Name

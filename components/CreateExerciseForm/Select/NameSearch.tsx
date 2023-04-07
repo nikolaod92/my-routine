@@ -2,6 +2,7 @@
 
 import { FieldValues, useForm } from 'react-hook-form'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
+import Loader from '@/components/Loader'
 import ExerciseCard from '../ExerciseCard'
 import ExerciseGrid from '../ResponsiveGrid'
 import { useSupabase } from '../../SupabaseProvider'
@@ -23,7 +24,7 @@ function NameSearch() {
     return { data, error }
   }
 
-  const { fetchData, data: exercises } = useFetchSupabase(getExercises)
+  const { fetchData, data: exercises, loading } = useFetchSupabase(getExercises)
 
   const onSubmit = handleSubmit(async (formData, e) => {
     e?.preventDefault()
@@ -32,21 +33,18 @@ function NameSearch() {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="">
-        <div className="input-group ">
+      <form onSubmit={onSubmit} className="mb-2">
+        <div className="input-group">
           <input
             type="text"
             placeholder="Exercise name"
             {...register('searchTerm')}
-            className="input input-bordered input-xs sm:input-sm input-primary w-72"
+            className="input input-bordered input-sm input-primary w-72 font-semibold text-md"
           />
-          <button
-            type="submit"
-            className="btn btn-square btn-primary btn-xs sm:btn-sm "
-          >
+          <button type="submit" className="btn btn-square btn-primary btn-sm ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-3 w-3 sm:h-4 sm:w-4"
+              className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="white"
@@ -62,12 +60,17 @@ function NameSearch() {
         </div>
       </form>
 
-      {exercises && (
-        <ExerciseGrid>
-          {exercises.map((exercise) => (
-            <ExerciseCard key={exercise.id} exercise={exercise} />
-          ))}
-        </ExerciseGrid>
+      {exercises?.length !== 0 ? (
+        <Loader loading={loading} size={32}>
+          <ExerciseGrid>
+            {exercises &&
+              exercises.map((exercise) => (
+                <ExerciseCard key={exercise.id} exercise={exercise} />
+              ))}
+          </ExerciseGrid>
+        </Loader>
+      ) : (
+        <p className="font-semibold text-md">No exercises found.</p>
       )}
     </>
   )
