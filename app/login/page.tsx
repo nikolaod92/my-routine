@@ -1,10 +1,19 @@
+import Card from '@/components/Card'
 import SignInButton from '@/components/SignIn/SignInButton'
 
 export default async function Login() {
   return (
-    <div className="card card-body bg-base-100 shadow-sm max-w-lg mx-auto">
-      <p className="text-center text-sm mb-4">Please sign in to continue</p>
-      <SignInButton />
-    </div>
+    <Card variant="error">
+      <p className="text-center text-2xl font-bold">
+        You have to be logged in to view this page.
+      </p>
+      <div className="divider" />
+      <p className="text-center text-sm font-semibold uppercase">
+        <span className="pr-4">
+          <SignInButton />
+        </span>
+        to continue
+      </p>
+    </Card>
   )
 }

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { RoutineInfo, routineSchema } from '@/lib/validators'
+import Card from '@/components/Card'
 
 export default function Create() {
   const router = useRouter()
@@ -35,10 +36,10 @@ export default function Create() {
   }
 
   return (
-    <div className="card card-body mx-auto max-w-md rounded-lg border-t-4 border-t-primary bg-base-100 shadow">
+    <Card>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="form-control space-y-4"
+        className="form-control space-y-4 w-full"
       >
         <h1 className="text-2xl font-bold">Create a routine</h1>
         <div>
@@ -80,6 +81,6 @@ export default function Create() {
           Next
         </button>
       </form>
-    </div>
+    </Card>
   )
 }

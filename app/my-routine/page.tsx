@@ -1,3 +1,4 @@
+import Card from '@/components/Card'
 import Routine from '@/components/RoutineDisplay/Routine'
 import { createServerClient } from '@/utils/supabase-server'
 import Link from 'next/link'
@@ -19,7 +20,7 @@ export default async function Home() {
 
   if (!data?.routine_id)
     return (
-      <div className="card card-body bg-base-100 shadow-sm items-center max-w-sm mx-auto">
+      <Card>
         <p className="font-light">You are not currently following a routine.</p>
         <div className="divider" />
         <p className="text-sm ">Choose one already created by our users:</p>
@@ -32,7 +33,7 @@ export default async function Home() {
         <Link href="/create" className="btn btn-wide btn-primary">
           Create
         </Link>
-      </div>
+      </Card>
     )
 
   return (
