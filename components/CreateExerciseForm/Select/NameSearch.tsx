@@ -3,7 +3,7 @@
 import { FieldValues, useForm } from 'react-hook-form'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import Loader from '@/components/Loader'
-import ExerciseCard from '../ExerciseCard'
+import AddExerciseCard from '../AddExerciseCard'
 import ExerciseGrid from '../ResponsiveGrid'
 import { useSupabase } from '../../SupabaseProvider'
 
@@ -65,7 +65,7 @@ function NameSearch() {
           <ExerciseGrid>
             {exercises &&
               exercises.map((exercise) => (
-                <ExerciseCard key={exercise.id} exercise={exercise} />
+                <AddExerciseCard key={exercise.id} exercise={exercise} />
               ))}
           </ExerciseGrid>
         </Loader>
