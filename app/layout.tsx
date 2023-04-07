@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 import './globals.css'
+import { Metadata } from 'next'
 import { Dosis } from '@next/font/google'
 import UserProvider from '@/contexts/userContext'
 import ToastContainer from '@/components/ToastContainer'
@@ -17,6 +18,12 @@ const font = Dosis({
 })
 
 export const revalidate = 0
+
+export const metadata: Metadata = {
+  title: 'myRoutine',
+  description: 'Create and share personalized workout routines.',
+  icons: '/favicon.ico',
+}
 
 export default async function RootLayout({
   children,
