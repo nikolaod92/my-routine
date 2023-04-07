@@ -47,8 +47,10 @@ function UserProvider({ children }: { children: React.ReactNode }) {
           filter: `id=eq.${userId}`,
         },
         (payload) => {
-          setUser(payload.new.user)
-          router.replace('/my-routine')
+          if (payload.new) {
+            setUser(payload.new as User)
+            router.replace('/my-routine')
+          }
         }
       )
       .subscribe()
