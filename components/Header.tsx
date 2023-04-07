@@ -19,6 +19,11 @@ function MenuItems() {
         </Link>
       </li>
       <li>
+        <Link prefetch={false} href="/exercises" className="font-semibold">
+          Exercises
+        </Link>
+      </li>
+      <li>
         <Link prefetch={false} href="/create" className="font-semibold">
           Create
         </Link>
