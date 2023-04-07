@@ -4,11 +4,13 @@ import { useStore } from '@/store'
 import { useState } from 'react'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { Exercise } from '@/lib/database.types'
+import { AnimatePresence } from 'framer-motion'
 import AddExerciseForm from './AddExerciseForm'
 import {
   ExerciseHeader,
   ExerciseCardContainer,
   ExerciseImage,
+  ExerciseTitle,
 } from '../Exercise'
 
 export default function AddExerciseCard({ exercise }: { exercise: Exercise }) {
@@ -21,22 +23,25 @@ export default function AddExerciseCard({ exercise }: { exercise: Exercise }) {
   return (
     <ExerciseCardContainer>
       <ExerciseHeader isAddedToState={isAddedToState}>
-        <p className="truncate capitalize font-semibold text-xs ml-1">
-          {exercise.name}
-        </p>
-        <PlusIcon
-          width={20}
-          height={20}
-          onClick={() => setShow(!show)}
-          className={`shrink-0 ${show && 'rotate-45'} transition-all`}
-        />
+        <ExerciseTitle name={exercise.name} />
+        <button type="button" onClick={() => setShow(!show)}>
+          <PlusIcon
+            width={20}
+            height={20}
+            className={`shrink-0 ${
+              show && 'rotate-45'
+            } transition-all hover:cursor-pointer`}
+          />
+        </button>
       </ExerciseHeader>
 
-      {exercise.gif && !show ? (
-        <ExerciseImage src={exercise.gif} alt={exercise.name} />
-      ) : (
-        <AddExerciseForm id={id} name={name} setShow={setShow} />
-      )}
+      <AnimatePresence initial={false} mode="wait">
+        {exercise.gif && !show ? (
+          <ExerciseImage src={exercise.gif} alt={exercise.name} />
+        ) : (
+          <AddExerciseForm id={id} name={name} setShow={setShow} />
+        )}
+      </AnimatePresence>
     </ExerciseCardContainer>
   )
 }

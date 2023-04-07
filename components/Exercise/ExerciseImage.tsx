@@ -1,10 +1,16 @@
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 function ExerciseImage({ src, alt }: { src: string | null; alt: string }) {
   return src ? (
-    <div className="bg-white h-full w-full flex items-center justify-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, x: [10, 0] }}
+      exit={{ opacity: 0, x: 10 }}
+      className="bg-white  w-full flex flex-1 items-center justify-center"
+    >
       <Image className="p-4" src={src} alt={alt} width={160} height={160} />
-    </div>
+    </motion.div>
   ) : null
 }
 

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useStore } from '@/store'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 import { ExerciseOnDay } from '@/lib/database.types'
+import { motion } from 'framer-motion'
 
 type FormData = { sets: number; reps: number }
 
@@ -21,13 +22,17 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       state.exercises,
     ]
   )
-  const isExerciseInState = exercises.find((ex) => ex.exercise_id === id)
-  const { sets, reps } = isExerciseInState || { sets: 0, reps: 0 }
+  const exerciseAddedToRoutine = exercises.find((ex) => ex.exercise_id === id)
+  const { sets, reps } = exerciseAddedToRoutine || {
+    sets: undefined,
+    reps: undefined,
+  }
 
   const {
     register,
     handleSubmit,
     reset,
+    setFocus,
     formState: { isSubmitSuccessful, isValid, isDirty },
   } = useForm<FormData>({
     defaultValues: {
@@ -45,10 +50,14 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       name,
     } as ExerciseOnDay
 
-    if (isExerciseInState) deleteExercise(exerciseInfo)
+    if (exerciseAddedToRoutine) deleteExercise(exerciseInfo)
 
     addExercise(exerciseInfo)
   })
+
+  useEffect(() => {
+    setFocus('sets', { shouldSelect: true })
+  }, [setFocus])
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -58,30 +67,39 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
   }, [reset, isSubmitSuccessful, setShow])
 
   return (
-    <form
+    <motion.form
       onSubmit={onSubmit}
-      className="form-control flex-1 items-end justify-end space-y-1 bg-base-100 p-4"
+      className="form-control flex-1 items-end justify-end space-y-2  p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, x: [10, 0] }}
+      exit={{ opacity: 0, x: 10 }}
     >
       <div>
         <label>
-          <span className="text-xs">Sets: </span>
+          <span className="text-xs font-semibold mr-1 uppercase">Sets </span>
         </label>
         <input
           type="number"
-          placeholder="Sets"
-          className="input-bordered input-primary input input-xs w-10 text-right"
-          {...register('sets', { valueAsNumber: true, min: 1, required: true })}
+          className="input-primary input input-xs w-10 text-right bg-primary/10 font-bold text-sm border-none"
+          {...register('sets', {
+            valueAsNumber: true,
+            min: 1,
+            required: true,
+          })}
         />
       </div>
       <div>
         <label>
-          <span className="text-xs">Reps: </span>
+          <span className="text-xs font-semibold mr-1 uppercase">Reps </span>
         </label>
         <input
           type="number"
-          placeholder="Reps"
-          className="input-bordered input-primary input input-xs w-10 text-right"
-          {...register('reps', { valueAsNumber: true, min: 1, required: true })}
+          className="input-primary input input-xs w-10 text-right bg-primary/10 font-bold text-sm border-none"
+          {...register('reps', {
+            valueAsNumber: true,
+            min: 1,
+            required: true,
+          })}
         />
       </div>
       <button
@@ -89,8 +107,8 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
         type="submit"
         className="btn-primary btn-xs btn"
       >
-        {isExerciseInState ? 'Edit' : 'Add'}
+        {exerciseAddedToRoutine ? 'Edit' : 'Add'}
       </button>
-    </form>
+    </motion.form>
   )
 }
