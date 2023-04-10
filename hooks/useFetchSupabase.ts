@@ -8,12 +8,13 @@ const useFetchSupabase = <T>(
     count?: number | null
   }>,
   options?: {
-    executeOnMount: boolean
+    initialState?: T
+    executeOnMount?: boolean
   }
 ) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<PostgrestError | Error | null>(null)
-  const [data, setData] = useState<T | null>(null)
+  const [data, setData] = useState<T | null>(options?.initialState ?? null)
   const [count, setCount] = useState<number | null | undefined>(null)
 
   const fetchData = useCallback(
