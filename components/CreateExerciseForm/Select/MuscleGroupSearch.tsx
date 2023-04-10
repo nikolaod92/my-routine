@@ -3,7 +3,7 @@
 import Loader from '@/components/Loader'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import { PAGINATION_STEP } from '@/lib/constants'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSupabase } from '../../SupabaseProvider'
 import ExerciseCard from '../AddExerciseCard'
 import ExerciseGrid from '../ResponsiveGrid'
@@ -15,26 +15,21 @@ function MuscleGroupSearch() {
   const [selected, setSelected] = useState('chest')
   const [range, setRange] = useState(0)
 
-  const exerciseCount = useRef(0)
-
   const getPaginatedExercises = useCallback(async () => {
     if (!selected) return { data: null, error: null }
 
-    const { data, count, error } = await supabase
+    return supabase
       .from('exercise')
       .select('*', { count: 'exact' })
       .eq('muscle_group', selected)
       .range(range, range + PAGINATION_STEP - 1)
-
-    if (count) exerciseCount.current = count
-
-    return { data, error }
   }, [range, selected, supabase])
 
   const {
     data: exercises,
     error,
     loading,
+    count,
   } = useFetchSupabase(getPaginatedExercises, {
     executeOnMount: true,
   })
@@ -50,12 +45,8 @@ function MuscleGroupSearch() {
           selected={selected}
           onChange={(e) => setSelected(e.target.value)}
         />
-        {selected && (
-          <ExercisePagination
-            range={range}
-            setRange={setRange}
-            count={exerciseCount.current}
-          />
+        {selected && count && (
+          <ExercisePagination range={range} setRange={setRange} count={count} />
         )}
       </div>
       <Loader loading={loading} size={32}>

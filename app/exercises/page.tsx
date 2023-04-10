@@ -1,31 +1,17 @@
-import ResponsiveGrid from '@/components/CreateExerciseForm/ResponsiveGrid'
-import {
-  ExerciseCardContainer,
-  ExerciseHeader,
-  ExerciseImage,
-  ExerciseTitle,
-} from '@/components/Exercise'
+import Filter from '@/components/Filter/Filter'
 import { createServerClient } from '@/utils/supabase-server'
 
-export const revalidate = 60
+export const revalidate = 3600
 
 export default async function Exercises() {
   const supabase = createServerClient()
-  const { data: exercises } = await supabase.from('exercise').select().limit(10)
+
+  const { data: exercises } = await supabase.from('exercise').select()
 
   return (
     <div>
       <h1 className="text-2xl font-bold">Browse:</h1>
-      <ResponsiveGrid>
-        {exercises?.map((exercise) => (
-          <ExerciseCardContainer key={exercise.id}>
-            <ExerciseHeader>
-              <ExerciseTitle name={exercise.name} />
-            </ExerciseHeader>
-            <ExerciseImage src={exercise.gif} alt={exercise.name} />
-          </ExerciseCardContainer>
-        ))}
-      </ResponsiveGrid>
+      <Filter serverExercises={exercises} />
     </div>
   )
 }

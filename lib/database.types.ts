@@ -170,9 +170,19 @@ export interface Database {
       }
     }
     Views: {
+      distinct_equipment: {
+        Row: {
+          equipment: string
+        }
+      }
       distinct_muscle_group: {
         Row: {
-          muscle_group: string | null
+          muscle_group: string
+        }
+      }
+      distinct_target: {
+        Row: {
+          target: string
         }
       }
     }
