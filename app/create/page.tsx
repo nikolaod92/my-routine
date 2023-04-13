@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 'use client'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -12,10 +10,9 @@ import Card from '@/components/Card'
 export default function Create() {
   const router = useRouter()
 
-  const [setRoutineInfo, routineInfo, setCurrentDay] = useStore((state) => [
+  const [setRoutineInfo, routineInfo] = useStore((state) => [
     state.setRoutineInfo,
     state.routineInfo,
-    state.setCurrentDay,
   ])
 
   const {
@@ -31,7 +28,6 @@ export default function Create() {
 
   const onSubmit: SubmitHandler<RoutineInfo> = (data) => {
     setRoutineInfo(data)
-    setCurrentDay('m')
     router.push('/create/day')
   }
 

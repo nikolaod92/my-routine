@@ -28,7 +28,7 @@ function SelectedExerciseDisplay() {
               animate={{ y: [-10, 0] }}
               className="text-xs bg-base-100 px-2 py-1"
             >
-              No exercises selected for {currentDay}.
+              No exercises selected. Leave empty to designate a rest day.
             </motion.div>
           ) : (
             exercisesOnDay.map((ex) => (

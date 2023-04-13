@@ -8,7 +8,6 @@ import ExerciseSelect from '@/components/CreateExerciseForm/Select/ExerciseSelec
 export default function Day() {
   return (
     <div className="flex flex-col">
-      <h1 className="font-semibold text-md mb-2">Select day:</h1>
       <ExerciseDayNavigation />
       <SelectedExerciseDisplay />
       <div className="divider" />
