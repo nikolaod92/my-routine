@@ -14,7 +14,7 @@ function RoutineInfo({ routine }: { routine: Routine }) {
         </div>
         <Follow id={routine.id} />
       </div>
-      <h1 className="font-light text-lg line-clamp-3">
+      <h1 className="font-medium leading-5 text-md line-clamp-3">
         {routine?.description}
       </h1>
     </div>

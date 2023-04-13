@@ -11,7 +11,7 @@ function Card({ children, variant = 'primary', className }: Props) {
   return (
     <div
       className={cn(
-        'p-8 mx-auto items-center max-w-md rounded border-t-4 bg-base-100 shadow',
+        'p-8 mx-auto max-w-md rounded border-t-4 bg-base-100 shadow',
         variants[variant],
         className
       )}
