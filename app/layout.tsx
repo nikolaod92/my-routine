@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/html-has-lang */
 import './globals.css'
 import { Metadata } from 'next'
 import { Dosis } from '@next/font/google'
@@ -37,7 +36,7 @@ export default async function RootLayout({
   } = await supabase.auth.getSession()
 
   return (
-    <html data-theme="mytheme">
+    <html data-theme="mytheme" lang="en">
       <head />
       <body
         className={`flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-b from-base-200 from-75% to-primary/10 ${font.className} `}
