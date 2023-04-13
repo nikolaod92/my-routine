@@ -1,11 +1,20 @@
-type Props = { children: React.ReactNode; variant?: keyof typeof variants }
+import { cn } from '@/lib/utils'
+
+type Props = {
+  children: React.ReactNode
+  variant?: keyof typeof variants
+} & React.HTMLAttributes<HTMLDivElement>
 
 const variants = { primary: 'border-t-primary', error: 'border-t-error' }
 
-function Card({ children, variant = 'primary' }: Props) {
+function Card({ children, variant = 'primary', className }: Props) {
   return (
     <div
-      className={`card card-body mx-auto items-center max-w-md rounded border-t-4 ${variants[variant]} bg-base-100 shadow`}
+      className={cn(
+        'p-8 mx-auto items-center max-w-md rounded border-t-4 bg-base-100 shadow',
+        variants[variant],
+        className
+      )}
     >
       {children}
     </div>
