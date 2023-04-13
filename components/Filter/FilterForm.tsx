@@ -1,43 +1,17 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
+import { ReactNode } from 'react'
+import { FieldValues, UseFormHandleSubmit } from 'react-hook-form'
 
-import {
-  FieldValues,
-  UseFormHandleSubmit,
-  UseFormRegister,
-} from 'react-hook-form'
-
-type Props<T> = {
-  register: UseFormRegister<FieldValues>
+type Props = {
   onSubmit: (data: FieldValues) => void
   handleSubmit: UseFormHandleSubmit<FieldValues>
-  data: T[] | null
+  children: ReactNode
 }
 
-function FilterForm<T extends { [key: string]: string }>({
-  register,
-  onSubmit,
-  handleSubmit,
-  data,
-}: Props<T>) {
+function FilterForm({ onSubmit, handleSubmit, children }: Props) {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form-control">
-      {data?.map((row) =>
-        Object.keys(row).map(
-          (key) =>
-            row[key] && (
-              <label className="label cursor-pointer py-0">
-                <span className="label-text capitalize">{row[key]}</span>
-                <input
-                  type="checkbox"
-                  value={row[key]}
-                  className="checkbox checkbox-primary"
-                  {...register('filters')}
-                />
-              </label>
-            )
-        )
-      )}
-      <button className="btn btn-xs btn-secondary" type="submit">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-2">
+      {children}
+      <button className="btn btn-sm btn-secondary" type="submit">
         Apply filters
       </button>
     </form>

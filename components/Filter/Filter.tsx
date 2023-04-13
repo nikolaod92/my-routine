@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 'use client'
 
 import useFetchSupabase from '@/hooks/useFetchSupabase'
@@ -16,13 +14,16 @@ import {
   ExerciseImage,
 } from '../Exercise'
 import { useSupabase } from '../SupabaseProvider'
+import FilterData from './FilterData'
 import FilterForm from './FilterForm'
 import FilterModal from './FilterModal'
 
 function Filter({ serverExercises }: { serverExercises: Exercise[] | null }) {
-  const [exercises, setExercises] = useState<Exercise[] | null>(serverExercises)
   const { supabase } = useSupabase()
   const { register, handleSubmit } = useForm()
+
+  const [exercises, setExercises] = useState<Exercise[] | null>(serverExercises)
+  const [showModal, setShowModal] = useState(false)
   const [range, setRange] = useState(0)
 
   const getDistinctTargetMuscles = useCallback(
@@ -35,26 +36,48 @@ function Filter({ serverExercises }: { serverExercises: Exercise[] | null }) {
   })
 
   const onSubmit = (formData: FieldValues) => {
+    setShowModal(false)
     const { filters } = formData
+    if (!filters || filters.length === 0) {
+      setExercises(serverExercises)
+      return
+    }
 
     setRange(0)
-
     const filteredExercises = serverExercises?.filter((exercise) =>
       filters.some((filter: string) => exercise.target === filter)
     )
-    if (filteredExercises && filters.length > 0) setExercises(filteredExercises)
+    if (filteredExercises) setExercises(filteredExercises)
   }
 
   return (
     <>
-      <FilterModal>
-        <FilterForm
-          register={register}
-          onSubmit={onSubmit}
-          handleSubmit={handleSubmit}
-          data={targetMuscles}
-        />
-      </FilterModal>
+      <div className="flex justify-between">
+        <button
+          className="btn btn-sm btn-secondary"
+          type="button"
+          onClick={() => setShowModal(true)}
+        >
+          Filters{' '}
+          <span className="bg-base-100 text-secondary text-xs font-bold rounded px-1 ml-2">
+            {exercises?.length}
+          </span>
+        </button>
+        {exercises && exercises.length > 0 ? (
+          <ExercisePagination
+            range={range}
+            setRange={setRange}
+            count={exercises.length}
+          />
+        ) : null}
+      </div>
+      {showModal ? (
+        <FilterModal>
+          <FilterForm onSubmit={onSubmit} handleSubmit={handleSubmit}>
+            <FilterData register={register} data={targetMuscles} />
+          </FilterForm>
+        </FilterModal>
+      ) : null}
       <ResponsiveGrid>
         {exercises?.slice(range, range + PAGINATION_STEP).map((exercise) => (
           <ExerciseCardContainer key={exercise.id}>
@@ -65,13 +88,6 @@ function Filter({ serverExercises }: { serverExercises: Exercise[] | null }) {
           </ExerciseCardContainer>
         ))}
       </ResponsiveGrid>
-      {exercises && exercises.length > 0 && (
-        <ExercisePagination
-          range={range}
-          setRange={setRange}
-          count={exercises.length}
-        />
-      )}
     </>
   )
 }

@@ -1,24 +1,14 @@
 import { ReactNode } from 'react'
 
-/* eslint-disable jsx-a11y/label-has-associated-control */
 function FilterModal({ children }: { children: ReactNode }) {
   return (
     <>
-      <label htmlFor="my-modal-3" className="btn btn-sm  btn-secondary">
-        Filter
-      </label>
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative">
-          <label
-            htmlFor="my-modal-3"
-            className="btn btn-sm btn-warning absolute right-2 top-2"
-          >
-            ✕
-          </label>
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <div className="max-w-sm p-4 mx-4 rounded-lg shadow-lg relative w-full bg-base-100 outline-none focus:outline-none">
           {children}
         </div>
       </div>
+      <div className="opacity-25 fixed inset-0 z-40 bg-black" />
     </>
   )
 }

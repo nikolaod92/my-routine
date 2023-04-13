@@ -21,10 +21,10 @@ function ExercisePagination({ range, setRange, count }: Props) {
         </button>
       )}
       <button className="btn btn-sm">
-        Page {(range + PAGINATION_STEP) / PAGINATION_STEP} of{' '}
+        {(range + PAGINATION_STEP) / PAGINATION_STEP} /{' '}
         {Math.ceil(count / PAGINATION_STEP)}
       </button>
-      {count - (range + 1) > PAGINATION_STEP && (
+      {count - (range + 1) >= PAGINATION_STEP && (
         <button
           onClick={() => setRange((prev) => prev + PAGINATION_STEP)}
           className="btn btn-sm"

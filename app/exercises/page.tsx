@@ -6,12 +6,9 @@ export const revalidate = 3600
 export default async function Exercises() {
   const supabase = createServerClient()
 
-  const { data: exercises } = await supabase.from('exercise').select()
+  const { data: exercises, error } = await supabase.from('exercise').select()
 
-  return (
-    <div>
-      <h1 className="text-2xl font-bold">Browse:</h1>
-      <Filter serverExercises={exercises} />
-    </div>
-  )
+  if (error) return <div>{error.message}</div>
+
+  return <Filter serverExercises={exercises} />
 }
