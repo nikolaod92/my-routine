@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from 'react-hook-form'
 import { useStore } from '@/store'
 import { Dispatch, SetStateAction, useEffect } from 'react'

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { RoutineInfo, routineSchema } from '@/lib/validators'
-import Card from '@/components/Card'
+import Card from '@/components/UI/Card'
 
 export default function Create() {
   const router = useRouter()

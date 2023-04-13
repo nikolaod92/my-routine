@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
-import LoadingButton from '../LoadingButton'
+import LoadingButton from '../UI/LoadingButton'
 
 function SubmitRoutine() {
   const router = useRouter()

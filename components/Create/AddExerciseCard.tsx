@@ -11,7 +11,7 @@ import {
   ExerciseCardContainer,
   ExerciseImage,
   ExerciseTitle,
-} from '../Exercise'
+} from '../ExerciseCard'
 
 export default function AddExerciseCard({ exercise }: { exercise: Exercise }) {
   const { id, name } = exercise

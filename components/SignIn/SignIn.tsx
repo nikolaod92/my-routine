@@ -1,7 +1,7 @@
 'use client'
 
 import { useUser } from '@/contexts/userContext'
-import Avatar from '../Avatar'
+import Avatar from '../UI/Avatar'
 import { useSupabase } from '../SupabaseProvider'
 import LogoutButton from './LogoutButton'
 import SignInButton from './SignInButton'

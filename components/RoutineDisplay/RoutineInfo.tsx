@@ -1,7 +1,7 @@
 'use client'
 
 import { Routine } from '@/lib/database.types'
-import Follow from '../Follow'
+import FollowRoutineButton from './FollowRoutineButton'
 import FollowerCount from './FollowerCount'
 
 function RoutineInfo({ routine }: { routine: Routine }) {
@@ -12,7 +12,7 @@ function RoutineInfo({ routine }: { routine: Routine }) {
           <h1 className="font-bold text-2xl mr-2">{routine?.name}</h1>
           <FollowerCount routineId={routine.id} />
         </div>
-        <Follow id={routine.id} />
+        <FollowRoutineButton id={routine.id} />
       </div>
       <h1 className="font-medium leading-5 text-md line-clamp-3">
         {routine?.description}

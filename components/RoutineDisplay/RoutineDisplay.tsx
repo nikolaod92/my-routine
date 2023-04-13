@@ -2,8 +2,8 @@
 
 import { RoutineExercise } from '@/lib/database.types'
 import { useStore } from '@/store'
-import ExerciseDayNavigation from '../CreateExerciseForm/ExerciseDayNavigation'
-import ExerciseGrid from '../ResponsiveGrid'
+import ExerciseDayNavigation from '../Create/ExerciseDayNavigation'
+import ExerciseGrid from '../UI/ResponsiveGrid'
 import RoutineGrid from './RoutineGrid'
 
 function RoutineDisplay({ exercises }: { exercises: RoutineExercise[] }) {

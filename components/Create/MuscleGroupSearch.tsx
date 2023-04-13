@@ -1,12 +1,13 @@
 'use client'
 
-import Loader from '@/components/Loader'
+import Loader from '@/components/UI/Loader'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import { PAGINATION_STEP } from '@/lib/constants'
 import { useCallback, useEffect, useState } from 'react'
-import { useSupabase } from '../../SupabaseProvider'
-import ExerciseCard from '../AddExerciseCard'
-import ExerciseGrid from '../../ResponsiveGrid'
+import { useSupabase } from '../SupabaseProvider'
+import ResponsiveGrid from '../UI/ResponsiveGrid'
+import AddExerciseCard from './AddExerciseCard'
+
 import ExercisePagination from './ExercisePagination'
 import MuscleGroupSelect from './MuscleGroupSelect'
 
@@ -50,12 +51,12 @@ function MuscleGroupSearch() {
         )}
       </div>
       <Loader loading={loading} size={32}>
-        <ExerciseGrid>
+        <ResponsiveGrid>
           {exercises &&
             exercises.map((exercise) => (
-              <ExerciseCard key={exercise.id} exercise={exercise} />
+              <AddExerciseCard key={exercise.id} exercise={exercise} />
             ))}
-        </ExerciseGrid>
+        </ResponsiveGrid>
       </Loader>
       {error && <div>{error.message}</div>}
     </div>

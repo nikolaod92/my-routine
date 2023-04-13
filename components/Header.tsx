@@ -19,7 +19,7 @@ function MenuItems() {
         </Link>
       </li>
       <li>
-        <Link prefetch={false} href="/exercises" className="font-semibold">
+        <Link href="/exercises" className="font-semibold">
           Exercises
         </Link>
       </li>
@@ -46,7 +46,7 @@ export default function Header() {
   }, [])
 
   return (
-    <div className="navbar bg-base-100 border-b-[1px] border-b-base-300 lg:px-16 xl:px-24 2xl:px-36 z-50">
+    <div className="navbar bg-base-100 border-b-[1px] border-b-base-300 lg:px-16 xl:px-24 2xl:px-36 z-40">
       <div className="navbar-start">
         <div className="dropdown">
           <button type="button" className="btn-ghost btn lg:hidden ">
@@ -69,7 +69,7 @@ export default function Header() {
             <MenuItems />
           </ul>
         </div>
-        <Link prefetch={false} href="/" className="pb-1 text-2xl font-bold">
+        <Link href="/" className="pb-1 text-2xl font-bold">
           myRoutine
         </Link>
         <div className="ml-4 hidden lg:flex">

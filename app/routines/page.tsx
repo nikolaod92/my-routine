@@ -1,5 +1,5 @@
-import Avatar from '@/components/Avatar'
-import Card from '@/components/Card'
+import Avatar from '@/components/UI/Avatar'
+import Card from '@/components/UI/Card'
 import FollowerCount from '@/components/RoutineDisplay/FollowerCount'
 import { createServerClient } from '@/utils/supabase-server'
 import Link from 'next/link'

@@ -1,8 +1,8 @@
 import './globals.css'
 import { Metadata } from 'next'
-import { Dosis } from '@next/font/google'
+import { Dosis } from 'next/font/google'
 import UserProvider from '@/contexts/userContext'
-import ToastContainer from '@/components/ToastContainer'
+import ToastContainer from '@/components/UI/ToastContainer'
 import Header from '../components/Header'
 
 import 'server-only'

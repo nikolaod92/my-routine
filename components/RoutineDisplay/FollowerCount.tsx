@@ -3,7 +3,7 @@
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import UserIcon from '@heroicons/react/20/solid/UserIcon'
 import { useCallback } from 'react'
-import Loader from '../Loader'
+import Loader from '../UI/Loader'
 import { useSupabase } from '../SupabaseProvider'
 
 function FollowerCount({ routineId }: { routineId: string }) {

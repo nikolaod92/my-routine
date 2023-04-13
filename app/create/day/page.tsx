@@ -1,9 +1,8 @@
 'use client'
 
-import ExerciseDayNavigation from '@/components/CreateExerciseForm/ExerciseDayNavigation'
-import SelectedExerciseDisplay from '@/components/CreateExerciseForm/SelectedExerciseDisplay'
-
-import ExerciseSelect from '@/components/CreateExerciseForm/Select/ExerciseSelect'
+import ExerciseDayNavigation from '@/components/Create/ExerciseDayNavigation'
+import ExerciseSelect from '@/components/Create/ExerciseSelect'
+import SelectedExerciseDisplay from '@/components/Create/SelectedExerciseDisplay'
 
 export default function Day() {
   return (

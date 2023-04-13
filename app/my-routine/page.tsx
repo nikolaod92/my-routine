@@ -1,4 +1,4 @@
-import Card from '@/components/Card'
+import Card from '@/components/UI/Card'
 import Routine from '@/components/RoutineDisplay/Routine'
 import { createServerClient } from '@/utils/supabase-server'
 import Link from 'next/link'

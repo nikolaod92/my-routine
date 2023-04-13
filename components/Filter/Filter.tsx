@@ -5,18 +5,18 @@ import { PAGINATION_STEP } from '@/lib/constants'
 import { Exercise } from '@/lib/database.types'
 import { useCallback, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
-import ResponsiveGrid from '../ResponsiveGrid'
-import ExercisePagination from '../CreateExerciseForm/Select/ExercisePagination'
+import ResponsiveGrid from '../UI/ResponsiveGrid'
 import {
   ExerciseCardContainer,
   ExerciseHeader,
   ExerciseTitle,
   ExerciseImage,
-} from '../Exercise'
+} from '../ExerciseCard'
 import { useSupabase } from '../SupabaseProvider'
 import FilterData from './FilterData'
 import FilterForm from './FilterForm'
 import FilterModal from './FilterModal'
+import ExercisePagination from '../Create/ExercisePagination'
 
 function Filter({ serverExercises }: { serverExercises: Exercise[] | null }) {
   const { supabase } = useSupabase()

@@ -20,6 +20,7 @@ export default async function Home() {
           Routines
         </Link>
         <Link
+          prefetch={false}
           href="/create"
           className="btn btn-md btn-wide btn-primary shadow-lg shadow-primary/50 "
         >

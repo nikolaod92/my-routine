@@ -2,10 +2,10 @@
 
 import { FieldValues, useForm } from 'react-hook-form'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
-import Loader from '@/components/Loader'
-import AddExerciseCard from '../AddExerciseCard'
-import ExerciseGrid from '../../ResponsiveGrid'
-import { useSupabase } from '../../SupabaseProvider'
+import Loader from '@/components/UI/Loader'
+import { useSupabase } from '../SupabaseProvider'
+import ResponsiveGrid from '../UI/ResponsiveGrid'
+import AddExerciseCard from './AddExerciseCard'
 
 function NameSearch() {
   const { supabase } = useSupabase()
@@ -62,12 +62,12 @@ function NameSearch() {
 
       {exercises?.length !== 0 ? (
         <Loader loading={loading} size={32}>
-          <ExerciseGrid>
+          <ResponsiveGrid>
             {exercises &&
               exercises.map((exercise) => (
                 <AddExerciseCard key={exercise.id} exercise={exercise} />
               ))}
-          </ExerciseGrid>
+          </ResponsiveGrid>
         </Loader>
       ) : (
         <p className="font-semibold text-md mt-2">No exercises found.</p>

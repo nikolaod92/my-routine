@@ -1,4 +1,4 @@
-import Card from '@/components/Card'
+import Card from '@/components/UI/Card'
 import SignInButton from '@/components/SignIn/SignInButton'
 
 export default async function Login() {

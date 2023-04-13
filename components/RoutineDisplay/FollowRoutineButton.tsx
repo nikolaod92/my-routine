@@ -2,9 +2,9 @@
 
 import { useUser } from '@/contexts/userContext'
 import { toast } from 'react-toastify'
-import { useSupabase } from './SupabaseProvider'
+import { useSupabase } from '../SupabaseProvider'
 
-function Follow({ id }: { id: string }) {
+function FollowRoutineButton({ id }: { id: string }) {
   const { supabase, session } = useSupabase()
   const { user } = useUser()
 
@@ -56,4 +56,4 @@ function Follow({ id }: { id: string }) {
   return null
 }
 
-export default Follow
+export default FollowRoutineButton

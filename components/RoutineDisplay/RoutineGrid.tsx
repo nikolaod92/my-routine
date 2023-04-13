@@ -1,7 +1,7 @@
 'use client'
 
 import { RoutineExercise } from '@/lib/database.types'
-import { ExerciseImage } from '../Exercise'
+import { ExerciseImage } from '../ExerciseCard'
 
 function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
   if (exercises.length === 0)
