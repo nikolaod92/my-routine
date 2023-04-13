@@ -1,16 +1,9 @@
-import { useUser } from '@/contexts/userContext'
 import Image from 'next/image'
 
-function Avatar() {
-  const { user } = useUser()
-
+function Avatar({ avatar, size = 24 }: { avatar: string; size?: number }) {
   return (
-    <div className="avatar">
-      <div className="rounded-full">
-        {user?.avatar && (
-          <Image src={user?.avatar} alt="Avatar" width={20} height={20} />
-        )}
-      </div>
+    <div className="rounded-full overflow-hidden">
+      {avatar && <Image src={avatar} alt="Avatar" width={size} height={size} />}
     </div>
   )
 }
