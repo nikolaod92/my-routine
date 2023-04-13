@@ -46,7 +46,7 @@ export default function Header() {
   }, [])
 
   return (
-    <div className="navbar bg-base-100 border-b-[1px] border-b-base-300 lg:px-16 xl:px-24 2xl:px-36">
+    <div className="navbar bg-base-100 border-b-[1px] border-b-base-300 lg:px-16 xl:px-24 2xl:px-36 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <button type="button" className="btn-ghost btn lg:hidden ">
