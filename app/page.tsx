@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export const revalidate = 60
 
 export default async function Home() {
@@ -10,19 +12,19 @@ export default async function Home() {
         Browse our extensive collection of routines and exercises, select a
         routine created by our users or even create your own!
       </p>
-      <div className="flex flex-col mx-auto ">
-        <button
-          type="button"
-          className="btn btn-md btn-wide btn-secondary shadow-lg shadow-secondary/25 mb-1 hover:-translate-y-1 focus:-translate-y-1"
+      <div className="flex flex-col mx-auto">
+        <Link
+          href="/routines"
+          className="btn btn-md btn-wide btn-secondary shadow-lg shadow-secondary/25 mb-1 "
         >
           Routines
-        </button>
-        <button
-          type="button"
-          className="btn btn-md btn-wide btn-primary shadow-lg shadow-primary/50 hover:translate-y-1 focus:translate-y-1"
+        </Link>
+        <Link
+          href="/create"
+          className="btn btn-md btn-wide btn-primary shadow-lg shadow-primary/50 "
         >
           Create
-        </button>
+        </Link>
       </div>
     </div>
   )
