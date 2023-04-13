@@ -20,16 +20,18 @@ export default async function Home() {
 
   if (!data?.routine_id)
     return (
-      <Card>
-        <p className="font-light">You are not currently following a routine.</p>
+      <Card className="flex flex-col items-center space-y-2">
+        <p className="font-semibold text-lg">
+          You are not currently following a routine.
+        </p>
         <div className="divider" />
-        <p className="text-sm ">Choose one already created by our users:</p>
+        <p className="text-sm font-medium">
+          Choose one already created by our users:
+        </p>
         <Link href="/routines" className="btn btn-wide btn-secondary">
           Routines
         </Link>
-        <div className="divider" />
-
-        <p className="text-sm ">or create your own and share it!</p>
+        <p className="text-sm font-medium">or create your own and share it!</p>
         <Link href="/create" className="btn btn-wide btn-primary">
           Create
         </Link>
@@ -38,7 +40,6 @@ export default async function Home() {
 
   return (
     <div>
-      <h2>Your current routine is:</h2>
       {/* @ts-expect-error Server Component */}
       <Routine id={data.routine_id} />
     </div>
