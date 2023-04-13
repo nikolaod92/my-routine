@@ -6,7 +6,7 @@ import { PAGINATION_STEP } from '@/lib/constants'
 import { useCallback, useEffect, useState } from 'react'
 import { useSupabase } from '../../SupabaseProvider'
 import ExerciseCard from '../AddExerciseCard'
-import ExerciseGrid from '../ResponsiveGrid'
+import ExerciseGrid from '../../ResponsiveGrid'
 import ExercisePagination from './ExercisePagination'
 import MuscleGroupSelect from './MuscleGroupSelect'
 

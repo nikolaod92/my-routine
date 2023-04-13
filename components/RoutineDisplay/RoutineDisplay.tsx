@@ -3,7 +3,7 @@
 import { RoutineExercise } from '@/lib/database.types'
 import { useStore } from '@/store'
 import ExerciseDayNavigation from '../CreateExerciseForm/ExerciseDayNavigation'
-import ExerciseGrid from '../CreateExerciseForm/ResponsiveGrid'
+import ExerciseGrid from '../ResponsiveGrid'
 import RoutineGrid from './RoutineGrid'
 
 function RoutineDisplay({ exercises }: { exercises: RoutineExercise[] }) {

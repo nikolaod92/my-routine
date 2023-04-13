@@ -5,7 +5,7 @@ import { PAGINATION_STEP } from '@/lib/constants'
 import { Exercise } from '@/lib/database.types'
 import { useCallback, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
-import ResponsiveGrid from '../CreateExerciseForm/ResponsiveGrid'
+import ResponsiveGrid from '../ResponsiveGrid'
 import ExercisePagination from '../CreateExerciseForm/Select/ExercisePagination'
 import {
   ExerciseCardContainer,

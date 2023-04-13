@@ -4,7 +4,7 @@ import { FieldValues, useForm } from 'react-hook-form'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import Loader from '@/components/Loader'
 import AddExerciseCard from '../AddExerciseCard'
-import ExerciseGrid from '../ResponsiveGrid'
+import ExerciseGrid from '../../ResponsiveGrid'
 import { useSupabase } from '../../SupabaseProvider'
 
 function NameSearch() {
@@ -33,7 +33,7 @@ function NameSearch() {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="mb-2">
+      <form onSubmit={onSubmit}>
         <div className="input-group">
           <input
             type="text"
@@ -70,7 +70,7 @@ function NameSearch() {
           </ExerciseGrid>
         </Loader>
       ) : (
-        <p className="font-semibold text-md">No exercises found.</p>
+        <p className="font-semibold text-md mt-2">No exercises found.</p>
       )}
     </>
   )
