@@ -1,10 +1,9 @@
 'use client'
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { Toaster } from 'react-hot-toast'
 
 function Container() {
-  return <ToastContainer autoClose={4000} position="bottom-right" />
+  return <Toaster position="top-center" />
 }
 
 export default Container

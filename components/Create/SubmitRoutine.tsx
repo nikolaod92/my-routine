@@ -3,7 +3,7 @@
 import { useStore } from '@/store'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { ZodError } from 'zod'
 import LoadingButton from '../UI/LoadingButton'
 

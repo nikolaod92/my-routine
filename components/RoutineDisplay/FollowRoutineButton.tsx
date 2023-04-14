@@ -1,7 +1,7 @@
 'use client'
 
 import { useUser } from '@/contexts/userContext'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { useSupabase } from '../SupabaseProvider'
 
 function FollowRoutineButton({ id }: { id: string }) {
