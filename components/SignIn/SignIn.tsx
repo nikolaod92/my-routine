@@ -4,13 +4,12 @@ import { useUser } from '@/contexts/userContext'
 import Avatar from '../UI/Avatar'
 import { useSupabase } from '../SupabaseProvider'
 import LogoutButton from './LogoutButton'
-import SignInButton from './SignInButton'
 
 function SignIn() {
   const { session } = useSupabase()
   const { user } = useUser()
 
-  if (!session) return <SignInButton />
+  if (!session) return null
 
   return (
     <>

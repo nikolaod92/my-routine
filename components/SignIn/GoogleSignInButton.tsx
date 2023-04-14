@@ -2,7 +2,7 @@
 
 import { useSupabase } from '../SupabaseProvider'
 
-function SignInButton() {
+function GoogleSignInButton() {
   const { supabase, session } = useSupabase()
 
   const signInWithGoogle = async () => {
@@ -19,13 +19,13 @@ function SignInButton() {
       <button
         type="button"
         onClick={signInWithGoogle}
-        className="btn btn-primary"
+        className="btn btn-primary btn-outline"
       >
-        Sign In
+        Sign In With Google
       </button>
     )
 
   return null
 }
 
-export default SignInButton
+export default GoogleSignInButton

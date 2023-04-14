@@ -26,4 +26,18 @@ export const insertExerciseSchema = z
     message: "You haven't added any exercises.",
   })
 
+export const loginSchema = z.object({
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .trim()
+    .min(6, { message: 'Password has to be longer than 6 characters.' }),
+})
+
+export const registerSchema = loginSchema.extend({
+  username: z.string().trim().min(3, { message: 'Username is too short.' }),
+})
+
+export type LoginInput = z.infer<typeof loginSchema>
+export type RegisterInput = z.infer<typeof registerSchema>
 export type RoutineInfo = z.infer<typeof routineSchema>

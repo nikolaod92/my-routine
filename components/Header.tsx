@@ -5,29 +5,27 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import SignIn from './SignIn/SignIn'
 
+const menuItems = [
+  { title: 'My Routine', url: '/my-routine', prefetch: false },
+  { title: 'Routines', url: '/routines', prefetch: false },
+  { title: 'Exercises', url: '/exercises', prefetch: true },
+  { title: 'Create', url: '/create', prefetch: false },
+]
+
 function MenuItems() {
   return (
     <>
-      <li>
-        <Link prefetch={false} href="/my-routine" className="font-semibold">
-          Your Routine
-        </Link>
-      </li>
-      <li>
-        <Link prefetch={false} href="/routines" className="font-semibold">
-          Routines
-        </Link>
-      </li>
-      <li>
-        <Link href="/exercises" className="font-semibold">
-          Exercises
-        </Link>
-      </li>
-      <li>
-        <Link prefetch={false} href="/create" className="font-semibold">
-          Create
-        </Link>
-      </li>
+      {menuItems.map((item) => (
+        <li key={item.url}>
+          <Link
+            prefetch={item.prefetch}
+            href={item.url}
+            className="font-semibold"
+          >
+            {item.title}
+          </Link>
+        </li>
+      ))}
     </>
   )
 }
