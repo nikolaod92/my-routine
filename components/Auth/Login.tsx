@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import GoogleSignInButton from '../SignIn/GoogleSignInButton'
 import { useSupabase } from '../SupabaseProvider'
+import Input from '../UI/Input'
 
 type LoginData = {
   email: string
@@ -45,42 +46,12 @@ function Login() {
       >
         <h1 className="text-2xl font-bold">Login</h1>
         <div className="space-y-1">
-          <div>
-            <label htmlFor="email" className="label">
-              <span className="text-xs font-semibold uppercase leading-3">
-                Email
-              </span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              className="input input-sm w-full bg-primary/10 text-lg font-medium"
-              {...register('email')}
-            />
-            {errors.email && (
-              <p className="mt-1 text-xs italic text-red-500">
-                {errors.email?.message}
-              </p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="password" className="label">
-              <span className="text-xs font-semibold uppercase leading-3">
-                Password
-              </span>
-            </label>
-            <input
-              id="password"
-              type="password"
-              className="input input-sm w-full bg-primary/10 text-lg font-medium"
-              {...register('password')}
-            />
-            {errors.password && (
-              <p className="text-xs italic text-red-500">
-                {errors.password?.message}
-              </p>
-            )}
-          </div>
+          <Input errorMsg={errors.email?.message} {...register('email')} />
+          <Input
+            errorMsg={errors.password?.message}
+            {...register('password')}
+            type="password"
+          />
         </div>
         <button type="submit" className="btn-primary btn-sm btn">
           Login

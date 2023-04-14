@@ -6,6 +6,7 @@ import { useStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { RoutineInfo, routineSchema } from '@/lib/validators'
 import Card from '@/components/UI/Card'
+import Input from '@/components/UI/Input'
 
 export default function Create() {
   const router = useRouter()
@@ -38,24 +39,7 @@ export default function Create() {
         className="form-control space-y-4 w-full"
       >
         <h1 className="text-2xl font-bold">Create a routine</h1>
-        <div>
-          <label htmlFor="name" className="label">
-            <span className="text-xs font-semibold uppercase leading-3">
-              Name
-            </span>
-          </label>
-          <input
-            id="name"
-            type="text"
-            className="input input-sm w-full bg-primary/10 text-lg font-medium"
-            {...register('name')}
-          />
-          {errors.name && (
-            <p className="mt-1 text-xs italic text-red-500">
-              {errors.name?.message}
-            </p>
-          )}
-        </div>
+        <Input errorMsg={errors.name?.message} {...register('name')} />
         <div>
           <label htmlFor="description" className="label">
             <span className="text-xs font-semibold uppercase leading-3">
