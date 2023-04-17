@@ -30,7 +30,7 @@ async function Routine({ id }: { id: string }) {
 
   if (routine && exercises)
     return (
-      <div className="space-y-2">
+      <div className="space-y-4">
         <RoutineInfo routine={routine} />
         <RoutineDisplay exercises={exercises} />
       </div>

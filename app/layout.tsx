@@ -48,7 +48,7 @@ export default async function RootLayout({
           <UserProvider>
             <SupabaseListener />
             <Header />
-            <div className="container mx-auto py-4 md:py-8">{children}</div>
+            <div className="container mx-auto py-4 md:py-6">{children}</div>
             <ToastContainer />
           </UserProvider>
         </SupabaseProvider>

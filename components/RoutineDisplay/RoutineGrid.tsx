@@ -6,7 +6,7 @@ import { ExerciseImage } from '../ExerciseCard'
 function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
   if (exercises.length === 0)
     return (
-      <div className="max-w-fit bg-base-100 rounded py-1 px-4 font-semibold text-sm shadow">
+      <div className="max-w-fit bg-primary text-primary-content rounded py-2 px-4 font-semibold text-sm shadow">
         Rest day.
       </div>
     )
