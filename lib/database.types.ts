@@ -150,6 +150,7 @@ export interface Database {
           author_id: string | null
           created_at: string | null
           description: string | null
+          follower_count: number
           id: string
           name: string
         }
@@ -157,6 +158,7 @@ export interface Database {
           author_id?: string | null
           created_at?: string | null
           description?: string | null
+          follower_count?: number | null
           id?: string
           name: string
         }
@@ -164,6 +166,7 @@ export interface Database {
           author_id?: string | null
           created_at?: string | null
           description?: string | null
+          follower_count?: number | null
           id?: string
           name?: string
         }
@@ -172,17 +175,17 @@ export interface Database {
     Views: {
       distinct_equipment: {
         Row: {
-          equipment: string
+          equipment: string | null
         }
       }
       distinct_muscle_group: {
         Row: {
-          muscle_group: string
+          muscle_group: string | null
         }
       }
       distinct_target: {
         Row: {
-          target: string
+          target: string | null
         }
       }
     }
