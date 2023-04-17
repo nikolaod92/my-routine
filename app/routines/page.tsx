@@ -24,6 +24,7 @@ export default async function Routines() {
     .order('follower_count', {
       ascending: false,
     })
+    .limit(12)
     .returns<RoutineWithAuthor[]>()
 
   return (
