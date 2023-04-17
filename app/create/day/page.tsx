@@ -1,5 +1,3 @@
-'use client'
-
 import ExerciseDayNavigation from '@/components/Create/ExerciseDayNavigation'
 import ExerciseSelect from '@/components/Create/ExerciseSelect'
 import SelectedExerciseDisplay from '@/components/Create/SelectedExerciseDisplay'

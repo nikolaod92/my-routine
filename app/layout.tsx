@@ -19,7 +19,10 @@ const font = Dosis({
 export const revalidate = 0
 
 export const metadata: Metadata = {
-  title: 'myRoutine',
+  title: {
+    template: '%s | myRoutine',
+    default: 'myRoutine',
+  },
   description: 'Create and share personalized workout routines.',
   icons: '/favicon.ico',
 }

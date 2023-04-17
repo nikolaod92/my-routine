@@ -1,7 +1,11 @@
 import Filter from '@/components/Filter/Filter'
 import { createServerClient } from '@/utils/supabase-server'
+import { Metadata } from 'next'
 
-export const revalidate = 3600
+export const metadata: Metadata = {
+  title: 'Exercises',
+  description: 'Browse our extensive list of exercises',
+}
 
 export default async function Exercises() {
   const supabase = createServerClient()

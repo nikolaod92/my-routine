@@ -1,8 +1,9 @@
 import Card from '@/components/UI/Card'
 import Register from '@/components/Auth/Register'
+import { Metadata } from 'next'
 
-export const metadata = {
-  title: 'Create an account',
+export const metadata: Metadata = {
+  title: 'Register',
   description: 'Create an account to get started.',
 }
 
