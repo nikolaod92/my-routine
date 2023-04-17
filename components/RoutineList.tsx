@@ -2,6 +2,7 @@
 
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import { RoutineWithAuthor } from '@/lib/database.types'
+import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -23,7 +24,7 @@ function RoutineList({ serverRoutines }: Props) {
     supabase
       .from('routine')
       .select(
-        `id, name, description, follower_count, profile!routine_author_id_fkey (name, avatar)`
+        `id, name, description, follower_count, created_at, profile!routine_author_id_fkey (name, avatar)`
       )
       .textSearch('name', searchTerm, {
         config: 'english',
@@ -32,6 +33,7 @@ function RoutineList({ serverRoutines }: Props) {
       .order('follower_count', {
         ascending: false,
       })
+      .limit(10)
       .returns<RoutineWithAuthor[]>()
 
   const {
@@ -96,7 +98,7 @@ function RoutineList({ serverRoutines }: Props) {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {routines &&
             routines.map((routine) => (
-              <Card className="flex flex-col min-w-full items-stretch p-4 border-t-0 border-primary hover:border-l-4 cursor-pointer transition-all">
+              <Card className="flex flex-col min-w-full items-stretch p-4 border-t-0 border-primary hover:border-l-4 transition-all">
                 <div className="flex justify-between items-center">
                   <Link
                     href={`/routines/${routine.id}`}
@@ -109,7 +111,10 @@ function RoutineList({ serverRoutines }: Props) {
                 <p className="font-medium text-sm flex-1">
                   {routine.description}
                 </p>
-                <div className="flex items-center self-end mt-4">
+                <div className="flex items-center justify-between mt-4">
+                  <p className="text-xs  flex-1">
+                    {routine.created_at ? formatDate(routine.created_at) : ''}
+                  </p>
                   <p className="mr-2 text-xs uppercase font-medium">
                     {routine?.profile?.name}
                   </p>
