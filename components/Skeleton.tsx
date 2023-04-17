@@ -6,10 +6,20 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
       className={cn(
-        'h-5 w-2/5 animate-pulse rounded-lg bg-slate-100',
+        'h-32 w-full animate-pulse rounded bg-base-100 shadow',
         className
       )}
       {...props}
     />
+  )
+}
+
+export function RoutineSkeleton() {
+  return (
+    <>
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+    </>
   )
 }

@@ -7,11 +7,11 @@ import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import FollowerCount from './RoutineDisplay/FollowerCount'
+import { RoutineSkeleton } from './Skeleton'
 import { useSupabase } from './SupabaseProvider'
 import Avatar from './UI/Avatar'
 import Card from './UI/Card'
 import Input from './UI/Input'
-import Loader from './UI/Loader'
 
 type Props = {
   serverRoutines: RoutineWithAuthor[]
@@ -33,7 +33,7 @@ function RoutineList({ serverRoutines }: Props) {
       .order('follower_count', {
         ascending: false,
       })
-      .limit(10)
+      .limit(12)
       .returns<RoutineWithAuthor[]>()
 
   const {
@@ -94,38 +94,40 @@ function RoutineList({ serverRoutines }: Props) {
           </Input>
         </form>
       </div>
-      <Loader loading={loading} size={32}>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {routines &&
-            routines.map((routine) => (
-              <Card className="flex flex-col min-w-full items-stretch p-4 border-t-0 border-primary hover:border-l-4 transition-all">
-                <div className="flex justify-between items-center">
-                  <Link
-                    href={`/routines/${routine.id}`}
-                    className="font-bold text-2xl"
-                  >
-                    {routine.name}
-                  </Link>
-                  <FollowerCount count={routine.follower_count} />
-                </div>
-                <p className="font-medium text-sm flex-1">
-                  {routine.description}
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {routines && !loading ? (
+          routines.map((routine) => (
+            <Card className="flex flex-col min-w-full items-stretch p-4 border-t-0 border-primary hover:border-l-4 transition-all">
+              <div className="flex justify-between items-center">
+                <Link
+                  href={`/routines/${routine.id}`}
+                  className="font-bold text-2xl"
+                >
+                  {routine.name}
+                </Link>
+                <FollowerCount count={routine.follower_count} />
+              </div>
+              <p className="font-medium text-sm flex-1">
+                {routine.description}
+              </p>
+              <div className="flex items-center justify-between mt-4">
+                <p className="text-xs  flex-1">
+                  {routine.created_at ? formatDate(routine.created_at) : ''}
                 </p>
-                <div className="flex items-center justify-between mt-4">
-                  <p className="text-xs  flex-1">
-                    {routine.created_at ? formatDate(routine.created_at) : ''}
-                  </p>
-                  <p className="mr-2 text-xs uppercase font-medium">
-                    {routine?.profile?.name}
-                  </p>
-                  {routine.profile.avatar && (
-                    <Avatar avatar={routine.profile.avatar} />
-                  )}
-                </div>
-              </Card>
-            ))}
-        </div>
-      </Loader>
+                <p className="mr-2 text-xs uppercase font-bold">
+                  {routine?.profile?.name}
+                </p>
+                {routine.profile.avatar && (
+                  <Avatar avatar={routine.profile.avatar} />
+                )}
+              </div>
+            </Card>
+          ))
+        ) : (
+          <RoutineSkeleton />
+        )}
+      </div>
     </>
   )
 }
