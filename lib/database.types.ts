@@ -79,12 +79,12 @@ export interface Database {
       }
       exercise: {
         Row: {
-          equipment: string | null
+          equipment: string
           gif: string | null
           id: number
           muscle_group: string
           name: string
-          target: string | null
+          target: string
         }
         Insert: {
           equipment?: string | null
@@ -182,17 +182,17 @@ export interface Database {
     Views: {
       distinct_equipment: {
         Row: {
-          equipment: string | null
+          equipment: string
         }
       }
       distinct_muscle_group: {
         Row: {
-          muscle_group: string | null
+          muscle_group: string
         }
       }
       distinct_target: {
         Row: {
-          target: string | null
+          target: string
         }
       }
     }

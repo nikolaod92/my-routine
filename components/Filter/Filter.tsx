@@ -74,7 +74,9 @@ function Filter({ serverExercises }: { serverExercises: Exercise[] | null }) {
       {showModal ? (
         <FilterModal>
           <FilterForm onSubmit={onSubmit} handleSubmit={handleSubmit}>
-            <FilterData register={register} data={targetMuscles} />
+            {targetMuscles && (
+              <FilterData register={register} data={targetMuscles} />
+            )}
           </FilterForm>
         </FilterModal>
       ) : null}

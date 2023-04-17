@@ -45,7 +45,7 @@ function SubmitRoutine() {
 
       reset()
       router.push(`/routines/${data[0].id}`)
-      toast('Successfully created routine!')
+      toast.success('Successfully created routine!')
     } catch (error: unknown) {
       const { message } = error as Error
       toast.error(message)

@@ -33,9 +33,12 @@ function Login() {
       password,
     })
 
-    if (error) toast.error(error.message)
+    if (error) {
+      toast.error(error.message)
+      return
+    }
 
-    if (!error) router.replace('/')
+    router.replace('/')
   }
 
   return (

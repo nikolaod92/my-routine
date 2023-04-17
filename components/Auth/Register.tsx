@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useSupabase } from '../SupabaseProvider'
 import Input from '../UI/Input'
 
@@ -37,7 +38,12 @@ function Register() {
       },
     })
 
-    if (!error) router.replace('/')
+    if (error) {
+      toast.error(error.message)
+      return
+    }
+
+    router.replace('/')
   }
 
   return (
