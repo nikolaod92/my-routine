@@ -37,7 +37,7 @@ const useFetchSupabase = <T>(
           setError(e)
         }
       } finally {
-        setLoading(false)
+        setTimeout(() => setLoading(false), 500)
       }
     },
     [supabaseCallback]
