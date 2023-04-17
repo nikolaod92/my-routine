@@ -6,10 +6,15 @@ import Loader from '@/components/UI/Loader'
 import { useSupabase } from '../SupabaseProvider'
 import ResponsiveGrid from '../UI/ResponsiveGrid'
 import AddExerciseCard from './AddExerciseCard'
+import Input from '../UI/Input'
 
 function NameSearch() {
   const { supabase } = useSupabase()
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ searchTerm: string }>()
 
   const getExercises = async (formData: FieldValues) => {
     const { data, error } = await supabase
@@ -33,15 +38,17 @@ function NameSearch() {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Exercise name"
-            {...register('searchTerm')}
-            className="input input-bordered input-sm input-primary w-72 font-semibold text-md"
-          />
-          <button type="submit" className="btn btn-square btn-primary btn-sm ">
+      <form onSubmit={onSubmit} className="max-w-md">
+        <Input
+          srOnly
+          errorMsg={errors.searchTerm?.message}
+          placeholder="Exercise name"
+          {...register('searchTerm')}
+        >
+          <button
+            type="submit"
+            className="btn btn-square btn-primary btn-sm rounded-s-none absolute right-[0.1rem]"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -57,7 +64,7 @@ function NameSearch() {
               />
             </svg>
           </button>
-        </div>
+        </Input>
       </form>
 
       {exercises?.length !== 0 ? (

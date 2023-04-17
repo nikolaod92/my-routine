@@ -1,13 +1,15 @@
+import { cn } from '@/lib/utils'
 import { forwardRef, InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMsg: string | undefined
+  srOnly?: boolean
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMsg, ...props }, ref) => (
-    <div>
-      <label htmlFor={props.name} className="label">
+  ({ errorMsg, srOnly = false, children, ...props }, ref) => (
+    <div className="relative">
+      <label htmlFor={props.name} className={cn('label', srOnly && 'sr-only')}>
         <span className="text-xs font-semibold uppercase leading-3">
           {props.name}
         </span>
@@ -18,6 +20,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...props}
       />
+      {children}
       {errorMsg && (
         <p className="mt-1 text-xs italic text-red-500">{errorMsg}</p>
       )}

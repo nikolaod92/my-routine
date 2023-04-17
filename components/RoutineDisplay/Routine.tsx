@@ -3,8 +3,6 @@ import { createServerClient } from '@/utils/supabase-server'
 import RoutineDisplay from './RoutineDisplay'
 import RoutineInfo from './RoutineInfo'
 
-export const revalidate = 0
-
 async function Routine({ id }: { id: string }) {
   const supabase = createServerClient()
 

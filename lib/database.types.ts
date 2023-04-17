@@ -7,6 +7,13 @@ export type DayOfWeek = Database['public']['Enums']['day_of_week']
 
 export type Routine = Database['public']['Tables']['routine']['Row']
 
+export type RoutineWithAuthor = Routine & {
+  profile: {
+    name: string | null
+    avatar: string | null
+  }
+}
+
 type ExerciseWithoutRoutineId = Omit<
   Database['public']['Tables']['exercises_on_day']['Row'],
   'routine_id'
