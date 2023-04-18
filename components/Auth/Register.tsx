@@ -42,7 +42,7 @@ function Register() {
       toast.error(error.message)
       return
     }
-
+    toast.success('Registered successfully!')
     router.replace('/')
   }
 
