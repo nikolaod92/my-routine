@@ -4,8 +4,10 @@ import { useStore } from '@/store'
 import { useMemo } from 'react'
 import { TrashIcon } from '@heroicons/react/20/solid'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useMounted } from '@/hooks/useMounted'
 import ResetButton from './ResetButton'
 import SubmitRoutine from './SubmitRoutine'
+import { Skeleton } from '../Skeleton'
 
 function SelectedExerciseDisplay() {
   const [exercises, currentDay, deleteExercise] = useStore((state) => [
@@ -18,6 +20,9 @@ function SelectedExerciseDisplay() {
     () => exercises.filter((ex) => ex.day_of_week === currentDay),
     [currentDay, exercises]
   )
+
+  const mounted = useMounted()
+  if (!mounted) return <Skeleton className="w-full lg:max-w-lg mt-2 h-6" />
 
   return (
     <div className="w-full lg:max-w-lg mt-2">
