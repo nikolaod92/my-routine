@@ -3,7 +3,7 @@
 import { RoutineExercise } from '@/lib/database.types'
 import { ExerciseImage } from '../ExerciseCard'
 
-function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
+function RoutineExerciseGrid({ exercises }: { exercises: RoutineExercise[] }) {
   if (exercises.length === 0)
     return (
       <div className="max-w-fit bg-primary text-primary-content rounded py-2 px-4 font-semibold text-sm shadow">
@@ -14,7 +14,7 @@ function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
   return (
     <>
       {exercises.map((ex) => (
-        <div className="card bg-base-100 shadow">
+        <div key={ex.exercise.id} className="card bg-base-100 shadow">
           <p className="badge badge-xs badge-primary rounded-xl p-2 m-2 font-semibold uppercase">
             {ex?.exercise.target}
           </p>
@@ -40,4 +40,4 @@ function RoutineGrid({ exercises }: { exercises: RoutineExercise[] }) {
   )
 }
 
-export default RoutineGrid
+export default RoutineExerciseGrid

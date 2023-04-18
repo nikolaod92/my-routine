@@ -1,9 +1,10 @@
 import { RoutineExercise } from '@/lib/database.types'
 import { createServerClient } from '@/utils/supabase-server'
-import RoutineDisplay from './RoutineDisplay'
+import ExerciseDayNavigation from '../Create/ExerciseDayNavigation'
+import RoutineExerciseList from './RoutineExerciseList'
 import RoutineInfo from './RoutineInfo'
 
-async function Routine({ id }: { id: string }) {
+async function RoutineContainer({ id }: { id: string }) {
   const supabase = createServerClient()
 
   const { data: routine } = await supabase
@@ -32,9 +33,10 @@ async function Routine({ id }: { id: string }) {
     return (
       <div className="space-y-4">
         <RoutineInfo routine={routine} />
-        <RoutineDisplay exercises={exercises} />
+        <ExerciseDayNavigation />
+        <RoutineExerciseList exercises={exercises} />
       </div>
     )
 }
 
-export default Routine
+export default RoutineContainer

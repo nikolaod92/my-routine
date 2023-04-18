@@ -1,9 +1,9 @@
 import { createServerClient } from '@/utils/supabase-server'
 import { Metadata } from 'next'
-import RoutineList from '@/components/RoutineList'
 import { RoutineWithAuthor } from '@/lib/database.types'
+import RoutineListContainer from '@/components/RoutineList/RoutineListContainer'
 
-export const revalidate = 30
+export const revalidate = 0
 
 export const metadata: Metadata = {
   title: {
@@ -30,7 +30,7 @@ export default async function Routines() {
   return (
     <div className="space-y-4">
       {data ? (
-        <RoutineList serverRoutines={data} />
+        <RoutineListContainer serverRoutines={data} />
       ) : (
         <div>Could not load routines. Please try again.</div>
       )}

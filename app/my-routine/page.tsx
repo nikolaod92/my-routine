@@ -1,5 +1,5 @@
 import Card from '@/components/UI/Card'
-import Routine from '@/components/RoutineDisplay/Routine'
+import RoutineContainer from '@/components/Routine/RoutineContainer'
 import { createServerClient } from '@/utils/supabase-server'
 import Link from 'next/link'
 
@@ -40,7 +40,7 @@ export default async function Home() {
   return (
     <div>
       {/* @ts-expect-error Server Component */}
-      <Routine id={data.routine_id} />
+      <RoutineContainer id={data.routine_id} />
     </div>
   )
 }

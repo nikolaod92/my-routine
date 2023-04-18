@@ -1,5 +1,7 @@
-import Routine from '@/components/RoutineDisplay/Routine'
+import RoutineContainer from '@/components/Routine/RoutineContainer'
 import { createServerClient } from '@/utils/supabase-server'
+
+export const revalidate = 0
 
 type Props = {
   params: {
@@ -29,5 +31,5 @@ export default async function RoutinePage({
   params: { id: string }
 }) {
   // @ts-expect-error Server Component
-  return <Routine id={params.id} />
+  return <RoutineContainer id={params.id} />
 }
