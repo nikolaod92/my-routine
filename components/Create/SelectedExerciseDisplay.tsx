@@ -21,7 +21,7 @@ function SelectedExerciseDisplay() {
 
   return (
     <div className="w-full lg:max-w-lg mt-2">
-      <div className="rounded overflow-hidden shadow-sm">
+      <div className="rounded overflow-hidden shadow">
         <AnimatePresence initial={false} mode="popLayout">
           {exercisesOnDay.length === 0 ? (
             <motion.div
