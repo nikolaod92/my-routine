@@ -13,13 +13,3 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
     />
   )
 }
-
-export function RoutineSkeleton() {
-  return (
-    <>
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-    </>
-  )
-}
