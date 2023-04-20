@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Skeleton } from '../Skeleton'
+import { Skeleton } from '../UI/Skeleton'
 
 function ExerciseCardContainer({ children }: { children: ReactNode }) {
   return (

@@ -3,7 +3,7 @@
 import { useMounted } from '@/hooks/useMounted'
 import { DAYS_OF_WEEK } from '@/lib/constants'
 import { useStore } from '@/store'
-import { Skeleton } from '../Skeleton'
+import { Skeleton } from '../UI/Skeleton'
 
 function ExerciseDayNavigation() {
   const [currentDay, setCurrentDay] = useStore((state) => [

@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useMounted } from '@/hooks/useMounted'
 import ResetButton from './ResetButton'
 import SubmitRoutine from './SubmitRoutine'
-import { Skeleton } from '../Skeleton'
+import { Skeleton } from '../UI/Skeleton'
 
 function SelectedExerciseDisplay() {
   const [exercises, currentDay, deleteExercise] = useStore((state) => [
