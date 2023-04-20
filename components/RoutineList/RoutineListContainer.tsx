@@ -4,7 +4,6 @@ import useFetchSupabase from '@/hooks/useFetchSupabase'
 import { RoutineWithAuthor } from '@/lib/database.types'
 import { SubmitHandler } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { Skeleton } from '../UI/Skeleton'
 import { useSupabase } from '../SupabaseProvider'
 import RoutineList from './RoutineList'
 import RoutineSearchForm from './RoutineSearchForm'
@@ -55,18 +54,16 @@ function RoutineListContainer({ serverRoutines }: Props) {
   return (
     <>
       <RoutineSearchForm onSubmit={onSubmit} />
-      {routines && !loading ? (
-        <RoutineList routines={routines} />
-      ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton className="hidden lg:block" />
-          <Skeleton className="hidden lg:block" />
-        </div>
+      {routines?.length === 0 && !loading && (
+        <p className="font-medium text-md ml-2">No routines found.</p>
       )}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {routines && !loading ? (
+          <RoutineList routines={routines} />
+        ) : (
+          <RoutineList.Skeleton />
+        )}
+      </div>
     </>
   )
 }
