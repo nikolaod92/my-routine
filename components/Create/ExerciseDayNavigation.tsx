@@ -15,7 +15,7 @@ function ExerciseDayNavigation() {
   if (!mounted) return <Skeleton className="h-8 w-64 bg-slate-200" />
 
   return (
-    <div className="btn-group">
+    <div className="btn-group overflow-x-auto max-w-full">
       {DAYS_OF_WEEK.map((day) => (
         <button
           key={day}
