@@ -31,7 +31,7 @@ async function RoutineContainer({ id }: { id: string }) {
 
   if (routine && exercises)
     return (
-      <div className="space-y-4">
+      <div className="flex flex-col space-y-4">
         <RoutineInfo routine={routine} />
         <ExerciseDayNavigation />
         <RoutineExerciseList exercises={exercises} />
