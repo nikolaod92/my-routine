@@ -9,3 +9,11 @@
     margin: 0;
   }
 }
+
+.btn {
+  @apply shadow;
+}
+
+.btn-ghost {
+  @apply shadow-none;
+}
