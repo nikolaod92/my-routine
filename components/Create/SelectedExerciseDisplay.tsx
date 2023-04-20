@@ -22,10 +22,10 @@ function SelectedExerciseDisplay() {
   )
 
   const mounted = useMounted()
-  if (!mounted) return <Skeleton className="w-full lg:max-w-lg mt-2 h-6" />
+  if (!mounted) return <Skeleton className="max-w-lg mt-2 h-6" />
 
   return (
-    <div className="w-full lg:max-w-lg mt-2">
+    <div className="max-w-lg mt-2">
       <div className="rounded overflow-hidden shadow">
         <AnimatePresence initial={false} mode="popLayout">
           {exercisesOnDay.length === 0 ? (

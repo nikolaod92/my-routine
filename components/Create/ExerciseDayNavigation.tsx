@@ -15,12 +15,12 @@ function ExerciseDayNavigation() {
   if (!mounted) return <Skeleton className="h-8 w-64 bg-slate-200" />
 
   return (
-    <div className="btn-group overflow-x-auto max-w-full">
+    <div className="btn-group justify-between max-w-lg">
       {DAYS_OF_WEEK.map((day) => (
         <button
           key={day}
           type="button"
-          className={`btn btn-sm relative capitalize ${
+          className={`btn btn-xs sm:btn-sm flex-1 capitalize ${
             currentDay === day && 'btn-primary '
           }`}
           onClick={() => setCurrentDay(day)}

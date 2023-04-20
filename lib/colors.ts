@@ -4,7 +4,7 @@ export default {
   secondary: '#F000B8',
   'secondary-content': '#FFFFFF',
   accent: '#37CDBE',
-  neutral: '#3D4451',
+  neutral: '#ffffff',
   'base-100': '#FFFFFF',
   'base-200': '#fafafa',
   info: '#3ABFF8',

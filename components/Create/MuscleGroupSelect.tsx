@@ -24,7 +24,7 @@ function MuscleGroupSelect({ selected, onChange }: Props) {
 
   return (
     <select
-      className="select select-sm select-primary bg-primary/10 capitalize font-bold w-36"
+      className="select select-sm  capitalize font-bold w-36 shadow-sm"
       onChange={onChange}
       value={selected}
     >
