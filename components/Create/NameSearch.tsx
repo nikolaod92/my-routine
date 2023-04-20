@@ -2,11 +2,11 @@
 
 import { FieldValues, useForm } from 'react-hook-form'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
-import Loader from '@/components/UI/Loader'
 import { useSupabase } from '../SupabaseProvider'
 import ResponsiveGrid from '../UI/ResponsiveGrid'
 import AddExerciseCard from './AddExerciseCard'
 import Input from '../UI/Input'
+import { ExerciseCardContainer } from '../ExerciseCard'
 
 function NameSearch() {
   const { supabase } = useSupabase()
@@ -16,8 +16,8 @@ function NameSearch() {
     formState: { errors },
   } = useForm<{ searchTerm: string }>()
 
-  const getExercises = async (formData: FieldValues) => {
-    const { data, error } = await supabase
+  const getExercises = async (formData: FieldValues) =>
+    supabase
       .from('exercise')
       .select()
       .textSearch('name', formData.searchTerm, {
@@ -25,9 +25,6 @@ function NameSearch() {
         type: 'websearch',
       })
       .limit(20)
-
-    return { data, error }
-  }
 
   const { fetchData, data: exercises, loading } = useFetchSupabase(getExercises)
 
@@ -42,7 +39,7 @@ function NameSearch() {
         <Input
           srOnly
           errorMsg={errors.searchTerm?.message}
-          placeholder="Exercise name"
+          placeholder="Exercise name (eg. Barbell squat)"
           {...register('searchTerm')}
         >
           <button
@@ -66,19 +63,20 @@ function NameSearch() {
           </button>
         </Input>
       </form>
-
-      {exercises?.length !== 0 ? (
-        <Loader loading={loading} size={32}>
-          <ResponsiveGrid>
-            {exercises &&
-              exercises.map((exercise) => (
-                <AddExerciseCard key={exercise.id} exercise={exercise} />
-              ))}
-          </ResponsiveGrid>
-        </Loader>
-      ) : (
-        <p className="font-semibold text-md mt-2">No exercises found.</p>
+      {exercises?.length === 0 && !loading && (
+        <p className="font-medium text-md ml-2 mt-1">No exercises found.</p>
       )}
+
+      <ResponsiveGrid>
+        {loading ? (
+          <ExerciseCardContainer.Skeleton />
+        ) : (
+          exercises &&
+          exercises.map((exercise) => (
+            <AddExerciseCard key={exercise.id} exercise={exercise} />
+          ))
+        )}
+      </ResponsiveGrid>
     </>
   )
 }

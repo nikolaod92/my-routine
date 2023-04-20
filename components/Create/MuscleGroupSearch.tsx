@@ -1,9 +1,9 @@
 'use client'
 
-import Loader from '@/components/UI/Loader'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
 import { PAGINATION_STEP } from '@/lib/constants'
 import { useCallback, useEffect, useState } from 'react'
+import { ExerciseCardContainer } from '../ExerciseCard'
 import { useSupabase } from '../SupabaseProvider'
 import ResponsiveGrid from '../UI/ResponsiveGrid'
 import AddExerciseCard from './AddExerciseCard'
@@ -50,14 +50,16 @@ function MuscleGroupSearch() {
           <ExercisePagination range={range} setRange={setRange} count={count} />
         )}
       </div>
-      <Loader loading={loading} size={32}>
-        <ResponsiveGrid>
-          {exercises &&
-            exercises.map((exercise) => (
-              <AddExerciseCard key={exercise.id} exercise={exercise} />
-            ))}
-        </ResponsiveGrid>
-      </Loader>
+      <ResponsiveGrid>
+        {loading ? (
+          <ExerciseCardContainer.Skeleton />
+        ) : (
+          exercises &&
+          exercises.map((exercise) => (
+            <AddExerciseCard key={exercise.id} exercise={exercise} />
+          ))
+        )}
+      </ResponsiveGrid>
       {error && <div>{error.message}</div>}
     </div>
   )
