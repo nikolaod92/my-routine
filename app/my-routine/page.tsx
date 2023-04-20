@@ -12,13 +12,13 @@ export default async function Home() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  const { data } = await supabase
+  const { data: user, error } = await supabase
     .from('profile')
-    .select('routine_id')
+    .select('name, routine_id')
     .eq('id', session?.user.id)
     .single()
 
-  if (!data?.routine_id)
+  if (!user?.routine_id)
     return (
       <Card className="flex flex-col items-center space-y-4">
         <p className="font-semibold text-2xl text-center">
@@ -37,10 +37,12 @@ export default async function Home() {
       </Card>
     )
 
+  if (error) return <div>Could not load routine. Please try again.</div>
+
   return (
-    <div>
+    <>
       {/* @ts-expect-error Server Component */}
-      <RoutineContainer id={data.routine_id} />
-    </div>
+      <RoutineContainer id={user.routine_id} />
+    </>
   )
 }
