@@ -50,16 +50,16 @@ function MuscleGroupSearch() {
           <ExercisePagination range={range} setRange={setRange} count={count} />
         )}
       </div>
-      <ResponsiveGrid>
-        {loading ? (
-          <ExerciseCardContainer.Skeleton />
-        ) : (
-          exercises &&
-          exercises.map((exercise) => (
-            <AddExerciseCard key={exercise.id} exercise={exercise} />
-          ))
-        )}
-      </ResponsiveGrid>
+      {loading ? (
+        <ExerciseCardContainer.Skeleton />
+      ) : (
+        <ResponsiveGrid>
+          {exercises &&
+            exercises.map((exercise) => (
+              <AddExerciseCard key={exercise.id} exercise={exercise} />
+            ))}
+        </ResponsiveGrid>
+      )}
       {error && <div>{error.message}</div>}
     </div>
   )

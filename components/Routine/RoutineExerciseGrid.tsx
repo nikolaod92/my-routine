@@ -1,8 +1,8 @@
 'use client'
 
 import { RoutineExercise } from '@/lib/database.types'
-import { motion } from 'framer-motion'
 import { ExerciseImage } from '../ExerciseCard'
+import ResponsiveGrid from '../UI/ResponsiveGrid'
 
 function RoutineExerciseGrid({ exercises }: { exercises: RoutineExercise[] }) {
   if (exercises.length === 0)
@@ -13,15 +13,9 @@ function RoutineExerciseGrid({ exercises }: { exercises: RoutineExercise[] }) {
     )
 
   return (
-    <>
-      {exercises.map((ex, index) => (
-        <motion.div
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: index * 0.07 }}
-          key={ex.exercise.id}
-          className="card bg-base-100 shadow"
-        >
+    <ResponsiveGrid>
+      {exercises.map((ex) => (
+        <div key={ex.exercise.id} className="card flex-1 bg-base-100 shadow">
           <p className="badge badge-xs badge-primary rounded-xl p-2 m-2 font-semibold uppercase">
             {ex?.exercise.target}
           </p>
@@ -41,9 +35,9 @@ function RoutineExerciseGrid({ exercises }: { exercises: RoutineExercise[] }) {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       ))}
-    </>
+    </ResponsiveGrid>
   )
 }
 

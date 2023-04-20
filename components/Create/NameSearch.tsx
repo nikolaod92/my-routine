@@ -67,16 +67,16 @@ function NameSearch() {
         <p className="font-medium text-md ml-2 mt-1">No exercises found.</p>
       )}
 
-      <ResponsiveGrid>
-        {loading ? (
-          <ExerciseCardContainer.Skeleton />
-        ) : (
-          exercises &&
-          exercises.map((exercise) => (
-            <AddExerciseCard key={exercise.id} exercise={exercise} />
-          ))
-        )}
-      </ResponsiveGrid>
+      {loading ? (
+        <ExerciseCardContainer.Skeleton />
+      ) : (
+        <ResponsiveGrid>
+          {exercises &&
+            exercises.map((exercise) => (
+              <AddExerciseCard key={exercise.id} exercise={exercise} />
+            ))}
+        </ResponsiveGrid>
+      )}
     </>
   )
 }

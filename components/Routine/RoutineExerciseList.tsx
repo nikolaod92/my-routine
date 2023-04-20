@@ -3,7 +3,6 @@
 import { useMounted } from '@/hooks/useMounted'
 import { RoutineExercise } from '@/lib/database.types'
 import { useStore } from '@/store'
-import ResponsiveGrid from '../UI/ResponsiveGrid'
 import RoutineExerciseGrid from './RoutineExerciseGrid'
 
 function RoutineExerciseList({ exercises }: { exercises: RoutineExercise[] }) {
@@ -18,11 +17,9 @@ function RoutineExerciseList({ exercises }: { exercises: RoutineExercise[] }) {
   )
 
   return (
-    <ResponsiveGrid>
-      {singleDayExerciseList && (
-        <RoutineExerciseGrid exercises={singleDayExerciseList} />
-      )}
-    </ResponsiveGrid>
+    singleDayExerciseList && (
+      <RoutineExerciseGrid exercises={singleDayExerciseList} />
+    )
   )
 }
 
