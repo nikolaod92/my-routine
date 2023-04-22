@@ -1,6 +1,6 @@
 'use client'
 
-import { useUser } from '@/contexts/userContext'
+import { useUserProfile } from '@/contexts/userContext'
 import Link from 'next/link'
 import Avatar from '../UI/Avatar'
 import { useSupabase } from '../SupabaseProvider'
@@ -8,7 +8,7 @@ import LogoutButton from './LogoutButton'
 
 function SignIn() {
   const { session } = useSupabase()
-  const { user } = useUser()
+  const userProfile = useUserProfile()
 
   if (!session)
     return (
@@ -19,7 +19,7 @@ function SignIn() {
 
   return (
     <>
-      {user?.avatar && <Avatar avatar={user?.avatar} />}
+      {userProfile?.avatar && <Avatar avatar={userProfile?.avatar} />}
       <LogoutButton />
     </>
   )

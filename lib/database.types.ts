@@ -32,7 +32,7 @@ export type RoutineExercise = Omit<
 > & {
   exercise: Database['public']['Tables']['exercise']['Row']
 }
-export type User = Database['public']['Tables']['profile']['Row']
+export type UserProfile = Database['public']['Tables']['profile']['Row']
 
 export type Json =
   | string

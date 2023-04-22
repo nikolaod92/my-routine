@@ -1,11 +1,11 @@
 'use client'
 
-import { User } from '@/lib/database.types'
+import { UserProfile } from '@/lib/database.types'
 import { useRouter } from 'next/navigation'
 import { createContext, useState, useEffect, useContext } from 'react'
 import { useSupabase } from '../components/SupabaseProvider'
 
-type ContextType = { user: User | null }
+type ContextType = UserProfile | null
 
 const Context = createContext<ContextType>({} as ContextType)
 
@@ -14,12 +14,12 @@ function UserProvider({ children }: { children: React.ReactNode }) {
 
   const router = useRouter()
 
-  const [user, setUser] = useState<User | null>(null)
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
 
   const userId = session?.user.id
 
   useEffect(() => {
-    const getUserRoutine = async () => {
+    const getUserProfile = async () => {
       if (session) {
         const { data } = await supabase
           .from('profile')
@@ -28,11 +28,11 @@ function UserProvider({ children }: { children: React.ReactNode }) {
           .single()
 
         if (data) {
-          setUser(data)
+          setUserProfile(data)
         }
       }
     }
-    getUserRoutine()
+    getUserProfile()
   }, [userId, supabase, session])
 
   useEffect(() => {
@@ -48,8 +48,7 @@ function UserProvider({ children }: { children: React.ReactNode }) {
         },
         (payload) => {
           if (payload.new) {
-            setUser(payload.new as User)
-            router.replace('/my-routine')
+            setUserProfile(payload.new as UserProfile)
           }
         }
       )
@@ -60,9 +59,9 @@ function UserProvider({ children }: { children: React.ReactNode }) {
     }
   }, [userId, router, supabase])
 
-  return <Context.Provider value={{ user }}>{children}</Context.Provider>
+  return <Context.Provider value={userProfile}>{children}</Context.Provider>
 }
 
-export const useUser = () => useContext(Context)
+export const useUserProfile = () => useContext(Context)
 
 export default UserProvider
