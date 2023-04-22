@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,7 +10,9 @@ function LoadingButton(props: Props) {
 
   return (
     <button
+      type="button"
       className={`btn btn-sm btn-primary ${loading && 'loading'}`}
+      disabled={loading}
       {...rest}
     >
       {children}
