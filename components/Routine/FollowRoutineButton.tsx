@@ -1,39 +1,39 @@
 'use client'
 
-import { useUser } from '@/contexts/userContext'
+import { useUserProfile } from '@/contexts/userContext'
+import useFetchSupabase from '@/hooks/useFetchSupabase'
 import toast from 'react-hot-toast'
 import { useSupabase } from '../SupabaseProvider'
+import LoadingButton from '../UI/LoadingButton'
 
 function FollowRoutineButton({ id }: { id: string }) {
-  const { supabase, session } = useSupabase()
-  const { user } = useUser()
+  const { supabase } = useSupabase()
+  const userProfile = useUserProfile()
 
-  const isUserFollowingRoutine = user?.routine_id === id
+  const isUserFollowingRoutine = userProfile?.routine_id === id
 
-  const updateRoutine = async (idToUpdate: string | null) => {
-    const { error } = await supabase
+  const updateRoutine = async (idToUpdate: string | null) =>
+    supabase
       .from('profile')
       .update({ routine_id: idToUpdate })
-      .eq('id', session?.user.id)
+      .eq('id', userProfile?.id)
 
-    if (error) {
-      toast.error(error.message)
-    }
+  const { fetchData, loading, error } = useFetchSupabase(updateRoutine)
+
+  if (error) {
+    toast.error(error.message)
   }
 
-  if (session)
+  if (userProfile)
     return (
-      <button
+      <LoadingButton
+        loading={loading}
         onClick={
-          isUserFollowingRoutine
-            ? () => updateRoutine(null)
-            : () => updateRoutine(id)
+          isUserFollowingRoutine ? () => fetchData(null) : () => fetchData(id)
         }
-        type="button"
-        className="btn btn-sm btn-secondary"
       >
-        {isUserFollowingRoutine ? 'Unfollow' : 'Follow'}
-      </button>
+        {isUserFollowingRoutine && !loading ? 'Unfollow' : 'Follow'}
+      </LoadingButton>
     )
 
   return null
