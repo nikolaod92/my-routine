@@ -11,7 +11,7 @@ function ExerciseHeader({
     <div
       className={`bg-primary ${
         isAddedToState && 'bg-success'
-      } flex space-x-2 justify-between items-center py-1 px-2 text-primary-content`}
+      } flex items-center justify-between space-x-2 px-2 py-1 text-primary-content`}
     >
       {children}
     </div>

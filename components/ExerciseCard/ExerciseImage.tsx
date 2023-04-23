@@ -9,7 +9,7 @@ function ExerciseImage({ src, alt }: { src: string | null; alt: string }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, x: [10, 0] }}
       exit={{ opacity: 0, x: 10 }}
-      className="bg-white  w-full flex flex-1 items-center justify-center"
+      className="flex  w-full flex-1 items-center justify-center bg-white"
     >
       <Image className="p-4" src={src} alt={alt} width={160} height={160} />
     </motion.div>

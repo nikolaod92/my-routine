@@ -44,10 +44,10 @@ export default function Header() {
   }, [])
 
   return (
-    <div className="navbar bg-base-100 border-b-[1px] border-b-base-300 lg:px-16 xl:px-24 2xl:px-36 z-40">
+    <div className="navbar z-40 border-b-[1px] border-b-base-300 bg-base-100 lg:px-16 xl:px-24 2xl:px-36">
       <div className="navbar-start">
         <div className="dropdown">
-          <button type="button" className="btn-ghost btn lg:hidden ">
+          <button type="button" className="btn btn-ghost lg:hidden ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-primary"
@@ -63,7 +63,7 @@ export default function Header() {
               />
             </svg>
           </button>
-          <ul className="dropdown-content menu menu-compact mt-4 w-52 border-l-4 border-l-primary rounded-b-md  bg-base-100 p-2 shadow-lg">
+          <ul className="dropdown-content menu menu-compact mt-4 w-52 rounded-b-md border-l-4 border-l-primary  bg-base-100 p-2 shadow-lg">
             <MenuItems />
           </ul>
         </div>

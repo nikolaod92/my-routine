@@ -22,16 +22,16 @@ function SelectedExerciseDisplay() {
   )
 
   const mounted = useMounted()
-  if (!mounted) return <Skeleton className="max-w-lg mt-2 h-6" />
+  if (!mounted) return <Skeleton className="mt-2 h-6 max-w-lg" />
 
   return (
-    <div className="max-w-lg mt-2">
-      <div className="rounded overflow-hidden shadow">
+    <div className="mt-2 max-w-lg">
+      <div className="overflow-hidden rounded shadow">
         <AnimatePresence initial={false} mode="popLayout">
           {exercisesOnDay.length === 0 ? (
             <motion.div
               animate={{ y: [-10, 0] }}
-              className="text-xs bg-base-100 px-2 py-1"
+              className="bg-base-100 px-2 py-1 text-xs"
             >
               No exercises selected. Leave empty to designate a rest day.
             </motion.div>
@@ -44,17 +44,17 @@ function SelectedExerciseDisplay() {
                 key={ex.exercise_id}
                 className="flex justify-between"
               >
-                <div className="flex flex-1 justify-between capitalize text-xs bg-base-100 px-2 py-1 ">
-                  <h2 className=" font-semibold line-clamp-1">{ex.name}</h2>
+                <div className="flex flex-1 justify-between bg-base-100 px-2 py-1 text-xs capitalize ">
+                  <h2 className=" line-clamp-1 font-semibold">{ex.name}</h2>
                   <div className="flex space-x-2">
-                    <p className="badge badge-sm badge-primary font-semibold whitespace-nowrap">
+                    <p className="badge-primary badge badge-sm whitespace-nowrap font-semibold">
                       {ex.sets} / {ex.reps}
                     </p>
                   </div>
                 </div>
                 <button
                   type="button"
-                  className="btn btn-xs btn-secondary rounded-none "
+                  className="btn btn-secondary btn-xs rounded-none "
                   onClick={() => deleteExercise(ex)}
                 >
                   <TrashIcon width={16} height={16} />
@@ -71,7 +71,7 @@ function SelectedExerciseDisplay() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: [-20, 0] }}
               exit={{ opacity: 0, y: -20 }}
-              className="flex justify-between space-x-2 mt-2"
+              className="mt-2 flex justify-between space-x-2"
             >
               <SubmitRoutine />
               <ResetButton />

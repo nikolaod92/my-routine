@@ -13,26 +13,26 @@ function RoutineList({ routines }: { routines: RoutineWithAuthor[] }) {
       {routines.map((routine) => (
         <Card
           key={routine.id}
-          className="flex flex-col min-w-full items-stretch p-4 border-t-0 border-primary hover:border-l-4 transition-all"
+          className="flex min-w-full flex-col items-stretch border-t-0 border-primary p-4 transition-all hover:border-l-4"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Link
               prefetch={false}
               href={`/routines/${routine.id}`}
-              className="font-bold text-2xl"
+              className="text-2xl font-bold"
             >
               {routine.name}
             </Link>
             <FollowerCount count={routine.follower_count} />
           </div>
-          <p className="font-medium text-sm flex-1 line-clamp-4">
+          <p className="line-clamp-4 flex-1 text-sm font-medium">
             {routine.description}
           </p>
-          <div className="flex items-center justify-between mt-4">
-            <p className="text-xs  flex-1">
+          <div className="mt-4 flex items-center justify-between">
+            <p className="flex-1  text-xs">
               {routine.created_at ? formatDate(routine.created_at) : ''}
             </p>
-            <p className="mr-2 text-xs uppercase font-bold">
+            <p className="mr-2 text-xs font-bold uppercase">
               {routine?.profile?.name}
             </p>
             {routine.profile.avatar && (

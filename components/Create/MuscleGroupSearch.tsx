@@ -40,7 +40,7 @@ function MuscleGroupSearch() {
   }, [selected])
 
   return (
-    <div className="flex-1 space-y-4 w-full">
+    <div className="w-full flex-1 space-y-4">
       <div className="flex justify-between">
         <MuscleGroupSelect
           selected={selected}

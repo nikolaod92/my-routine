@@ -13,7 +13,7 @@ function LogoutButton() {
     <button
       type="button"
       onClick={logout}
-      className="btn btn-sm p-2 mx-1 btn-ghost capitalize"
+      className="btn btn-ghost btn-sm mx-1 p-2 capitalize"
     >
       Log Out
     </button>

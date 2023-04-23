@@ -3,7 +3,7 @@ import { Children, ReactNode } from 'react'
 
 function ResponsiveGrid({ children }: { children: ReactNode }) {
   return (
-    <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 w-full my-4">
+    <div className="my-4  grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
       {Children.map(children, (child, index) => (
         <motion.div
           initial={{ y: -20, opacity: 0 }}

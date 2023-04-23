@@ -50,7 +50,7 @@ function Register() {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="form-control space-y-6 w-full"
+        className="form-control w-full space-y-6"
       >
         <h1 className="text-2xl font-bold">Register</h1>
         <div className="space-y-1">
@@ -65,7 +65,7 @@ function Register() {
             {...register('username')}
           />
         </div>
-        <button type="submit" className="btn-primary btn-sm btn">
+        <button type="submit" className="btn btn-primary btn-sm">
           Register
         </button>
       </form>
@@ -74,7 +74,7 @@ function Register() {
         Already have an account?{' '}
         <Link
           href="/login"
-          className="font-semibold hover:text-primary underline underline-offset-4"
+          className="font-semibold underline underline-offset-4 hover:text-primary"
         >
           Login
         </Link>

@@ -21,17 +21,17 @@ export default async function Home() {
   if (!user?.routine_id)
     return (
       <Card className="flex flex-col items-center space-y-4">
-        <p className="font-semibold text-2xl text-center">
+        <p className="text-center text-2xl font-semibold">
           You are not currently following a routine.
         </p>
         <div className="divider" />
         <p className="text-sm">Choose one already created by our users:</p>
-        <Link href="/routines" className="btn btn-wide btn-secondary">
+        <Link href="/routines" className="btn btn-secondary btn-wide">
           Routines
         </Link>
         <div className="divider" />
         <p className="text-sm">or create your own and share it!</p>
-        <Link href="/create" className="btn btn-wide btn-primary">
+        <Link href="/create" className="btn btn-primary btn-wide">
           Create
         </Link>
       </Card>

@@ -24,12 +24,12 @@ function MuscleGroupSelect({ selected, onChange }: Props) {
 
   return (
     <select
-      className="select select-sm  capitalize font-bold w-36 shadow-sm"
+      className="select select-sm w-36 font-bold capitalize shadow-sm"
       onChange={onChange}
       value={selected}
     >
       {muscleGroupArray?.map(({ muscle_group }: MuscleGroup) => (
-        <option key={muscle_group} className="capitalize font-medium">
+        <option key={muscle_group} className="font-medium capitalize">
           {muscle_group}
         </option>
       ))}

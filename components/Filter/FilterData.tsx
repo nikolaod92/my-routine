@@ -16,13 +16,13 @@ function FilterData<T extends { [key: string]: string }>({
           (key) =>
             row[key] && (
               <label key={row[key]} className="label cursor-pointer py-0">
-                <span className="font-medium text-sm capitalize">
+                <span className="text-sm font-medium capitalize">
                   {row[key]}
                 </span>
                 <input
                   type="checkbox"
                   value={row[key]}
-                  className="checkbox checkbox-xs bg-primary/10 checkbox-primary border-0 hover:bg-primary/50 transition-all"
+                  className="checkbox-primary checkbox checkbox-xs border-0 bg-primary/10 transition-all hover:bg-primary/50"
                   {...register('filters')}
                 />
               </label>

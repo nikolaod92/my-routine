@@ -54,12 +54,12 @@ function Filter({ serverExercises }: { serverExercises: Exercise[] | null }) {
     <>
       <div className="flex justify-between">
         <button
-          className="btn btn-sm btn-secondary"
+          className="btn btn-secondary btn-sm"
           type="button"
           onClick={() => setShowModal(true)}
         >
           Filters{' '}
-          <span className="bg-base-100 text-secondary text-xs font-bold rounded px-1 ml-2">
+          <span className="ml-2 rounded bg-base-100 px-1 text-xs font-bold text-secondary">
             {exercises?.length}
           </span>
         </button>

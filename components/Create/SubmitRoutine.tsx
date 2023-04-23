@@ -58,9 +58,9 @@ function SubmitRoutine() {
     <LoadingButton
       onClick={submitRoutine}
       loading={loading}
-      disabled={!exercises.length}
+      disabled={!exercises.length || loading}
     >
-      {loading ? 'Wait' : 'Create'}
+      Create
     </LoadingButton>
   )
 }

@@ -1,10 +1,10 @@
 function FullScreenSpinner() {
   return (
-    <div className="flex items-center justify-center p-5 min-w-screen fixed inset-0 z-30 bg-gray-100">
-      <div className="flex space-x-2 animate-pulse">
-        <div className="w-3 h-3 bg-gray-500 rounded-full" />
-        <div className="w-3 h-3 bg-gray-500 rounded-full" />
-        <div className="w-3 h-3 bg-gray-500 rounded-full" />
+    <div className="min-w-screen fixed inset-0 z-30 flex items-center justify-center bg-gray-100 p-5">
+      <div className="flex animate-pulse space-x-2">
+        <div className="h-3 w-3 rounded-full bg-gray-500" />
+        <div className="h-3 w-3 rounded-full bg-gray-500" />
+        <div className="h-3 w-3 rounded-full bg-gray-500" />
       </div>
     </div>
   )

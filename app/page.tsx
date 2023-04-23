@@ -4,25 +4,25 @@ export const revalidate = 60
 
 export default async function Home() {
   return (
-    <div className="flex flex-col text-center mt-4 px-4">
-      <h1 className="text-5xl lg:text-6xl font-bold mb-4">
+    <div className="mt-4 flex flex-col px-4 text-center">
+      <h1 className="mb-4 text-5xl font-bold lg:text-6xl">
         Let us help you on your fitness journey!
       </h1>
-      <p className="text-lg leading-6 font-medium mb-12">
+      <p className="mb-12 text-lg font-medium leading-6">
         Browse our extensive collection of routines and exercises, select a
         routine created by our users or even create your own!
       </p>
-      <div className="flex flex-col mx-auto">
+      <div className="mx-auto flex flex-col">
         <Link
           href="/routines"
-          className="btn btn-md btn-wide btn-secondary shadow-lg shadow-secondary/25 mb-1 "
+          className="btn btn-secondary btn-wide btn-md mb-1 shadow-lg shadow-secondary/25 "
         >
           Routines
         </Link>
         <Link
           prefetch={false}
           href="/create"
-          className="btn btn-md btn-wide btn-primary shadow-lg shadow-primary/50 "
+          className="btn btn-primary btn-wide btn-md shadow-lg shadow-primary/50 "
         >
           Create
         </Link>

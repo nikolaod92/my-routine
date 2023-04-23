@@ -19,7 +19,7 @@ function GoogleSignInButton() {
       <button
         type="button"
         onClick={signInWithGoogle}
-        className="btn btn-primary btn-outline"
+        className="btn-outline btn btn-primary"
       >
         Sign In With Google
       </button>

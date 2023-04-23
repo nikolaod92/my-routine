@@ -7,7 +7,7 @@ import ResponsiveGrid from '../UI/ResponsiveGrid'
 function RoutineExerciseGrid({ exercises }: { exercises: RoutineExercise[] }) {
   if (exercises.length === 0)
     return (
-      <div className="max-w-fit bg-primary text-primary-content rounded py-2 px-4 font-semibold text-sm shadow">
+      <div className="max-w-fit rounded bg-primary px-4 py-2 text-sm font-semibold text-primary-content shadow">
         Rest day.
       </div>
     )
@@ -16,21 +16,21 @@ function RoutineExerciseGrid({ exercises }: { exercises: RoutineExercise[] }) {
     <ResponsiveGrid>
       {exercises.map((ex) => (
         <div key={ex.exercise.id} className="card flex-1 bg-base-100 shadow">
-          <p className="badge badge-xs badge-primary rounded-xl p-2 m-2 font-semibold uppercase">
+          <p className="badge-primary badge badge-xs m-2 rounded-xl p-2 font-semibold uppercase">
             {ex?.exercise.target}
           </p>
           <ExerciseImage src={ex.exercise.gif} alt={ex.exercise.name} />
-          <div className="card-body p-4 space-y-2 pt-2 justify-between">
-            <h2 className="text-center font-semibold leading-5 text-sm capitalize line-clamp-2">
+          <div className="card-body justify-between space-y-2 p-4 pt-2">
+            <h2 className="line-clamp-2 text-center text-sm font-semibold capitalize leading-5">
               {ex?.exercise.name}
             </h2>
-            <div className="flex space-x-2 justify-center items-center">
-              <p className="text-xs text-end font-medium">Sets</p>
-              <p className="badge badge-sm badge-primary font-bold">
+            <div className="flex items-center justify-center space-x-2">
+              <p className="text-end text-xs font-medium">Sets</p>
+              <p className="badge-primary badge badge-sm font-bold">
                 {ex.sets}
               </p>
-              <p className="text-xs text-end font-medium">Reps</p>
-              <p className="badge badge-sm badge-primary font-bold">
+              <p className="text-end text-xs font-medium">Reps</p>
+              <p className="badge-primary badge badge-sm font-bold">
                 {ex.reps}
               </p>
             </div>

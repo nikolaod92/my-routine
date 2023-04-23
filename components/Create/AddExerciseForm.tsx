@@ -75,11 +75,11 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
     >
       <div>
         <label>
-          <span className="text-xs font-semibold mr-1 uppercase">Sets </span>
+          <span className="mr-1 text-xs font-semibold uppercase">Sets </span>
         </label>
         <input
           type="number"
-          className="input-primary input input-xs w-10 text-right bg-primary/10 font-bold text-sm border-none"
+          className="input-primary input input-xs w-10 border-none bg-primary/10 text-right text-sm font-bold"
           {...register('sets', {
             valueAsNumber: true,
             min: 1,
@@ -89,11 +89,11 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       </div>
       <div>
         <label>
-          <span className="text-xs font-semibold mr-1 uppercase">Reps </span>
+          <span className="mr-1 text-xs font-semibold uppercase">Reps </span>
         </label>
         <input
           type="number"
-          className="input-primary input input-xs w-10 text-right bg-primary/10 font-bold text-sm border-none"
+          className="input-primary input input-xs w-10 border-none bg-primary/10 text-right text-sm font-bold"
           {...register('reps', {
             valueAsNumber: true,
             min: 1,
@@ -104,7 +104,7 @@ export default function AddExerciseForm({ id, name, setShow }: Props) {
       <button
         disabled={!isValid || !isDirty}
         type="submit"
-        className="btn-primary btn-xs btn"
+        className="btn btn-primary btn-xs"
       >
         {exerciseAddedToRoutine ? 'Edit' : 'Add'}
       </button>

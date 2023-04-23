@@ -45,7 +45,7 @@ function Login() {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="form-control space-y-6 w-full"
+        className="form-control w-full space-y-6"
       >
         <h1 className="text-2xl font-bold">Login</h1>
         <div className="space-y-1">
@@ -56,7 +56,7 @@ function Login() {
             type="password"
           />
         </div>
-        <button type="submit" className="btn-primary btn-sm btn">
+        <button type="submit" className="btn btn-primary btn-sm">
           Login
         </button>
         <div className="divider">or</div>
@@ -67,7 +67,7 @@ function Login() {
         Don&apos;t have an account?{' '}
         <Link
           href="/register"
-          className="font-semibold hover:text-primary underline underline-offset-4"
+          className="font-semibold underline underline-offset-4 hover:text-primary"
         >
           Register
         </Link>

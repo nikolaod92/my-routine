@@ -12,7 +12,7 @@ function LoadingButton(props: Props) {
   return (
     <button
       type="button"
-      className={cn('btn btn-sm btn-primary', loading && 'loading', className)}
+      className={cn('btn btn-primary btn-sm', loading && 'loading', className)}
       disabled={loading}
       {...rest}
     >

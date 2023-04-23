@@ -11,7 +11,7 @@ function FilterForm({ onSubmit, handleSubmit, children }: Props) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-2">
       {children}
-      <button className="btn btn-sm btn-secondary" type="submit">
+      <button className="btn btn-secondary btn-sm" type="submit">
         Apply filters
       </button>
     </form>

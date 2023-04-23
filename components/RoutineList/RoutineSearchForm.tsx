@@ -24,7 +24,7 @@ function RoutineSearchForm({
         >
           <button
             type="submit"
-            className="btn btn-square btn-primary btn-sm rounded-s-none absolute right-[0.1rem]"
+            className="btn btn-primary btn-square btn-sm absolute right-[0.1rem] rounded-s-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

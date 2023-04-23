@@ -36,7 +36,7 @@ export default function Create() {
     <Card>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="form-control space-y-4 w-full"
+        className="form-control w-full space-y-4"
       >
         <h1 className="text-2xl font-bold">Create a routine</h1>
         <Input errorMsg={errors.name?.message} {...register('name')} />
@@ -57,7 +57,7 @@ export default function Create() {
             </p>
           )}
         </div>
-        <button type="submit" className="btn-primary btn-sm btn self-end">
+        <button type="submit" className="btn btn-primary btn-sm self-end">
           Next
         </button>
       </form>

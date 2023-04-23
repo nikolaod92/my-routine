@@ -55,7 +55,7 @@ function RoutineListContainer({ serverRoutines }: Props) {
     <>
       <RoutineSearchForm onSubmit={onSubmit} />
       {routines?.length === 0 && !loading && (
-        <p className="font-medium text-md ml-2">No routines found.</p>
+        <p className="text-md ml-2 font-medium">No routines found.</p>
       )}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {routines && !loading ? (

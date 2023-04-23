@@ -11,21 +11,21 @@ function ExerciseSelect() {
 
   return (
     <>
-      <div className="flex flex-col justify-center mb-4">
-        <p className="font-medium text-xs mb-[0.1rem] px-1">
+      <div className="mb-4 flex flex-col justify-center">
+        <p className="mb-[0.1rem] px-1 text-xs font-medium">
           Choose exercises by
         </p>
         <div>
           <button
             type="button"
-            className="btn btn-sm btn-primary rounded-e-none border-r-2 border-r-white"
+            className="btn btn-primary btn-sm rounded-e-none border-r-2 border-r-white"
             onClick={() => setCurrent(<MuscleGroupSearch />)}
           >
             Muscle Group
           </button>
           <button
             type="button"
-            className="btn btn-sm btn-primary rounded-s-none"
+            className="btn btn-primary btn-sm rounded-s-none"
             onClick={() => setCurrent(<NameSearch />)}
           >
             Name

@@ -44,7 +44,7 @@ function NameSearch() {
         >
           <button
             type="submit"
-            className="btn btn-square btn-primary btn-sm rounded-s-none absolute right-[0.1rem]"
+            className="btn btn-primary btn-square btn-sm absolute right-[0.1rem] rounded-s-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ function NameSearch() {
         </Input>
       </form>
       {exercises?.length === 0 && !loading && (
-        <p className="font-medium text-md ml-2 mt-1">No exercises found.</p>
+        <p className="text-md ml-2 mt-1 font-medium">No exercises found.</p>
       )}
 
       {loading ? (
