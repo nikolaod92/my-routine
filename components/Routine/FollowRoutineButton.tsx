@@ -2,6 +2,7 @@
 
 import { useUserProfile } from '@/contexts/userContext'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
+import { cn } from '@/lib/utils'
 import toast from 'react-hot-toast'
 import { useSupabase } from '../SupabaseProvider'
 import LoadingButton from '../UI/LoadingButton'
@@ -31,6 +32,7 @@ function FollowRoutineButton({ id }: { id: string }) {
         onClick={
           isUserFollowingRoutine ? () => fetchData(null) : () => fetchData(id)
         }
+        className={cn(isUserFollowingRoutine && 'btn-secondary')}
       >
         {isUserFollowingRoutine && !loading ? 'Unfollow' : 'Follow'}
       </LoadingButton>

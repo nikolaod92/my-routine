@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -6,12 +7,12 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 function LoadingButton(props: Props) {
-  const { children, loading, ...rest } = props
+  const { children, loading, className, ...rest } = props
 
   return (
     <button
       type="button"
-      className={`btn btn-sm btn-primary ${loading && 'loading'}`}
+      className={cn('btn btn-sm btn-primary', loading && 'loading', className)}
       disabled={loading}
       {...rest}
     >
