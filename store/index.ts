@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { ExerciseOnDay, DayOfWeek } from '@/lib/database.types'
-import { DAYS_OF_WEEK } from '@/lib/constants'
 
 type State = {
   currentDay: DayOfWeek
@@ -23,7 +22,7 @@ type Action = {
 }
 
 const initialState: State = {
-  currentDay: DAYS_OF_WEEK[new Date().getDay() - 1],
+  currentDay: 'm',
   routineInfo: {
     name: '',
     description: '',
