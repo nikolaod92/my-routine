@@ -49,10 +49,15 @@ function Login() {
       >
         <h1 className="text-2xl font-bold">Login</h1>
         <div className="space-y-1">
-          <Input errorMsg={errors.email?.message} {...register('email')} />
+          <Input
+            errorMsg={errors.email?.message}
+            {...register('email')}
+            icon="Email"
+          />
           <Input
             errorMsg={errors.password?.message}
             {...register('password')}
+            icon="Password"
             type="password"
           />
         </div>

@@ -54,15 +54,21 @@ function Register() {
       >
         <h1 className="text-2xl font-bold">Register</h1>
         <div className="space-y-1">
-          <Input errorMsg={errors.email?.message} {...register('email')} />
+          <Input
+            errorMsg={errors.email?.message}
+            {...register('email')}
+            icon="Email"
+          />
           <Input
             errorMsg={errors.password?.message}
             {...register('password')}
             type="password"
+            icon="Password"
           />
           <Input
             errorMsg={errors.username?.message}
             {...register('username')}
+            icon="User"
           />
         </div>
         <button type="submit" className="btn btn-primary btn-sm">
