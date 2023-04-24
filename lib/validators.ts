@@ -27,16 +27,22 @@ export const insertExerciseSchema = z
   })
 
 export const loginSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
+  email: z.string().email({ message: 'Invalid email address.' }),
   password: z
     .string()
     .trim()
     .min(6, { message: 'Password has to be longer than 6 characters.' }),
 })
 
-export const registerSchema = loginSchema.extend({
-  username: z.string().trim().min(3, { message: 'Username is too short.' }),
-})
+export const registerSchema = loginSchema
+  .extend({
+    username: z.string().trim().min(3, { message: 'Username is too short.' }),
+    confirm: z.string().trim(),
+  })
+  .refine((data) => data.password === data.confirm, {
+    message: "Passwords don't match.",
+    path: ['confirm'],
+  })
 
 export type LoginInput = z.infer<typeof loginSchema>
 export type RegisterInput = z.infer<typeof registerSchema>

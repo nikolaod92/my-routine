@@ -12,6 +12,7 @@ import Input from '../UI/Input'
 type RegisterData = {
   email: string
   password: string
+  confirm: string
   username: string
 }
 
@@ -60,15 +61,22 @@ function Register() {
             icon="Email"
           />
           <Input
+            errorMsg={errors.username?.message}
+            {...register('username')}
+            icon="User"
+          />
+          <Input
             errorMsg={errors.password?.message}
             {...register('password')}
             type="password"
             icon="Password"
           />
           <Input
-            errorMsg={errors.username?.message}
-            {...register('username')}
-            icon="User"
+            errorMsg={errors.confirm?.message}
+            {...register('confirm')}
+            type="password"
+            icon="Password"
+            labelText="Confirm password"
           />
         </div>
         <button type="submit" className="btn btn-primary btn-sm">

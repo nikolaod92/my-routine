@@ -6,10 +6,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMsg: string | undefined
   srOnly?: boolean
   icon?: IconName
+  labelText?: string
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMsg, srOnly = false, children, icon, ...props }, ref) => {
+  ({ errorMsg, srOnly = false, children, icon, labelText, ...props }, ref) => {
     const Icon = icon ? Icons[icon] : undefined
     return (
       <div className="relative">
@@ -18,13 +19,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           className={cn('label justify-start', srOnly && 'sr-only')}
         >
           <span className="text-xs font-semibold uppercase leading-3">
-            {props.name}
+            {labelText ?? props.name}
           </span>
         </label>
         {Icon && (
           <Icon className="absolute top-9 h-4 w-4 translate-x-2 text-primary/40" />
         )}
-
         <input
           id={props.name}
           className={cn(
@@ -36,7 +36,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         />
         {children}
         {errorMsg && (
-          <p className="mt-1 text-xs italic text-red-500">{errorMsg}</p>
+          <p className="mt-1 text-xs font-medium text-error">{errorMsg}</p>
         )}
       </div>
     )
