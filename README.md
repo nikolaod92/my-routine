@@ -1,38 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# myRoutine
 
-## Getting Started
+myRoutine was designed for fitness enthusiasts to create and share their workout routines with others. The platform provides users with an easy and intuitive way to create custom workout routines by selecting exercises from a pre-existing database. Once a workout routine has been created, it can be saved and shared with other users of the platform.
 
-First, run the development server:
+<a href="https://my-routine-peach.vercel.app/">Live Demo</a>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Built with:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[![Next][Next.js]][Next-url]
+[![React][React.js]][React-url]
+[![Tailwind][TailwindCSS]][Tailwind-url]
+[![Supabase][Supabase]][Supabase-url]
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file. sbp_d8718888f4b45c95482ccd81b054a0f4dd0ad5c3
+<div style="display:flex; flex-wrap:wrap; gap:6px">
+  <img src="https://imgur.com/5wBliNw.jpg" height="240" width="140" >
+  <img src="https://imgur.com/mJMFiC2.jpg" height="240" width="140" >
+  <img src="https://imgur.com/N7lg1yb.jpg" height="240" width="360" >
+  <img src="https://imgur.com/Zbxz4Yl.jpg" height="240" width="360" >
+  <img src="https://imgur.com/rHEUDs3.jpg" height="240" width="360" >
+</div>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Roadmap:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [ ] Add user comments on routines
+- [ ] Add user profile pages
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<!-- MARKDOWN LINKS & IMAGES -->
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[TailwindCSS]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
+[Supabase]: https://img.shields.io/badge/Supabase-181818?style=for-the-badge&logo=supabase&logoColor=white
+[Supabase-url]: https://supabase.com/
