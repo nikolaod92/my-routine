@@ -23,7 +23,13 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginData>({ resolver: zodResolver(loginSchema) })
+  } = useForm<LoginData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: 'test@test.com',
+      password: 'test123',
+    },
+  })
 
   const onSubmit: SubmitHandler<LoginData> = async (formData) => {
     const { email, password } = formData
@@ -61,7 +67,7 @@ function Login() {
             type="password"
           />
         </div>
-        <button type="submit" className="btn btn-primary btn-sm">
+        <button type="submit" className="btn-primary btn-sm btn">
           Login
         </button>
         <div className="divider">or</div>
