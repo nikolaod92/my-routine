@@ -28,7 +28,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           id={props.name}
           className={cn(
-            'input input-sm w-full bg-primary/10 text-lg font-medium',
+            props.type === 'file'
+              ? 'file-input-primary file-input file-input-sm w-full border-none bg-primary/10 '
+              : 'input input-sm w-full bg-primary/10 text-lg font-medium',
             icon && 'pl-8'
           )}
           ref={ref}

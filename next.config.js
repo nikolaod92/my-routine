@@ -12,6 +12,9 @@ const nextConfig = {
       {
         hostname: 'upload.wikimedia.org',
       },
+      {
+        hostname: 'btblvqgynzaghxyzqsry.supabase.co',
+      },
     ],
   },
 }

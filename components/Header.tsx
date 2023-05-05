@@ -10,6 +10,7 @@ const menuItems = [
   { title: 'Routines', url: '/routines', prefetch: false },
   { title: 'Exercises', url: '/exercises', prefetch: true },
   { title: 'Create', url: '/create', prefetch: false },
+  { title: 'Profile', url: '/profile', prefetch: false },
 ]
 
 function MenuItems() {
@@ -47,7 +48,7 @@ export default function Header() {
     <div className="navbar z-40 border-b-[1px] border-b-base-300 bg-base-100 lg:px-16 xl:px-24 2xl:px-36">
       <div className="navbar-start">
         <div className="dropdown">
-          <button type="button" className="btn btn-ghost lg:hidden ">
+          <button type="button" className="btn-ghost btn lg:hidden ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-primary"

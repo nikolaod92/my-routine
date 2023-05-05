@@ -14,9 +14,8 @@ import { createServerClient } from '../utils/supabase-server'
 const font = Dosis({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 })
-
-export const revalidate = 0
 
 export const metadata: Metadata = {
   title: {
