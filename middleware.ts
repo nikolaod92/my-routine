@@ -23,5 +23,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/create/:path*', '/my-routine'],
+  matcher: ['/create/:path*', '/my-routine', '/profile'],
 }
