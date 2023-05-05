@@ -9,6 +9,9 @@ const nextConfig = {
       {
         hostname: '*.googleusercontent.com',
       },
+      {
+        hostname: 'upload.wikimedia.org',
+      },
     ],
   },
 }

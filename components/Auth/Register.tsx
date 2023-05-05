@@ -1,5 +1,6 @@
 'use client'
 
+import { DEFAULT_AVATAR_URL } from '@/lib/constants'
 import { registerSchema } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
@@ -35,6 +36,7 @@ function Register() {
       options: {
         data: {
           full_name: username,
+          avatar_url: DEFAULT_AVATAR_URL,
         },
       },
     })
@@ -79,7 +81,7 @@ function Register() {
             labelText="Confirm password"
           />
         </div>
-        <button type="submit" className="btn btn-primary btn-sm">
+        <button type="submit" className="btn-primary btn-sm btn">
           Register
         </button>
       </form>
