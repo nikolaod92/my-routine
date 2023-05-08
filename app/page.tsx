@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-export const revalidate = 60
-
 export default async function Home() {
   return (
     <div className="mt-4 flex flex-col px-4 text-center">
@@ -15,14 +13,14 @@ export default async function Home() {
       <div className="mx-auto flex flex-col">
         <Link
           href="/routines"
-          className="btn btn-secondary btn-wide btn-md mb-1 shadow-lg shadow-secondary/25 "
+          className="btn-secondary btn-wide btn-md btn mb-1 shadow-lg shadow-secondary/25 "
         >
           Routines
         </Link>
         <Link
           prefetch={false}
           href="/create"
-          className="btn btn-primary btn-wide btn-md shadow-lg shadow-primary/50 "
+          className="btn-primary btn-wide btn-md btn shadow-lg shadow-primary/50 "
         >
           Create
         </Link>

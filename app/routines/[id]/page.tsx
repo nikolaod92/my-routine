@@ -1,8 +1,6 @@
 import RoutineContainer from '@/components/Routine/RoutineContainer'
 import { createServerClient } from '@/utils/supabase-server'
 
-export const revalidate = 0
-
 type Props = {
   params: {
     id: string
