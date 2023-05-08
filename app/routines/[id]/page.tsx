@@ -1,3 +1,4 @@
+import RoutineComments from '@/components/Routine/RoutineComments'
 import RoutineContainer from '@/components/Routine/RoutineContainer'
 import { createServerClient } from '@/utils/supabase-server'
 
@@ -28,6 +29,11 @@ export default async function RoutinePage({
 }: {
   params: { id: string }
 }) {
-  // @ts-expect-error Server Component
-  return <RoutineContainer id={params.id} />
+  return (
+    <>
+      {/* @ts-expect-error Async Server Component */}
+      <RoutineContainer id={params.id} />
+      <RoutineComments />
+    </>
+  )
 }
