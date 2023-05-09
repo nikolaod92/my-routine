@@ -12,7 +12,7 @@ function ExerciseDayNavigation() {
   ])
 
   const mounted = useMounted()
-  if (!mounted) return <Skeleton className="h-8 w-64 bg-slate-200" />
+  if (!mounted) return <Skeleton className="h-6 max-w-lg bg-slate-200 sm:h-8" />
 
   return (
     <div className="btn-group max-w-lg justify-between">
