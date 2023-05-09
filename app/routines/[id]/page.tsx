@@ -1,6 +1,8 @@
-import RoutineComments from '@/components/Routine/RoutineComments'
+import RoutineCommentsList from '@/components/Routine/Comments/RoutineCommentsList'
 import RoutineContainer from '@/components/Routine/RoutineContainer'
 import { createServerClient } from '@/utils/supabase-server'
+
+export const revalidate = 0
 
 type Props = {
   params: {
@@ -33,7 +35,8 @@ export default async function RoutinePage({
     <>
       {/* @ts-expect-error Async Server Component */}
       <RoutineContainer id={params.id} />
-      <RoutineComments />
+      {/* @ts-expect-error Async Server Component */}
+      <RoutineCommentsList id={params.id} />
     </>
   )
 }
