@@ -26,7 +26,7 @@ function AddCommentForm({ id }: Props) {
     reset,
   } = useForm<CommentData>()
 
-  const [userCommented, setUserCommented] = useState(false)
+  const [userCommented, setUserCommented] = useState(true)
 
   const addComment = async (content: string) =>
     supabase.from('comments').insert({
@@ -66,7 +66,7 @@ function AddCommentForm({ id }: Props) {
     router.refresh()
   }
 
-  if (userCommented) return null
+  if (!user || userCommented) return null
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-1">

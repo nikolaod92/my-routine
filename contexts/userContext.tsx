@@ -59,6 +59,10 @@ function UserProvider({ children }: { children: React.ReactNode }) {
     }
   }, [userId, router, supabase])
 
+  useEffect(() => {
+    setUserProfile(null)
+  }, [session])
+
   return <Context.Provider value={userProfile}>{children}</Context.Provider>
 }
 
