@@ -4,6 +4,7 @@ import { useSupabase } from '@/components/SupabaseProvider'
 import LoadingButton from '@/components/UI/LoadingButton'
 import { useUserProfile } from '@/contexts/userContext'
 import useFetchSupabase from '@/hooks/useFetchSupabase'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -66,35 +67,43 @@ function AddCommentForm({ id }: Props) {
     router.refresh()
   }
 
-  if (!user || userCommented) return null
+  if (userCommented) return null
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-1">
-      <div>
-        <label htmlFor="description" className="label">
-          <span className="text-xs font-semibold uppercase leading-3">
-            Add Comment
-          </span>
-        </label>
-        <textarea
-          id="content"
-          className="textarea h-24  w-full max-w-md bg-primary/10 px-4 py-2 text-sm font-medium"
-          {...register('content')}
-        />
-        {errors.content && (
-          <p className="text-xs italic text-red-500">
-            {errors.content?.message}
-          </p>
-        )}
-      </div>
-      <LoadingButton
-        loading={loading}
-        type="submit"
-        disabled={!isDirty || isSubmitting}
+    <AnimatePresence>
+      <motion.form
+        initial={{ y: 0, opacity: 0 }}
+        animate={{ y: [-20, 0], opacity:1 }}
+        exit={{ y: 0, opacity: 0 }}
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-1"
       >
-        Post
-      </LoadingButton>
-    </form>
+        <div>
+          <label htmlFor="description" className="label">
+            <span className="text-xs font-semibold uppercase leading-3">
+              Add Comment
+            </span>
+          </label>
+          <textarea
+            id="content"
+            className="textarea h-24  w-full max-w-md bg-primary/10 px-4 py-2 text-sm font-medium"
+            {...register('content')}
+          />
+          {errors.content && (
+            <p className="text-xs italic text-red-500">
+              {errors.content?.message}
+            </p>
+          )}
+        </div>
+        <LoadingButton
+          loading={loading}
+          type="submit"
+          disabled={!isDirty || isSubmitting}
+        >
+          Post
+        </LoadingButton>
+      </motion.form>
+    </AnimatePresence>
   )
 }
 
