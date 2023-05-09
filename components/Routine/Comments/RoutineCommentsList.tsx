@@ -14,6 +14,10 @@ type ReturnType = {
 async function RoutineCommentsList({ id }: { id: string }) {
   const supabase = createServerClient()
 
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
   const { data: comments } = await supabase
     .from('comments')
     .select(`content, created_at, profile (name, avatar)`)
@@ -21,8 +25,7 @@ async function RoutineCommentsList({ id }: { id: string }) {
     .returns<ReturnType[]>()
 
   return (
-    <div className="mt-6 space-y-4">
-      <AddCommentForm id={id} />
+    <div className="mt-6 space-y-2">
       {comments && comments.length > 0 && (
         <div>
           <div className="flex items-center text-xl font-bold">
@@ -45,6 +48,7 @@ async function RoutineCommentsList({ id }: { id: string }) {
           </div>
         </div>
       )}
+      {session && <AddCommentForm id={id} />}
     </div>
   )
 }
