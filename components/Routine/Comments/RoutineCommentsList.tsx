@@ -21,11 +21,16 @@ async function RoutineCommentsList({ id }: { id: string }) {
     .returns<ReturnType[]>()
 
   return (
-    <div className="mt-4 space-y-4">
+    <div className="mt-6 space-y-4">
       <AddCommentForm id={id} />
       {comments && comments.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold">Comments</h2>
+          <div className="flex items-center text-xl font-bold">
+            Comments{' '}
+            <span className="badge-secondary badge badge-sm ml-2">
+              {comments.length}
+            </span>
+          </div>
           <div className="divide-y-2">
             {comments?.map(
               ({ content, created_at, profile: { name, avatar } }) => (
