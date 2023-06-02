@@ -1,3 +1,4 @@
+import { useUserProfile } from '@/contexts/userContext'
 import { RoutineWithAuthor } from '@/lib/database.types'
 import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
@@ -8,6 +9,8 @@ import Card from '../UI/Card'
 import { Skeleton } from '../UI/Skeleton'
 
 function RoutineList({ routines }: { routines: RoutineWithAuthor[] }) {
+  const user = useUserProfile()
+
   return (
     <>
       {routines.map((routine) => (
@@ -33,7 +36,7 @@ function RoutineList({ routines }: { routines: RoutineWithAuthor[] }) {
               {routine.created_at ? formatDate(routine.created_at) : ''}
             </p>
             <p className="mr-2 text-xs font-bold uppercase">
-              {routine?.profile?.name}
+              {user?.id === routine.author_id ? 'You' : routine?.profile?.name}
             </p>
             {routine.profile.avatar && (
               <Avatar avatar={routine.profile.avatar} />

@@ -19,7 +19,7 @@ function RoutineListContainer({ serverRoutines }: Props) {
     supabase
       .from('routine')
       .select(
-        `id, name, description, follower_count, created_at, profile!routine_author_id_fkey (name, avatar)`
+        `id, name, description, follower_count, created_at, author_id, profile!routine_author_id_fkey (name, avatar)`
       )
       .textSearch('name', searchTerm, {
         config: 'english',
