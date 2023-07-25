@@ -15,6 +15,7 @@ const nextConfig = {
       {
         hostname: 'btblvqgynzaghxyzqsry.supabase.co',
       },
+      { hostname: 'edb-4rme8.ondigitalocean.app' },
     ],
   },
 }
